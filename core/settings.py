@@ -55,12 +55,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
-    'alertas',
     'datos',
     'datos2',
     'datos3',
     'datos4',
-    'myapp_w', # Enable the inner app 
+    'myapp_w',
+    'alertas', # Enable the inner app 
 ]
 
 MIDDLEWARE = [
