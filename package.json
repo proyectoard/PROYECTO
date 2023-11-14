@@ -19,5 +19,5 @@
     "dependencies": {
         "plotly.js-dist": "^2.11.1"
     },
-    "devDependencies": {}""
+    "devDependencies": {}
 }
