@@ -24,7 +24,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['stingray-app.ondigitalocean.app','127.0.0.1','159.223.108.138' ,config('SERVER', default='192.168.100.21')]
+ALLOWED_HOSTS = ['walrus-app.ondigitalocean.app','127.0.0.1','159.223.108.138' ,config('SERVER', default='192.168.100.21')]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
