@@ -43,7 +43,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 # load production server from .env
 #ALLOWED_HOSTS = ['cacao.pythonanywhere.com', '127.0.0.1', config('SERVER', default='192.168.100.21')]
-ALLOWED_HOSTS = ['monkfish-app.ondigitalocean.app','127.0.0.1','159.223.108.138' ,config('SERVER', default='192.168.100.21')]
+ALLOWED_HOSTS = ['stingray-app.ondigitalocean.app','127.0.0.1','159.223.108.138' ,config('SERVER', default='192.168.100.21')]
 
 # Application definition
 
