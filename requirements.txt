@@ -13,7 +13,6 @@ django-redis
 django-celery-beat 
 schedule
 honcho
-forego
 redis
 django-celery-results
 celery
