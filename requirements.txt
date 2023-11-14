@@ -9,3 +9,13 @@ dj-database-url
 python-decouple
 gunicorn
 whitenoise
+django-redis   
+django-celery-beat 
+schedule
+honcho
+forego
+redis
+django-celery-results
+celery
+django-celery 
+celery-with-redis
