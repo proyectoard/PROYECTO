@@ -7,25 +7,13 @@ import os
 from decouple import config
 from unipath import Path
 import dj_database_url
-from celery import Celery
-from celery.schedules import crontab
+
 from django.core.management.utils import get_random_secret_key
 
-app = Celery('myapp_w')
-app.config_from_object('django.conf:settings', namespace='CELERY')
+
 
 # Load task modules from all registered Django app configs.
-app.autodiscover_tasks()
 
-# Celery Beat Configuration
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
-CELERY_BEAT_SCHEDULE = {
-    'my-task': {
-        'task': 'myapp_w.tasks.my_task',  # Path to your task
-        'schedule': crontab(minute='*/1'),  # Run every 5 minutes
-    },
-}
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 STATIC_URL = '/static/'
