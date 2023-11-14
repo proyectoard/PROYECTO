@@ -7,14 +7,9 @@ import os
 from decouple import config
 from unipath import Path
 import dj_database_url
-
+from pathlib import Path
 from django.core.management.utils import get_random_secret_key
-
-
-
-# Load task modules from all registered Django app configs.
-
-
+import json
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 STATIC_URL = '/static/'
 BASE_DIR = Path(__file__).parent
@@ -29,23 +24,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = Path(__file__).parent
-CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY', default='S#perS3crEt_1122')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
-
-# load production server from .env
-#ALLOWED_HOSTS = ['cacao.pythonanywhere.com', '127.0.0.1', config('SERVER', default='192.168.100.21')]
 ALLOWED_HOSTS = ['stingray-app.ondigitalocean.app','127.0.0.1','159.223.108.138' ,config('SERVER', default='192.168.100.21')]
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -60,7 +39,7 @@ INSTALLED_APPS = [
     'datos3',
     'datos4',
     'myapp_w',
-    'alertas', # Enable the inner app 
+    'alertas',
 ]
 
 MIDDLEWARE = [
@@ -72,8 +51,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
-    
 ]
 
 ROOT_URLCONF = 'core.urls'
