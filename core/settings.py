@@ -9,7 +9,7 @@ from unipath import Path
 import dj_database_url
 from celery import Celery
 from celery.schedules import crontab
-
+from django.core.management.utils import get_random_secret_key
 
 app = Celery('myapp_w')
 app.config_from_object('django.conf:settings', namespace='CELERY')
@@ -26,12 +26,20 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': crontab(minute='*/1'),  # Run every 5 minutes
     },
 }
-# Configuración adicional para usar la base de datos de Django (SQLite en este caso)
-CELERY_RESULT_BACKEND = 'db+sqlite:///results.sqlite3'  # Cambia esto según tu configuración de base de datos
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'UTC'
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+STATIC_URL = '/static/'
+BASE_DIR = Path(__file__).parent
+STATIC_ROOT =  os.path.join(BASE_DIR, "assets")
+CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# SECURITY WARNING: keep the secret key used in production secret!
+
+#SECRET_KEY = config('SECRET_KEY', default='S#perS3crEt_1122')
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 
 
@@ -46,7 +54,8 @@ SECRET_KEY = config('SECRET_KEY', default='S#perS3crEt_1122')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 # load production server from .env
-ALLOWED_HOSTS = ['cacao.pythonanywhere.com', '127.0.0.1', config('SERVER', default='192.168.100.21')]
+#ALLOWED_HOSTS = ['cacao.pythonanywhere.com', '127.0.0.1', config('SERVER', default='192.168.100.21')]
+ALLOWED_HOSTS = ['monkfish-app.ondigitalocean.app','127.0.0.1','159.223.108.138' ,config('SERVER', default='192.168.100.21')]
 
 # Application definition
 
