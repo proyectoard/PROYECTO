@@ -24,8 +24,10 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['walrus-app.ondigitalocean.app','127.0.0.1','159.223.108.138' ,config('SERVER', default='192.168.100.21')]
+# load production server from .env
+ALLOWED_HOSTS = ['starfish-app-qh48r.ondigitalocean.app','127.0.0.1','159.223.108.138' ,config('SERVER', default='192.168.100.21')]
 
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
