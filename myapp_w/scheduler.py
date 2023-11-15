@@ -28,6 +28,7 @@ def job():
         print(f"v2: {value_v2}")
         print(f"v3: {value_v3}")
         print(f"v4: {value_v4}")
+        
 
 schedule.every(0.5).minutes.do(job)
 

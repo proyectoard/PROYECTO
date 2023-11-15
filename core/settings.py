@@ -25,7 +25,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 # load production server from .env
-ALLOWED_HOSTS = ['starfish-app-qh48r.ondigitalocean.app','127.0.0.1','159.223.108.138' ,config('SERVER', default='192.168.100.21')]
+ALLOWED_HOSTS = ['plankton-app-ka3o9.ondigitalocean.app','127.0.0.1','159.223.108.138' ,config('SERVER', default='192.168.100.21')]
 
 # Application definition
 INSTALLED_APPS = [
