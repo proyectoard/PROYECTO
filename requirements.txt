@@ -1,6 +1,6 @@
 asgiref
 autopep8
-django==2.2.10
+Django==3.2.16
 pycodestyle
 pytz
 sqlparse
@@ -9,3 +9,7 @@ dj-database-url
 python-decouple
 gunicorn
 whitenoise
+schedule
+honcho
+firebase==3.0.1
+firebase-admin==5.2.0

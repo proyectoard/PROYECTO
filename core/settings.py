@@ -7,49 +7,27 @@ import os
 from decouple import config
 from unipath import Path
 import dj_database_url
-from celery import Celery
-from celery.schedules import crontab
-
-
-app = Celery('myapp_w')
-app.config_from_object('django.conf:settings', namespace='CELERY')
-
-# Load task modules from all registered Django app configs.
-app.autodiscover_tasks()
-
-# Celery Beat Configuration
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
-CELERY_BEAT_SCHEDULE = {
-    'my-task': {
-        'task': 'myapp_w.tasks.my_task',  # Path to your task
-        'schedule': crontab(minute='*/1'),  # Run every 5 minutes
-    },
-}
-# Configuración adicional para usar la base de datos de Django (SQLite en este caso)
-CELERY_RESULT_BACKEND = 'db+sqlite:///results.sqlite3'  # Cambia esto según tu configuración de base de datos
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'UTC'
-
-
-
+from pathlib import Path
+from django.core.management.utils import get_random_secret_key
+import json
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+STATIC_URL = '/static/'
 BASE_DIR = Path(__file__).parent
+STATIC_ROOT =  os.path.join(BASE_DIR, "assets")
 CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY', default='S#perS3crEt_1122')
 
+#SECRET_KEY = config('SECRET_KEY', default='S#perS3crEt_1122')
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 # load production server from .env
-ALLOWED_HOSTS = ['cacao.pythonanywhere.com', '127.0.0.1', config('SERVER', default='192.168.100.21')]
+ALLOWED_HOSTS = ['starfish-app-qh48r.ondigitalocean.app','127.0.0.1','159.223.108.138' ,config('SERVER', default='192.168.100.21')]
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -58,12 +36,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
-    'alertas',
     'datos',
     'datos2',
     'datos3',
     'datos4',
-    'myapp_w', # Enable the inner app 
+    'myapp_w',
+    'alertas',   
 ]
 
 MIDDLEWARE = [
@@ -75,8 +53,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
-    
 ]
 
 ROOT_URLCONF = 'core.urls'
