@@ -7,7 +7,6 @@ def job():
     
     api_url = "https://blynk.cloud/external/api/get?token=2mAMfT5kz3MKfie1m0IiBLqm9mvzFkuV&v0&v1&v2&v3&v4"
 
-    # Realizar la solicitud a la API
     response = requests.get(api_url)
 
     # Verificar si la solicitud fue exitosa (código de estado 200)
@@ -28,7 +27,38 @@ def job():
         print(f"v2: {value_v2}")
         print(f"v3: {value_v3}")
         print(f"v4: {value_v4}")
-        
+
+        # Insertar datos en la base de datos
+        try:
+            connection = mysql.connector.connect(
+                host="localhost",
+                user="tu_usuario",
+                password="tu_contraseña",
+                database="nombre_de_tu_base_de_datos"
+            )
+
+            cursor = connection.cursor()
+
+            # Supongamos que `data` contiene los valores que obtuviste de la API
+            query = """
+            INSERT INTO tuapp_mediciones (temperatura, humedad, velocidad_viento, direccion_viento, cantidad_lluvia)
+            VALUES (%s, %s, %s, %s, %s)
+            """
+            cursor.execute(query, (value_v0, value_v1, value_v2, value_v3, value_v4))
+
+            connection.commit()
+
+        except Exception as e:
+            print(f"Error al insertar datos en la base de datos: {e}")
+
+        finally:
+            if connection.is_connected():
+                cursor.close()
+                connection.close()
+
+    else:
+        # Manejar el caso en que la solicitud no fue exitosa
+        print(f"Error al obtener datos. Código de estado: {response.status_code}")
 
 schedule.every(0.5).minutes.do(job)
 
