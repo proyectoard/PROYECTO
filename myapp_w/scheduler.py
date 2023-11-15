@@ -1,7 +1,7 @@
 import schedule
 import time
 import requests
-
+import mysql.connector
 def job():
     print("Ejecutando la tarea cada 5 minutos..")
     
@@ -31,17 +31,17 @@ def job():
         # Insertar datos en la base de datos
         try:
             connection = mysql.connector.connect(
-                host="localhost",
-                user="tu_usuario",
-                password="tu_contraseña",
-                database="nombre_de_tu_base_de_datos"
+                host="srv1138.hstgr.io",
+                user="u153713658_sensores",
+                password="?4K92JUGsHd",
+                database="u153713658_base_proyecto"
             )
 
             cursor = connection.cursor()
 
             # Supongamos que `data` contiene los valores que obtuviste de la API
             query = """
-            INSERT INTO tuapp_mediciones (temperatura, humedad, velocidad_viento, direccion_viento, cantidad_lluvia)
+            INSERT INTO SENSORES (TEMPERATURA, HUMEDAD, VELOCIDAD_VIENTO, DIRECCION_VIENTO, CANTIDAD_LLUVIA)
             VALUES (%s, %s, %s, %s, %s)
             """
             cursor.execute(query, (value_v0, value_v1, value_v2, value_v3, value_v4))

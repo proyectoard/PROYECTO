@@ -14,3 +14,4 @@ honcho
 firebase==3.0.1
 firebase-admin==5.2.0
 pandas==1.4.1
+mysql-connector-python==8.0.32
