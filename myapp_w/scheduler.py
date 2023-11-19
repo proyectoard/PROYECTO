@@ -44,7 +44,7 @@ def job():
             INSERT INTO SENSORES (TEMPERATURA, HUMEDAD, VELOCIDAD_VIENTO, DIRECCION_VIENTO, CANTIDAD_LLUVIA)
             VALUES (%s, %s, %s, %s, %s)
             """
-            cursor.execute(query, (value_v0, value_v1, value_v2, value_v3, value_v4))
+            cursor.execute(query, (value_v3, value_v4, value_v0, value_v1, value_v2))
 
             connection.commit()
 
