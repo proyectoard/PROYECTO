@@ -1,5 +1,7 @@
 import schedule
 import time
+from datetime import datetime
+import pytz
 import requests
 import mysql.connector
 def job():
@@ -28,6 +30,16 @@ def job():
         print(f"v3: {value_v3}")
         print(f"v4: {value_v4}")
 
+
+        zona_horaria_quito = pytz.timezone('America/Guayaquil')
+        hora_actual = datetime.now(zona_horaria_quito)
+
+        # Formatear la hora y la fecha
+        formato_hora = "%H:%M:%S"
+        formato_fecha = "%Y-%m-%d"
+        hora_formateada = hora_actual.strftime(formato_hora)
+        fecha_formateada = hora_actual.strftime(formato_fecha)
+
         # Insertar datos en la base de datos
         try:
             connection = mysql.connector.connect(
@@ -41,10 +53,10 @@ def job():
 
             # Supongamos que `data` contiene los valores que obtuviste de la API
             query = """
-            INSERT INTO SENSORES (TEMPERATURA, HUMEDAD, VELOCIDAD_VIENTO, DIRECCION_VIENTO, CANTIDAD_LLUVIA)
-            VALUES (%s, %s, %s, %s, %s)
+            INSERT INTO SENSORES (TEMPERATURA, HUMEDAD, VELOCIDAD_VIENTO, DIRECCION_VIENTO, CANTIDAD_LLUVIA, FECHA, HORA)
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
             """
-            cursor.execute(query, (value_v3, value_v4, value_v0, value_v1, value_v2))
+            cursor.execute(query, (value_v3, value_v4, value_v0, value_v1, value_v2,fecha_formateada,hora_formateada))
 
             connection.commit()
 
