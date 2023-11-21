@@ -21,6 +21,7 @@
 			</div>
 		</div>
 	</div>
+	
 
 	<div class="page-inner mt--5">
 		<div class="row mt--2">
@@ -28,96 +29,27 @@
 
 				<div class="card full-height">
 					<div class="card-body">
+						
 						<div class="card-title">Estacion 1</div>
 						<div class="card-category">Dashboard en tiempo real</div>
 						<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
 							<div class="form-group">
-								<label>Select</label>
-								<select class="form-control" id="select1">
-									<option>Data/id</option>
-									<option>Estacion 2</option>
-									<option>Estacion 3</option>
-									<option>Estacion 4</option>
-									<option>Estacion 5</option>
-								</select>
 
+								<div id="gauge"></div>
+								
+								
 							</div>
-							<div class="px-2 pb-2 pb-md-0 text-center">
-								<div id="circles-1"></div>
-								<h6 class="fw-bold mt-3 mb-0">Humedad</h6>
+							<div class="form-group">
+
+								<div id="gauge2"></div>
+								
+								
 							</div>
-							<div class="px-2 pb-2 pb-md-0 text-center">
-								<div id="circles-2"></div>
-								<h6 class="fw-bold mt-3 mb-0">Temperatura °C</h6>
-							</div>
-							<div class="px-2 pb-2 pb-md-0 text-center">
-								<div id="circles-3"></div>
-								<h6 class="fw-bold mt-3 mb-0">LDR</h6>
-							</div>
-							<div class="px-2 pb-2 pb-md-0 text-center">
-								<div id="circles-13"></div>
-								<h6 class="fw-bold mt-3 mb-0">Sensor Suelo</h6>
-							</div>
-						</div>
-
-
-
-						<div style="margin-top: 50px;">
-							<div style="margin-left: 300px;">
-								<div style="margin-right: 50px;">
-									<div class="row-md-4">
-										<div class="row-md-4 text-center">
-											<div class="card card-secondary">
-												<div class="card-body card-footer card-default">
-
-													<div class="pull-left">
-														<h2 class="card-title">
-															<i class="icon-big"></i>
-															Motor:
-														</h2>
-
-														<h1 id="demo"></h1>
-
-														<h5 class="op-80"></h5>
-														<div class="avatar avatar-xxl">
-															<img src="/static/assets/img/motor.jpg" alt="..."
-																class="avatar-img rounded-circle">
-														</div>
-													</div>
-
-
-
-													<div class="pull-center">
-														<h1 class="card-title">
-															<i class="icon-big"></i>
-															Modo Operacion Motor:
-														</h1>
-														<h1 id="modo"> </h1>
-
-														<h1 class="card-title">
-
-															Motor Automatico On:
-														</h1>
-														<h1 id="modo2"></h1>
-
-														<h1 class="card-title" style="font: bold;">
-
-															Motor Automatico Off:
-														</h1>
-														<h1 id="modo3"></h1>
-
-
-
-
-													</div>
-
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
+							<p id="v0"></p>
+							<p id="v1"></p>
+							<p id="v2"></p>
+							<p id="v3"></p>
+							<p id="v4"></p>
 						</div>
 					</div>
 				</div>
@@ -498,6 +430,10 @@
 	{% block javascripts %}
 
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
+	<script src="/static/assets/js/raphael.min.js"></script>
+
+	<script src="/static/assets/js/justgage.js"></script>
+
 	<script src="/static/assets/js/setting-demo.js"></script>
 	<script src="/static/assets/js/demo.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
@@ -521,140 +457,93 @@
 	<script src="/static/assets/plugins/flot-old/jquery.flot.pie.min.js"></script>
 
 	<script>
-		var Humedad
-		var Temperatura
-		$(function () {
+ 		var gauge;
+		let valor_v0, valor_v1, valor_v2, valor_v3, valor_v4;
+		function actualizarInterfazUsuario() {
+        // Realizar una solicitud AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/obtener_datos/', true);
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Actualizar la interfaz de usuario con los datos recibidos
+                var data = JSON.parse(xhr.responseText);
+
+				valor_v0 = data.v0;
+                valor_v1 = data.v1;
+                valor_v2 = data.v2;
+                valor_v3 = data.v3;
+                valor_v4 = data.v4;
+				gauge.refresh(valor_v3);
+                document.getElementById('v0').innerText = 'v0: ' + data.v0;
+                document.getElementById('v1').innerText = 'v1: ' + data.v1;
+                document.getElementById('v2').innerText = 'v2: ' + data.v2;
+                document.getElementById('v3').innerText = 'v3: ' + data.v3;
+                document.getElementById('v4').innerText = 'v4: ' + data.v4;
+            }
+        };
+
+        xhr.send();
+    }
+
+    // Actualizar la interfaz de usuario cada 5 segundos (puedes ajustar este intervalo)
+    setInterval(actualizarInterfazUsuario, 1000);
+
+
+
+
+
+ gauge =new JustGage({
+
+    id:"gauge",// required
+	
+	value: 20,
+        min: 0,
+        max: 40,
+        symbol: '%',
+        pointer: true,
+        gaugeWidthScale: 0.6,
+        customSectors: [{
+          color: '#ff0000',
+          lo: 50,
+          hi: 100
+        }, {
+          color: '#00ff00',
+          lo: 0,
+          hi: 50
+        }],
+        counter: true
+    // more options here
+
+});
+
+var gauge2 =new JustGage({
+
+id:"gauge2",// required
+
+value: 21,
+	min: 0,
+	max: 40,
+	symbol: '%',
+	pointer: true,
+	gaugeWidthScale: 0.6,
+	customSectors: [{
+	  color: '#ff0000',
+	  lo: 50,
+	  hi: 100
+	}, {
+	  color: '#00ff00',
+	  lo: 0,
+	  hi: 50
+	}],
+	counter: true
+// more options here
+
+});
+
+
+		
 			
-			var data = [],
-				totalPoints = 100
-			var data2 = [],
-				totalPoints2 = 100
-
-
-			function getTempData() {
-
-
-				if (data.length > 0) {
-					data = data.slice(1)
-				}
-
-				while (data.length < totalPoints) {
-
-					y = Humedad / 100 // aqui va el dato de temperatura
-
-					if (y < 0) {
-						y = 0
-					} else if (y > 100) {
-						y = 100
-					}
-					data.push(y)
-				}
-				var res = []
-				for (var i = 0; i < data.length; ++i) {
-					res.push([i, data[i]])
-				}
-
-				return res
-
-			}
-
-			function getTempData2() {
-
-
-				if (data2.length > 0) {
-					data2 = data2.slice(1)
-				}
-
-				while (data2.length < totalPoints2) {
-
-					y2 = Temperatura / 100 // aqui va el dato de temperatura
-
-					if (y2 < 0) {
-						y2 = 0
-					} else if (y2 > 100) {
-						y2 = 100
-					}
-					data2.push(y2)
-				}
-				var res2 = []
-				for (var i = 0; i < data2.length; ++i) {
-					res2.push([i, data2[i]])
-				}
-
-				return res2
-
-			}
-
-			var interactive_plot2 = $.plot('#interactive2', [
-				{
-					data: getTempData2(),
-
-				}
-			],
-
-				{
-					grid: {
-						borderColor: '#f3545d',
-						borderWidth: 1,
-						tickColor: '#f3545d'
-					},
-					series: {
-						color: '#f3545d',
-						lines: {
-							lineWidth: 2,
-							show: true,
-							fill: true,
-						},
-					},
-					yaxis: {
-						min: 0,
-						max: 1,
-						show: true
-					},
-					xaxis: {
-						min: 0,
-						max: 100,
-						show: true
-					}
-				}
-
-			)
-
-
-			var interactive_plot = $.plot('#interactive', [
-				{
-					data: getTempData(),
-
-				}
-			],
-
-				{
-					grid: {
-						borderColor: '#f3545d',
-						borderWidth: 1,
-						tickColor: '#f3545d'
-					},
-					series: {
-						color: '#f3545d',
-						lines: {
-							lineWidth: 2,
-							show: true,
-							fill: true,
-						},
-					},
-					yaxis: {
-						min: 0,
-						max: 1,
-						show: true
-					},
-					xaxis: {
-						min: 0,
-						max: 100,
-						show: true
-					}
-				}
-
-			)
 
 			var updateInterval = 1000 //Fetch data ever x milliseconds
 			var realtime = 'on' //If == to on then fetch data every x seconds. else stop fetching
@@ -668,61 +557,18 @@
 			}
 			update()
 
-			var updateInterval2 = 1000 //Fetch data ever x milliseconds
+		
 			
-			function update2() {
 
-				interactive_plot2.setData([getTempData2()])
-				interactive_plot2.draw()
-				setTimeout(update2, updateInterval2)
+	
 
-			}
-			update2()
-
-		})
-
-		var firebaseConfig = {
-			apiKey: "AIzaSyDOzTjEfP9IjQrQ2MvALXpOYfFhgdmUAPM",
-			authDomain: "cacaotech-50682.firebaseapp.com",
-			databaseURL: "https://cacaotech-50682-default-rtdb.firebaseio.com",
-			projectId: "cacaotech-50682",
-			storageBucket: "cacaotech-50682.appspot.com",
-			messagingSenderId: "595258699618",
-			appId: "1:595258699618:web:aad60230ea12d4b5f7863b",
-			measurementId: "G-PN438D53XE"
-		};
+		
 
 
-		firebase.initializeApp(firebaseConfig);
-
-		function update10() {
-			firebase.database().ref("ModoOperacion/id").once('value').then(
-				function (snapshot) {
-					globalThis.ManualAuto = snapshot.val().ManualAuto;
-					if (ManualAuto == 1) {
-						document.getElementById("modo").innerHTML = "OPERACION MANUAL";
-					} else {
-						document.getElementById("modo").innerHTML = "OPERACION AUTOMATICA";
-					}
-				})
-			setTimeout(update10, 1000)
-		}
+		
 
 
-		function update11() {
-			firebase.database().ref("SetPoint/id").once('value').then(
-				function (snapshot) {
-
-					globalThis.SetOff = snapshot.val().SetOff;
-					globalThis.SetOn = snapshot.val().SetOn;
-
-					document.getElementById("modo2").innerHTML = SetOn;
-					document.getElementById("modo3").innerHTML = SetOff;
-
-				})
-			setTimeout(update11, 1000)
-		}
-
+	
 
 		function update() {
 
@@ -810,257 +656,16 @@
 			setTimeout(update, 1000)
 		}
 
-		function update2() {
+		
 
-			var data1 = document.getElementById("select2").value;
+		
 
-
-			firebase.database().ref(data1).once('value').then(
-
-				function (snapshot) {
-					Humedad = snapshot.val().Humedad;
-					Temperatura = snapshot.val().Temperatura;
-					LDR = snapshot.val().LDR;
-					suelo = snapshot.val().suelo;
-
-					Circles.create({
-						id: 'circles-4',
-						radius: 60,
-						value: Humedad,
-						maxValue: 100,
-						width: 6,
-						text: Humedad + ' %',
-						colors: ['#f1f1f1', '#FF9E27'],
-						duration: 0,
-						wrpClass: 'circles-wrp',
-						textClass: 'circles-text',
-						styleWrapper: true,
-						styleText: true
-					})
-
-					Circles.create({
-						id: 'circles-5',
-						radius: 60,
-						value: Temperatura,
-						maxValue: 100,
-						width: 5,
-						text: Temperatura + ' °C',
-						colors: ['#f1f1f1', '#2BB930'],
-						duration: 0,
-						wrpClass: 'circles-wrp',
-						textClass: 'circles-text',
-						styleWrapper: true,
-						styleText: true
-					})
-
-					Circles.create({
-						id: 'circles-6',
-						radius: 60,
-						value: 40,
-						maxValue: 100,
-						width: 7,
-						text: LDR + ' °C',
-						colors: ['#f1f1f1', '#F25961'],
-						duration: 0,
-						wrpClass: 'circles-wrp',
-						textClass: 'circles-text',
-						styleWrapper: true,
-						styleText: true
-					})
-
-					Circles.create({
-						id: 'circles-14',
-						radius: 60,
-						value: 40,
-						maxValue: 100,
-						width: 7,
-						text: suelo + ' %',
-						colors: ['#f1f1f1', '#F25961'],
-						duration: 0,
-						wrpClass: 'circles-wrp',
-						textClass: 'circles-text',
-						styleWrapper: true,
-						styleText: true
-					})
-
-
-					//console.log(title);
-				}
-			)
-
-			setTimeout(update2, 1000)
-		}
-
-		function update3() {
-
-			var data1 = document.getElementById("select3").value;
-
-
-			firebase.database().ref(data1).once('value').then(
-
-				function (snapshot) {
-					Humedad = snapshot.val().Humedad;
-					Temperatura = snapshot.val().Temperatura;
-					LDR = snapshot.val().LDR;
-					suelo = snapshot.val().suelo;
-
-					Circles.create({
-						id: 'circles-7',
-						radius: 60,
-						value: Humedad,
-						maxValue: 100,
-						width: 6,
-						text: Humedad + ' %',
-						colors: ['#f1f1f1', '#FF9E27'],
-						duration: 0,
-						wrpClass: 'circles-wrp',
-						textClass: 'circles-text',
-						styleWrapper: true,
-						styleText: true
-					})
-
-					Circles.create({
-						id: 'circles-8',
-						radius: 60,
-						value: Temperatura,
-						maxValue: 100,
-						width: 5,
-						text: Temperatura + ' °C',
-						colors: ['#f1f1f1', '#2BB930'],
-						duration: 0,
-						wrpClass: 'circles-wrp',
-						textClass: 'circles-text',
-						styleWrapper: true,
-						styleText: true
-					})
-
-					Circles.create({
-						id: 'circles-9',
-						radius: 60,
-						value: 40,
-						maxValue: 100,
-						width: 7,
-						text: LDR + ' °C',
-						colors: ['#f1f1f1', '#F25961'],
-						duration: 0,
-						wrpClass: 'circles-wrp',
-						textClass: 'circles-text',
-						styleWrapper: true,
-						styleText: true
-					})
-
-					Circles.create({
-						id: 'circles-15',
-						radius: 60,
-						value: 40,
-						maxValue: 100,
-						width: 7,
-						text: suelo + ' %',
-						colors: ['#f1f1f1', '#F25961'],
-						duration: 0,
-						wrpClass: 'circles-wrp',
-						textClass: 'circles-text',
-						styleWrapper: true,
-						styleText: true
-					})
-
-
-					//console.log(title);
-				}
-			)
-
-			setTimeout(update3, 1000)
-		}
-
-		function update4() {
-
-			var data1 = document.getElementById("select4").value;
-
-
-			firebase.database().ref(data1).once('value').then(
-
-				function (snapshot) {
-					Humedad = snapshot.val().Humedad;
-					Temperatura = snapshot.val().Temperatura;
-					LDR = snapshot.val().LDR;
-					suelo = snapshot.val().suelo;
-
-					Circles.create({
-						id: 'circles-10',
-						radius: 60,
-						value: Humedad,
-						maxValue: 100,
-						width: 6,
-						text: Humedad + ' %',
-						colors: ['#f1f1f1', '#FF9E27'],
-						duration: 0,
-						wrpClass: 'circles-wrp',
-						textClass: 'circles-text',
-						styleWrapper: true,
-						styleText: true
-					})
-
-					Circles.create({
-						id: 'circles-11',
-						radius: 60,
-						value: Temperatura,
-						maxValue: 100,
-						width: 5,
-						text: Temperatura + ' °C',
-						colors: ['#f1f1f1', '#2BB930'],
-						duration: 0,
-						wrpClass: 'circles-wrp',
-						textClass: 'circles-text',
-						styleWrapper: true,
-						styleText: true
-					})
-
-					Circles.create({
-						id: 'circles-12',
-						radius: 60,
-						value: 40,
-						maxValue: 100,
-						width: 7,
-						text: LDR + ' °C',
-						colors: ['#f1f1f1', '#F25961'],
-						duration: 0,
-						wrpClass: 'circles-wrp',
-						textClass: 'circles-text',
-						styleWrapper: true,
-						styleText: true
-					})
-
-					Circles.create({
-						id: 'circles-16',
-						radius: 60,
-						value: 40,
-						maxValue: 100,
-						width: 7,
-						text: suelo + ' %',
-						colors: ['#f1f1f1', '#F25961'],
-						duration: 0,
-						wrpClass: 'circles-wrp',
-						textClass: 'circles-text',
-						styleWrapper: true,
-						styleText: true
-					})
-
-
-					//console.log(title);
-				}
-			)
-
-			setTimeout(update4, 1000)
-		}
+		
 
 
 
 		update()
-		update2()
-		update3()
-		update4()
-		update10()
-		update11()
+		
 
 
 
