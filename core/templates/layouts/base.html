@@ -4,11 +4,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
 	<title>
-        CacaoTech - {% block title %}{% endblock %} | 
+        ARDUINO - {% block title %}{% endblock %} | 
     </title>
 
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-	<link rel="icon" href="/static/assets/img/CACAO.png" type="image/x-icon"/>
+	<link rel="icon" href="/static/assets/img/cloud2.png" type="image/x-icon"/>
 	<link rel="canonical" href="https://appseed.us/admin-dashboards/django-dashboard-atlantis-dark">
 
 	<!-- Fonts and icons -->
@@ -52,7 +52,7 @@
         
 		{% if request.user.is_authenticated %}
 
-			<!-- Custom template | don't include it in your project! -->
+			
 			{% include 'includes/configuration-plugin.html' %}
 
 		{% endif %}		
@@ -61,7 +61,6 @@
 
 	{% include 'includes/scripts.html' %}
 
-    <!-- Specific Page JS goes HERE  -->
     {% block javascripts %}{% endblock javascripts %}
 
 </body>

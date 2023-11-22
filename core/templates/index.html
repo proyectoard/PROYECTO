@@ -12,12 +12,10 @@
 		<div class="page-inner py-5">
 			<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 				<div>
-					<h2 class="text-white pb-2 fw-bold">Dashboard</h2>
-					<h5 class="text-white op-7 mb-2">Monitor de Sensores</h5>
+					<h2 class="text-black pb-2 fw-bold">Dashboard</h2>
+					<h5 class="text-black op-7 mb-2">ESTACIÓN METEOROLÓGICA ARDUINO</h5>
 				</div>
-				<div class="ml-md-auto py-2 py-md-0">
-
-				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -26,650 +24,524 @@
 	<div class="page-inner mt--5">
 		<div class="row mt--2">
 			<div class="col-md-6">
-
 				<div class="card full-height">
 					<div class="card-body">
-						
-						<div class="card-title">Estacion 1</div>
+						<div class="card-title">TEMPERATURA</div>
 						<div class="card-category">Dashboard en tiempo real</div>
 						<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
 							<div class="form-group">
-
 								<div id="gauge"></div>
-								
-								
 							</div>
-							<div class="form-group">
-
-								<div id="gauge2"></div>
-								
-								
-							</div>
-							<p id="v0"></p>
-							<p id="v1"></p>
-							<p id="v2"></p>
-							<p id="v3"></p>
-							<p id="v4"></p>
+							
 						</div>
 					</div>
 				</div>
-
 			</div>
-
-
-
+	
 			<div class="col-md-6">
 				<div class="card full-height">
 					<div class="card-body">
-
-						<div class="card-title">Estacion 2</div>
+						<div class="card-title">HUMEDAD</div>
 						<div class="card-category">Dashboard en tiempo real</div>
 						<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
 							<div class="form-group">
-								<label>Select</label>
-								<select class="form-control" id="select2">
-									<option>Data/id</option>
-									<option>Estacion 2</option>
-									<option>Estacion 3</option>
-									<option>Estacion 4</option>
-									<option>Estacion 5</option>
-								</select>
-
-							</div>
-							<div class="px-2 pb-2 pb-md-0 text-center">
-								<div id="circles-4"></div>
-								<h6 class="fw-bold mt-3 mb-0">Humedad</h6>
-							</div>
-							<div class="px-2 pb-2 pb-md-0 text-center">
-								<div id="circles-5"></div>
-								<h6 class="fw-bold mt-3 mb-0">Temperatura °C</h6>
-							</div>
-							<div class="px-2 pb-2 pb-md-0 text-center">
-								<div id="circles-6"></div>
-								<h6 class="fw-bold mt-3 mb-0">LDR</h6>
-							</div>
-							<div class="px-2 pb-2 pb-md-0 text-center">
-								<div id="circles-14"></div>
-								<h6 class="fw-bold mt-3 mb-0">Sensor Suelo</h6>
+								<div id="gauge2"></div>
 							</div>
 						</div>
-
-						<div style="margin-top: 50px;">
-							<div style="margin-left: 300px;">
-								<div style="margin-right: 50px;">
-									<div class="row-md-4">
-										<div class="row-md-4 text-center">
-											<div class="card card-secondary">
-												<div class="card-body card-footer card-default">
-
-													<div class="pull-left">
-														<h2 class="card-title">
-															<i class="icon-big"></i>
-															Motor:
-														</h2>
-
-														<h1 id="demo"></h1>
-
-														<h5 class="op-80"></h5>
-														<div class="avatar avatar-xxl">
-															<img src="/static/assets/img/motor.jpg" alt="..."
-																class="avatar-img rounded-circle">
-														</div>
-													</div>
-
-
-
-													<div class="pull-center">
-														<h1 class="card-title">
-															<i class="icon-big"></i>
-															Modo Operacion Motor:
-														</h1>
-														<h1 id="modo"> </h1>
-
-														<h1 class="card-title">
-
-															Motor Automatico On:
-														</h1>
-														<h1 id="modo2"></h1>
-
-														<h1 class="card-title" style="font: bold;">
-
-															Motor Automatico Off:
-														</h1>
-														<h1 id="modo3"></h1>
-
-
-
-
-													</div>
-
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-						</div>
-
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<div class="page-inner mt--7">
-			<div class="row mt--2">
-				<div class="col-md-6">
-					<div class="card full-height">
-						<div class="card-body">
-							<div class="card-title">Estacion 3</div>
-							<div class="card-category">Dashboard en tiempo real</div>
-							<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
-								<div class="form-group">
-									<label>Select</label>
-									<select class="form-control" id="select3">
-										<option>Data/id</option>
-										<option>Estacion 2</option>
-										<option>Estacion 3</option>
-										<option>Estacion 4</option>
-										<option>Estacion 5</option>
-									</select>
-
-								</div>
-								<div class="px-2 pb-2 pb-md-0 text-center">
-									<div id="circles-7"></div>
-									<h6 class="fw-bold mt-3 mb-0">Humedad</h6>
-								</div>
-								<div class="px-2 pb-2 pb-md-0 text-center">
-									<div id="circles-8"></div>
-									<h6 class="fw-bold mt-3 mb-0">Temperatura °C</h6>
-								</div>
-								<div class="px-2 pb-2 pb-md-0 text-center">
-									<div id="circles-9"></div>
-									<h6 class="fw-bold mt-3 mb-0">LDR</h6>
-								</div>
-								<div class="px-2 pb-2 pb-md-0 text-center">
-									<div id="circles-15"></div>
-									<h6 class="fw-bold mt-3 mb-0">Sensor Suelo</h6>
-								</div>
-							</div>
-							<div style="margin-top: 50px;">
-								<div style="margin-left: 300px;">
-									<div style="margin-right: 50px;">
-										<div class="row-md-4">
-											<div class="row-md-4 text-center">
-												<div class="card card-secondary">
-													<div class="card-body card-footer card-default">
-
-														<div class="pull-left">
-															<h2 class="card-title">
-																<i class="icon-big"></i>
-																Motor:
-															</h2>
-
-															<h1 id="demo"></h1>
-
-															<h5 class="op-80"></h5>
-															<div class="avatar avatar-xxl">
-																<img src="/static/assets/img/motor.jpg" alt="..."
-																	class="avatar-img rounded-circle">
-															</div>
-														</div>
-
-
-
-														<div class="pull-center">
-															<h1 class="card-title">
-																<i class="icon-big"></i>
-																Modo Operacion Motor:
-															</h1>
-															<h1 id="modo"> </h1>
-
-															<h1 class="card-title">
-
-																Motor Automatico On:
-															</h1>
-															<h1 id="modo2"></h1>
-
-															<h1 class="card-title" style="font: bold;">
-
-																Motor Automatico Off:
-															</h1>
-															<h1 id="modo3"></h1>
-
-
-
-
-														</div>
-
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-							</div>
-
-
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="card full-height">
-						<div class="card-body">
-
-							<div class="card-title">Estacion 4</div>
-							<div class="card-category">Dashboard en tiempo real</div>
-							<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
-								<div class="form-group">
-									<label>Select</label>
-									<select class="form-control" id="select4">
-										<option>Data/id</option>
-										<option>Estacion 2</option>
-										<option>Estacion 3</option>
-										<option>Estacion 4</option>
-										<option>Estacion 5</option>
-									</select>
-
-								</div>
-								<div class="px-2 pb-2 pb-md-0 text-center">
-									<div id="circles-10"></div>
-									<h6 class="fw-bold mt-3 mb-0">Humedad °C</h6>
-								</div>
-								<div class="px-2 pb-2 pb-md-0 text-center">
-									<div id="circles-11"></div>
-									<h6 class="fw-bold mt-3 mb-0">Temperatura</h6>
-								</div>
-								<div class="px-2 pb-2 pb-md-0 text-center">
-									<div id="circles-12"></div>
-									<h6 class="fw-bold mt-3 mb-0">LDR</h6>
-								</div>
-								<div class="px-2 pb-2 pb-md-0 text-center">
-									<div id="circles-16"></div>
-									<h6 class="fw-bold mt-3 mb-0">Sensor Suelo</h6>
-								</div>
-							</div>
-							<div style="margin-top: 50px;">
-								<div style="margin-left: 300px;">
-									<div style="margin-right: 50px;">
-										<div class="row-md-4">
-											<div class="row-md-4 text-center">
-												<div class="card card-secondary">
-													<div class="card-body card-footer card-default">
-
-														<div class="pull-left">
-															<h2 class="card-title">
-																<i class="icon-big"></i>
-																Motor:
-															</h2>
-
-															<h1 id="demo"></h1>
-
-															<h5 class="op-80"></h5>
-															<div class="avatar avatar-xxl">
-																<img src="/static/assets/img/motor.jpg" alt="..."
-																	class="avatar-img rounded-circle">
-															</div>
-														</div>
-
-
-
-														<div class="pull-center">
-															<h1 class="card-title">
-																<i class="icon-big"></i>
-																Modo Operacion Motor:
-															</h1>
-															<h1 id="modo"> </h1>
-
-															<h1 class="card-title">
-
-																Motor Automatico On:
-															</h1>
-															<h1 id="modo2"></h1>
-
-															<h1 class="card-title" style="font: bold;">
-
-																Motor Automatico Off:
-															</h1>
-															<h1 id="modo3"></h1>
-
-
-
-
-														</div>
-
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-
-
-
-
-
-		<!--	<div class="content-wrapper">
-				<section class="content">
-					<div class="container">
-						<div class="row">
-							<div class="col-12">
-								
-								<div class="card">
-									<div class="card-header">
-										<h3 class="card-title">
-											<i class="far fa-chart-bar"></i>
-											Humedad de Ambiente
-										</h3>
-
-										<div class="card-tools">
-											Real time
-
-										</div>
-									</div>
-									<div class="card-body">
-										<div id="interactive" style="height: 500px;"></div>
-									</div>
-									
-								</div>
-								
-
-							</div>
-							
-						</div>
-						
-					</div>
-			</div>-->
-
-		<!--	<div class="content-wrapper">
-				<section class="content">
-					<div class="container">
-						<div class="row">
-							<div class="col-12">
-								
-								<div class="card">
-									<div class="card-header">
-										<h3 class="card-title">
-											<i class="far fa-chart-bar"></i>
-											Humedad de Ambiente
-										</h3>
-
-										<div class="card-tools">
-											Real time
-
-										</div>
-									</div>
-									<div class="card-body">
-										<div id="interactive2" style="height: 500px;"></div>
-									</div>
-									
-								</div>
-								
-
-							</div>
-							
-						</div>
-						
-					</div>
-			</div>
-		</div>
-	</div> -->
-
-	{% endblock content %}
-
-	<!-- Specific Page JS goes HERE  -->
-	{% block javascripts %}
-
-	<!-- Atlantis DEMO methods, don't include it in your project! -->
-	<script src="/static/assets/js/raphael.min.js"></script>
-
-	<script src="/static/assets/js/justgage.js"></script>
-
-	<script src="/static/assets/js/setting-demo.js"></script>
-	<script src="/static/assets/js/demo.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
-	<script src="/static/assets/plugins/jquery/jquery.min.js"></script>
-	<!-- jQuery -->
-	<script src="/static/assets/plugins/jquery/jquery.min.js"></script>
-	<!-- jQuery UI -->
-	<script src="/static/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
-	<!-- Bootstrap 4 -->
-	<script src="/static/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<!-- AdminLTE App -->
-	<script src="/static/assets/js/adminlte.min.js"></script>
-	<!-- AdminLTE for demo purposes -->
-	<script src="/static/assets/js/demo.js"></script>
-	<!-- FLOT CHARTS -->
-	<script src="/static/assets/plugins/flot/jquery.flot.js"></script>
-	<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
-	<script src="/static/assets/plugins/flot-old/jquery.flot.resize.min.js"></script>
-	<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
-	<script src="/static/assets/plugins/flot-old/jquery.flot.pie.min.js"></script>
-
-	<script>
- 		var gauge;
-		let valor_v0, valor_v1, valor_v2, valor_v3, valor_v4;
-		function actualizarInterfazUsuario() {
-        // Realizar una solicitud AJAX
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '/obtener_datos/', true);
-
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                // Actualizar la interfaz de usuario con los datos recibidos
-                var data = JSON.parse(xhr.responseText);
-
-				valor_v0 = data.v0;
-                valor_v1 = data.v1;
-                valor_v2 = data.v2;
-                valor_v3 = data.v3;
-                valor_v4 = data.v4;
-				gauge.refresh(valor_v3);
-                document.getElementById('v0').innerText = 'v0: ' + data.v0;
-                document.getElementById('v1').innerText = 'v1: ' + data.v1;
-                document.getElementById('v2').innerText = 'v2: ' + data.v2;
-                document.getElementById('v3').innerText = 'v3: ' + data.v3;
-                document.getElementById('v4').innerText = 'v4: ' + data.v4;
-            }
-        };
-
-        xhr.send();
-    }
-
-    // Actualizar la interfaz de usuario cada 5 segundos (puedes ajustar este intervalo)
-    setInterval(actualizarInterfazUsuario, 1000);
-
-
-
-
-
- gauge =new JustGage({
-
-    id:"gauge",// required
 	
-	value: 20,
-        min: 0,
-        max: 40,
-        symbol: '%',
-        pointer: true,
-        gaugeWidthScale: 0.6,
-        customSectors: [{
-          color: '#ff0000',
-          lo: 50,
-          hi: 100
-        }, {
-          color: '#00ff00',
-          lo: 0,
-          hi: 50
-        }],
-        counter: true
-    // more options here
+		<div class="row mt--2">
+			<div class="col-md-6">
+				<div class="card full-height">
+					<div class="card-body">
+						<div class="card-title">Velocidad del viento</div>
+						<div class="card-category">Dashboard en tiempo real</div>
+						<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
+							<div id="gauge3"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+	
+			<div class="col-md-6">
+				<div class="card full-height">
+					<div class="card-body">
+						<div class="card-title">Cantidad de lluvia</div>
+						<div class="card-category">Dashboard en tiempo real</div>
+						<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
+							<div id="gauge4"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+	
+			<div class="col-md-6">
+				<div class="card full-height">
+					<div class="card-body">
+						<div class="card-title">Direccion del Viento</div>
+						<div class="card-category">Dashboard en tiempo real</div>
+						<div class="container">
+							<div id="g1" class="gauge"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+			<style>
+				.container {
+					margin: 0 auto;
+					text-align: center;
+				}
+		
+				.gauge_container {
+					text-align: left;
+					height: 4px;
+					display: inline-block;
+					border: 1px solid #ccc;
+					margin: 40px 5px 0 5px;
+				}
+		
+				.gauge {
+					width: 400px;
+					height: 300px;
+					display: inline-block;
+					-webkit-transform: translate3d(0, 0, 0);
+				}
+		
+				.controls {
+					text-align: left;
+				}
+		
+				li {
+					padding: 10px 0 0 0;
+				}
+		
+				li.refresh {
+					border-top: 1px solid #eee;
+					border-bottom: 1px solid #eee;
+					padding-top: 15px;
+					padding-bottom: 15px;
+				}
+		
+				label {
+					font-family: Arial;
+					display: inline-block;
+					width: 5px;
+					margin: 0 0 5px 0;
+					text-align: right;
+					padding: 5px;
+					color: #919191;
+				}
+		
+				input {
+					font-weight: bold;
+					font-size: 13px;
+					padding: 10px;
+					border: 1px solid #ccc;
+					margin: 5px;
+				}
+		
+				input[disabled=disabled] {
+					font-weight: normal;
+					font-size: 11px;
+					padding: 0 0 0 10px;
+					margin: 0px;
+					color: #777777;
+					border-color: transparent;
+					background: #fff;
+				}
+		
+				a:link.button,
+				a:active.button,
+				a:visited.button,
+				a:hover.button {
+					margin: 0px 5px 0 2px;
+					padding: 7px 13px;
+				}
+		
+				.container {
+					width: 450px;
+					margin: 0 auto;
+					text-align: center;
+				}
+		
+				.gauge {
+					width: 300px;
+					height: 300px;
+				}
+		
+				a:link.button,
+				a:active.button,
+				a:visited.button,
+				a:hover.button {
+					margin: 30px 5px 0 2px;
+					padding: 7px 13px;
+				}
+			</style>
 
-});
 
-var gauge2 =new JustGage({
 
-id:"gauge2",// required
 
-value: 21,
-	min: 0,
-	max: 40,
-	symbol: '%',
-	pointer: true,
-	gaugeWidthScale: 0.6,
-	customSectors: [{
-	  color: '#ff0000',
-	  lo: 50,
-	  hi: 100
-	}, {
-	  color: '#00ff00',
-	  lo: 0,
-	  hi: 50
-	}],
-	counter: true
-// more options here
-
-});
 
 
 		
-			
 
-			var updateInterval = 1000 //Fetch data ever x milliseconds
-			var realtime = 'on' //If == to on then fetch data every x seconds. else stop fetching
-			function update() {
+			{% endblock content %}
 
-				interactive_plot.setData([getTempData()])
+			<!-- Specific Page JS goes HERE  -->
+			{% block javascripts %}
+
+			<!-- Atlantis DEMO methods, don't include it in your project! -->
+			<script src="/static/assets/js/raphael.min.js"></script>
+
+			<script src="/static/assets/js/justgage.js"></script>
+
+			<script src="/static/assets/js/setting-demo.js"></script>
+			<script src="/static/assets/js/demo.js"></script>
+			<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+			<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+			<script src="/static/assets/plugins/jquery/jquery.min.js"></script>
+			<!-- jQuery -->
+			<script src="/static/assets/plugins/jquery/jquery.min.js"></script>
+			<!-- jQuery UI -->
+			<script src="/static/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+			<!-- Bootstrap 4 -->
+			<script src="/static/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+			<!-- AdminLTE App -->
+			<script src="/static/assets/js/adminlte.min.js"></script>
+			<!-- AdminLTE for demo purposes -->
+			<script src="/static/assets/js/demo.js"></script>
+			<!-- FLOT CHARTS -->
+			<script src="/static/assets/plugins/flot/jquery.flot.js"></script>
+			<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+			<script src="/static/assets/plugins/flot-old/jquery.flot.resize.min.js"></script>
+			<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+			<script src="/static/assets/plugins/flot-old/jquery.flot.pie.min.js"></script>
+
+			<script>
+
+
 				
-				interactive_plot.draw()
-				setTimeout(update, updateInterval)
-
-			}
-			update()
-
-		
-			
-
-	
-
-		
 
 
-		
+				var gauge;
+				let valor_v0, valor_v1, valor_v2, valor_v3, valor_v4;
+				function actualizarInterfazUsuario() {
+					// Realizar una solicitud AJAX
+					var xhr = new XMLHttpRequest();
+					xhr.open('GET', '/obtener_datos/', true);
 
+					xhr.onload = function () {
+						if (xhr.status === 200) {
+							// Actualizar la interfaz de usuario con los datos recibidos
+							var data = JSON.parse(xhr.responseText);
 
-	
+							valor_v0 = data.v0;
+							valor_v1 = data.v1;
+							valor_v2 = data.v2;
+							valor_v3 = data.v3;
+							valor_v4 = data.v4;
+							gauge.refresh(valor_v3);
+							gauge2.refresh(valor_v4);
+							gauge3.refresh(valor_v0);
+							gauge4.refresh(valor_v2);
+							g1.refresh(valor_v1);
+							document.getElementById('v0').innerText = 'v0: ' + data.v0;
+							document.getElementById('v1').innerText = 'v1: ' + data.v1;
+							document.getElementById('v2').innerText = 'v2: ' + data.v2;
+							document.getElementById('v3').innerText = 'v3: ' + data.v3;
+							document.getElementById('v4').innerText = 'v4: ' + data.v4;
+						}
+					};
 
-		function update() {
+					xhr.send();
+				}
 
-			var data1 = document.getElementById("select1").value;
-			firebase.database().ref(data1).once('value').then(
-
-				function (snapshot) {
-					globalThis.Humedad = snapshot.val().Humedad;
-					globalThis.Temperatura = snapshot.val().Temperatura;
-					globalThis.LDR = snapshot.val().LDR;
-					globalThis.suelo = snapshot.val().suelo;
-					globalThis.Motor = snapshot.val().Motor;
-					console.table(Motor);
-					if (Motor == 1) {
-						document.getElementById("demo").innerHTML = "ENCENDIDO";
-					} else {
-						document.getElementById("demo").innerHTML = "APAGADO";
-					}
-
-					Circles.create({
-						id: 'circles-1',
-						radius: 60,
-						value: Humedad,
-						maxValue: 100,
-						width: 5,
-						text: Humedad + '%',
-						colors: ['#f1f1f1', '#2BB930'],
-						duration: 0,
-						wrpClass: 'circles-wrp',
-						textClass: 'circles-text',
-						styleWrapper: true,
-						styleText: true
-					})
-
-
-					Circles.create({
-						id: 'circles-2',
-						radius: 60,
-						value: Temperatura,
-						maxValue: 100,
-						width: 5,
-						text: Temperatura + 'C°',
-						colors: ['#f1f1f1', '#2BB930'],
-						duration: 0,
-						wrpClass: 'circles-wrp',
-						textClass: 'circles-text',
-						styleWrapper: true,
-						styleText: true
-					})
-
-					Circles.create({
-						id: 'circles-3',
-						radius: 60,
-						value: LDR,
-						maxValue: 100,
-						width: 7,
-						text: LDR + ' %',
-						colors: ['#f1f1f1', '#F25961'],
-						duration: 0,
-						wrpClass: 'circles-wrp',
-						textClass: 'circles-text',
-						styleWrapper: true,
-						styleText: true
-					})
-
-					Circles.create({
-						id: 'circles-13',
-						radius: 60,
-						value: suelo,
-						maxValue: 100,
-						width: 7,
-						text: suelo + ' %',
-						colors: ['#f1f1f1', '#F25961'],
-						duration: 0,
-						wrpClass: 'circles-wrp',
-						textClass: 'circles-text',
-						styleWrapper: true,
-						styleText: true
-					})
-
-
-					//console.log(title);
-				})
-
-			setTimeout(update, 1000)
-		}
-
-		
-
-		
-
-		
-
-
-
-		update()
-		
+				// Actualizar la interfaz de usuario cada 5 segundos (puedes ajustar este intervalo)
+				setInterval(actualizarInterfazUsuario, 1000);
 
 
 
 
-	</script>
+				/** TEMPERATURA  */
+				gauge = new JustGage({
 
-	{% endblock javascripts %}
+					id: "gauge",// required
+
+					value: 20,
+					min: 0,
+					max: 40,
+					symbol: '°C',
+					pointer: true,
+					gaugeWidthScale: 0.6,
+					counter: true,
+					decimals: 2,
+
+					customSectors: [{
+						color: '#ff0000',
+						lo: 26,
+						hi: 40
+					}, {
+						color: '#00ff00',
+						lo: 0,
+						hi: 25
+					}],
+
+					// more options here
+
+				});
+
+
+
+				var gauge2
+				/** HUMEDAD */
+				gauge2 = new JustGage({
+
+					id: "gauge2",// required
+
+					value: 21,
+					min: 0,
+					max: 100,
+					symbol: '%',
+					pointer: true,
+					gaugeWidthScale: 0.6,
+					decimals: 2,
+					customSectors: [{
+						color: '#ff0000',
+						lo: 50,
+						hi: 100
+					}, {
+						color: '#00ff00',
+						lo: 0,
+						hi: 50
+					}],
+					counter: true
+					
+
+				});
+
+				var gauge3 = new JustGage({
+
+					id: "gauge3",// required
+
+					value: 21,
+					min: 0,
+					max: 40,
+					symbol: 'km/h',
+					pointer: true,
+					gaugeWidthScale: 0.6,
+					decimals: 2,
+					customSectors: [{
+						color: '#ff0000',
+						lo: 50,
+						hi: 100
+					}, {
+						color: '#00ff00',
+						lo: 0,
+						hi: 50
+					}],
+					counter: true
+					// more options here
+
+				});
+
+				var gauge4 = new JustGage({
+
+					id: "gauge4",// required
+
+					value: 21,
+					min: 0,
+					max: 40,
+					symbol: 'ml/m3',
+					pointer: true,
+					gaugeWidthScale: 0.6,
+					decimals: 2,
+					customSectors: [{
+						color: '#ff0000',
+						lo: 50,
+						hi: 100
+					}, {
+						color: '#00ff00',
+						lo: 0,
+						hi: 50
+					}],
+					counter: true
+					// more options here
+
+				});
+
+				var g1;
+				/** DIRECCION DEL VIENTO  */
+				function getRandomInt(min, max) {
+					return Math.floor(Math.random() * (max - min + 1)) + min;
+				}
+				document.addEventListener("DOMContentLoaded", function (event) {
+					g1 = new JustGage({
+						id: "g1",
+						value: 72,
+						min: 0,
+						max: 360,
+						donut: true,
+						gaugeWidthScale: 0.6,
+						counter: true,
+						hideInnerShadow: true,
+						pointer: true,
+
+						textRenderer: function (val) {
+							if (val == 0) {
+								return 'NORTE';
+							} else if (val == 180) {
+								return 'SUR';
+							} else if (val == 315 ) {
+								return 'NO';
+							}else if (val == 270 ) {
+								return 'OESTE';
+							}else if (val == 225 ) {
+								return 'SO';
+							}else if (val == 180 ) {
+								return 'SUR';
+							}else if (val == 135 ) {
+								return 'SE';
+							}else if (val == 90 ) {
+								return 'ESTE';
+							}else if (val == 45 ) {
+								return 'NE';
+							}
+						},
+					});
+
+					
+				});
+
+				var updateInterval = 1000 //Fetch data ever x milliseconds
+				var realtime = 'on' //If == to on then fetch data every x seconds. else stop fetching
+				function update() {
+
+					interactive_plot.setData([getTempData()])
+
+					interactive_plot.draw()
+					setTimeout(update, updateInterval)
+
+				}
+				update()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				function update() {
+
+					var data1 = document.getElementById("select1").value;
+					firebase.database().ref(data1).once('value').then(
+
+						function (snapshot) {
+							globalThis.Humedad = snapshot.val().Humedad;
+							globalThis.Temperatura = snapshot.val().Temperatura;
+							globalThis.LDR = snapshot.val().LDR;
+							globalThis.suelo = snapshot.val().suelo;
+							globalThis.Motor = snapshot.val().Motor;
+							console.table(Motor);
+							if (Motor == 1) {
+								document.getElementById("demo").innerHTML = "ENCENDIDO";
+							} else {
+								document.getElementById("demo").innerHTML = "APAGADO";
+							}
+
+							Circles.create({
+								id: 'circles-1',
+								radius: 60,
+								value: Humedad,
+								maxValue: 100,
+								width: 5,
+								text: Humedad + '%',
+								colors: ['#f1f1f1', '#2BB930'],
+								duration: 0,
+								wrpClass: 'circles-wrp',
+								textClass: 'circles-text',
+								styleWrapper: true,
+								styleText: true
+							})
+
+
+							Circles.create({
+								id: 'circles-2',
+								radius: 60,
+								value: Temperatura,
+								maxValue: 100,
+								width: 5,
+								text: Temperatura + 'C°',
+								colors: ['#f1f1f1', '#2BB930'],
+								duration: 0,
+								wrpClass: 'circles-wrp',
+								textClass: 'circles-text',
+								styleWrapper: true,
+								styleText: true
+							})
+
+							Circles.create({
+								id: 'circles-3',
+								radius: 60,
+								value: LDR,
+								maxValue: 100,
+								width: 7,
+								text: LDR + ' %',
+								colors: ['#f1f1f1', '#F25961'],
+								duration: 0,
+								wrpClass: 'circles-wrp',
+								textClass: 'circles-text',
+								styleWrapper: true,
+								styleText: true
+							})
+
+							Circles.create({
+								id: 'circles-13',
+								radius: 60,
+								value: suelo,
+								maxValue: 100,
+								width: 7,
+								text: suelo + ' %',
+								colors: ['#f1f1f1', '#F25961'],
+								duration: 0,
+								wrpClass: 'circles-wrp',
+								textClass: 'circles-text',
+								styleWrapper: true,
+								styleText: true
+							})
+
+
+							//console.log(title);
+						})
+
+					setTimeout(update, 1000)
+				}
+
+
+
+
+
+
+
+
+
+				update()
+
+
+
+
+
+			</script>
+
+			{% endblock javascripts %}

@@ -75,5 +75,12 @@ def job():
 schedule.every(0.5).minutes.do(job)
 
 while True:
-    schedule.run_pending()
-    time.sleep(0.5)
+    try:
+        schedule.run_pending()
+        time.sleep(0.5)
+    except KeyboardInterrupt:
+        print("Script interrumpido por el usuario.")
+        break
+    except Exception as e:
+        print(f"Ocurrió un error en el bucle principal: {e}")
+        # Registra el error usando una biblioteca de registro si está disponible
