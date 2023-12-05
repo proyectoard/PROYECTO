@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'datos3',
     'datos4',
     'myapp_w',
-    'alertas',   
+    'alertas',
+    'index',   
 ]
 
 MIDDLEWARE = [

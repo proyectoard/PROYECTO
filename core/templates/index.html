@@ -73,6 +73,7 @@
 						<div class="card-category">Dashboard en tiempo real</div>
 						<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
 							<div id="gauge4"></div>
+							<button id="miBoton" onmousedown="enviarNumero(1)" onmouseup="enviarNumero(22)">Presiona y Suelta</button>
 						</div>
 					</div>
 				</div>
@@ -86,6 +87,19 @@
 						<div class="container">
 							<div id="g1" class="gauge"></div>
 						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="card full-height">
+					<div class="card-body">
+						<div class="card-title">Direccion del Viento</div>
+						<div class="card-category">Dashboard en tiempo real</div>
+						<div class="container">
+							<img src="data:image/png;base64,{{ graphic }}" alt="Gráfico de Predicciones de Temperatura">
+						</div>
+						<canvas id="myChart" width="400" height="400"></canvas>
 					</div>
 				</div>
 			</div>
@@ -184,7 +198,7 @@
 			</style>
 
 
-
+		
 
 
 
@@ -221,12 +235,69 @@
 			<script src="/static/assets/plugins/flot-old/jquery.flot.resize.min.js"></script>
 			<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
 			<script src="/static/assets/plugins/flot-old/jquery.flot.pie.min.js"></script>
-
+			<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	
 			<script>
+var miBoton = document.getElementById("miBoton");
 
+miBoton.addEventListener("mousedown", function() {
+    enviarNumero(1);
+});
 
+miBoton.addEventListener("mouseup", function() {
+    enviarNumero(22);
+});
+function enviarNumero(numero) {
+    // Configurar la URL del servidor
+    var url = "http://137.184.132.178:1880/api2/";
+
+    // Configurar los datos a enviar
+    var data = "numero=" + numero;
+
+    // Realizar la solicitud POST usando Fetch
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.text();
+    })
+    .then(data => {
+        // Puedes realizar acciones adicionales con la respuesta del servidor si es necesario
+        console.log('Respuesta del servidor:', data);
+    })
+    .catch(error => {
+        console.error('Hubo un problema con la solicitud fetch:', error);
+    });
+}
 				
-
+document.addEventListener('DOMContentLoaded', function () {
+            // Obtén los datos de la vista Django
+            fetch('/hola/')
+                .then(response => response.json())
+                .then(data => {
+                    var ctx = document.getElementById('myChart').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: data.labels,
+                            datasets: [{
+                                label: 'Datos de ejemplo',
+                                data: data.data,
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                    });
+                });
+        });
 
 				var gauge;
 				let valor_v0, valor_v1, valor_v2, valor_v3, valor_v4;
