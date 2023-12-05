@@ -17,3 +17,4 @@ pandas==1.4.1
 mysql-connector-python==8.0.32
 numpy 
 scikit-learn
+matplotlib
