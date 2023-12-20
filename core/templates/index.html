@@ -6,7 +6,7 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" />
 <div class="content ">
 	<div class="panel-header ">
 		<div class="page-inner py-5">
@@ -20,19 +20,40 @@
 		</div>
 	</div>
 	
-
+	
 	<div class="page-inner mt--5">
+		<div class="card full-height">
+			<div class="card-body">
+				<button id="estado1" class="btn btn-primary">MODELO 1 LINEAL </button>
+				<button id="estado2" class="btn btn-primary">MODELO 2 SVR </button>
+				<button id="estado3" class="btn btn-primary">MODELO 3 RAMDOM</button>
+				 NOMBRE DE MODELO SELECCIONADO:  {{MODELO_NOMBRE}} 
+			</div>
+		</div>
+
 		<div class="row mt--2">
+
 			<div class="col-md-6">
 				<div class="card full-height">
 					<div class="card-body">
 						<div class="card-title">TEMPERATURA</div>
 						<div class="card-category">Dashboard en tiempo real</div>
 						<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
+							
 							<div class="form-group">
 								<div id="gauge"></div>
 							</div>
-							
+							<div class="col-md-6">
+								<div class="card card-primary">
+									<div class="card-body skew-shadow">
+										<h1>{{PREDICCION}} °C </h1>
+										<h5 class="op-8">TEMPERATURA PARA MAÑANA A LAS: {{temp_predi}}</h5>
+										<div class="pull-right">
+											<h3 class="fw-bold op-8">PORCENTAJE DE RENDIMIENTO: {{ERROR}}%</h3>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -44,66 +65,179 @@
 						<div class="card-title">HUMEDAD</div>
 						<div class="card-category">Dashboard en tiempo real</div>
 						<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
+							
 							<div class="form-group">
 								<div id="gauge2"></div>
 							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	
-		<div class="row mt--2">
-			<div class="col-md-6">
-				<div class="card full-height">
-					<div class="card-body">
-						<div class="card-title">Velocidad del viento</div>
-						<div class="card-category">Dashboard en tiempo real</div>
-						<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
-							<div id="gauge3"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-	
-			<div class="col-md-6">
-				<div class="card full-height">
-					<div class="card-body">
-						<div class="card-title">Cantidad de lluvia</div>
-						<div class="card-category">Dashboard en tiempo real</div>
-						<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
-							<div id="gauge4"></div>
-							<button id="miBoton" onmousedown="enviarNumero(1)" onmouseup="enviarNumero(22)">Presiona y Suelta</button>
-						</div>
-					</div>
-				</div>
-			</div>
-	
-			<div class="col-md-6">
-				<div class="card full-height">
-					<div class="card-body">
-						<div class="card-title">Direccion del Viento</div>
-						<div class="card-category">Dashboard en tiempo real</div>
-						<div class="container">
-							<div id="g1" class="gauge"></div>
+							
+							<div class="col-md-6">
+								<div class="card card-primary">
+									<div class="card-body skew-shadow">
+										<h1>{{PREDICCION_DIA_HUMEDAD}} % </h1>
+										<h5 class="op-8">HUMEDAD PARA MAÑANA A LAS: {{temp_predi}}</h5>
+										<div class="pull-right">
+											<h3 class="fw-bold op-8">PORCENTAJE DE RENDIMIENTO: {{ERROR2}}%</h3>
+										</div>
+									</div>
+								</div>
+							</div>
+
 						</div>
 					</div>
 				</div>
 			</div>
 
+		</div>
+	
+		<div class="row mt--2">
+
 			<div class="col-md-6">
 				<div class="card full-height">
 					<div class="card-body">
-						<div class="card-title">Direccion del Viento</div>
+						<div class="card-title">DIRECCIÓN DEL VIENTO</div>
 						<div class="card-category">Dashboard en tiempo real</div>
-						<div class="container">
-							<img src="data:image/png;base64,{{ graphic }}" alt="Gráfico de Predicciones de Temperatura">
+						<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
+							
+							<div class="form-group">
+								<div id="gauge3"></div>
+							</div>
+							
+							<div class="col-md-6">
+								<div class="card card-primary">
+									<div class="card-body skew-shadow">
+										<h1>{{PREDICCION_DIA_VELVIENTO}} KM/H </h1>
+										<h5 class="op-8">VELOCIDAD DE VIENTO MAÑANA A LAS: {{temp_predi}}</h5>
+										<div class="pull-right">
+											<h3 class="fw-bold op-8">PORCENTAJE DE RENDIMIENTO: {{ERROR3}}%</h3>
+										</div>
+									</div>
+								</div>
+							</div>
+
 						</div>
-						<canvas id="myChart" width="400" height="400"></canvas>
 					</div>
 				</div>
 			</div>
+			
+			<div class="col-md-6">
+				<div class="card full-height">
+					<div class="card-body">
+						<div class="card-title">HUMEDAD</div>
+						<div class="card-category">Dashboard en tiempo real</div>
+						<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
+							
+							<div class="form-group">
+								<div id="gauge4"></div>
+							</div>
+							
+							<div class="col-md-6">
+								<div class="card card-primary">
+									<div class="card-body skew-shadow">
+										<h1>{{PREDICCION}} °C </h1>
+										<h5 class="op-8">TEMPERATURA PARA MAÑANA A LAS: {{temp_predi}}</h5>
+										<div class="pull-right">
+											<h3 class="fw-bold op-8">PORCENTAJE DE RENDIMIENTO: {{ERROR}}%</h3>
+										</div>
+										<button  class="btn btn-info" id="miBoton" onmousedown="enviarNumero(1)" onmouseup="enviarNumero(22)">Presiona y Suelta</button>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			
+
+
+
+	
+			<div class="col-md-6">
+				<div class="card full-height">
+					<div class="card-body">
+						<div class="card-title">DIRECCION DEL VIENTO</div>
+						<div class="card-category">Dashboard en tiempo real</div>
+						<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
+							
+							<div class="form-group">
+								<div id="g1"></div>
+							</div>
+							
+							<div class="col-md-6">
+								<div class="card card-primary">
+									<div class="card-body skew-shadow">
+										<h1>{{PREDICCION_DIA_DIRVIENTO}} °C </h1>
+										<h5 class="op-8">TEMPERATURA PARA MAÑANA A LAS: {{temp_predi}}</h5>
+										<div class="pull-right">
+											<h3 class="fw-bold op-8">PORCENTAJE DE RENDIMIENTO: {{ERROR4}}%</h3>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			
+
+			<div class="col-md-12">
+			
+					<div class="card">
+						
+						<div class="card-body">
+							<div class="chart-container">
+								<canvas id="multipleLineChart"></canvas>
+							</div>
+						</div>
+					</div>
+				
+			</div>
+
+			<div class="col-md-12">
+			
+				<div class="card">
+					
+					<div class="card-body">
+						<div class="chart-container">
+							<canvas id="multipleLineChart2"></canvas>
+						</div>
+					</div>
+				</div>
+			
+			</div>
+
+
+			<div class="col-md-12">
+			
+				<div class="card">
+					
+					<div class="card-body">
+						<div class="chart-container">
+							<canvas id="multipleLineChart3"></canvas>
+						</div>
+					</div>
+				</div>
+			
+			</div>
+
+			
+			<div class="col-md-12">
+			
+				<div class="card">
+					
+					<div class="card-body">
+						<div class="chart-container">
+							<canvas id="multipleLineChart4"></canvas>
+						</div>
+					</div>
+				</div>
+			
+			</div>
+
+
 		</div>
+	
 	</div>
 			<style>
 				.container {
@@ -198,7 +332,7 @@
 			</style>
 
 
-		
+
 
 
 
@@ -236,8 +370,398 @@
 			<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
 			<script src="/static/assets/plugins/flot-old/jquery.flot.pie.min.js"></script>
 			<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-	
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+
+			<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
+
 			<script>
+
+			$(document).ready(function() {
+            // Manejar clic en botón Estado 1
+            $("#estado1").click(function() {
+                guardarEstado('Estado1');
+            });
+
+            // Manejar clic en botón Estado 2
+            $("#estado2").click(function() {
+                guardarEstado('Estado2');
+            });
+
+            // Manejar clic en botón Estado 3
+            $("#estado3").click(function() {
+                guardarEstado('Estado3');
+            });
+			function guardarEstado(estado) {
+
+				var datos = {
+                    'estado': estado,
+                    
+                };
+                // Enviar una solicitud al servidor para guardar el estado
+                $.ajax({
+                    url: `/hola/?estado=${estado}`,
+                    type: 'GET',
+                    dataType: 'json',  // Espera una respuesta JSON
+                    success: function(data) {
+                        console.log(data);
+                    },
+                    error: function(error) {
+                        console.error(error);
+                    }
+                });
+            }
+        });
+
+
+
+var laa = "{{ y_test_json }}"
+var laa2 = "{{ fechas }}"
+var laa3 = "{{ predictions_json}}"
+var Temperatura = JSON.parse(laa);
+var predic_temp = JSON.parse(laa3);
+var  laa2 = "{{ fechas }}";
+
+var fechasJSON = laa2.replace(/&quot;/g, '"');
+var fechasArray;
+try {
+    fechasArray = JSON.parse(fechasJSON);
+} catch (error) {
+    alert("Error al analizar las fechas:", error);
+    // Manejar el error según sea necesario
+}
+
+var multipleLineChart = document.getElementById('multipleLineChart').getContext('2d')
+var myMultipleLineChart = new Chart(multipleLineChart, {
+			type: 'line',
+			data: {
+				labels: fechasArray,
+				datasets: [{
+					label: "TEMPERATURA REAL",
+					borderColor: "#1d7af3",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#1d7af3",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: Temperatura
+				},{
+					label: "PREDICCIÓN",
+					borderColor: "#59d05d",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#59d05d",
+					pointBorderWidth: 1,
+					pointHoverRadius: 1,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data:predic_temp
+				} ]
+			},
+			options : {
+				responsive: true, 
+				maintainAspectRatio: true,
+				legend: {
+					position: 'top',
+				},
+				tooltips: {
+					bodySpacing: 0.1,
+					mode:"nearest",
+					intersect: 0,
+					position:"nearest",
+					xPadding:50,
+					yPadding:50,
+					caretPadding:50
+				},
+				layout:{
+					padding:{left:15,right:15,top:15,bottom:15}
+				},
+				scales: {
+					y: {
+						max: 40,  // Establece el límite máximo en el eje Y
+						beginAtZero: true,  // Asegura que el eje Y comience en cero
+						ticks: {
+							stepSize: 50  // Puedes ajustar el tamaño del paso según tus necesidades
+						}
+					}
+				},
+
+				plugins: {
+					zoom: {
+						pan: {
+							enabled: true,
+							mode: 'xy'
+						},
+						zoom: {
+							wheelEnabled: true,
+							pinchEnabled: true,
+							mode: 'xy'
+						}
+            		}
+        		}
+			}
+		});
+
+var laa = "{{ PREDI_HUMEDAD }}"
+var laa2 = "{{ HUMEDAD_REAL }}"
+
+var HUMEDAD_PREDI = JSON.parse(laa);
+var HUMEDAD = JSON.parse(laa2);
+
+
+		var multipleLineChart = document.getElementById('multipleLineChart2').getContext('2d')
+var myMultipleLineChart = new Chart(multipleLineChart, {
+			type: 'line',
+			data: {
+				labels: fechasArray,
+				datasets: [{
+					label: "HUMEDAD REAL",
+					borderColor: "#1d7af3",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#1d7af3",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: HUMEDAD
+				},{
+					label: "PREDICCIÓN",
+					borderColor: "#59d05d",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#59d05d",
+					pointBorderWidth: 1,
+					pointHoverRadius: 1,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data:HUMEDAD_PREDI
+				} ]
+			},
+			options : {
+				responsive: true, 
+				maintainAspectRatio: true,
+				legend: {
+					position: 'top',
+				},
+				tooltips: {
+					bodySpacing: 0.1,
+					mode:"nearest",
+					intersect: 0,
+					position:"nearest",
+					xPadding:50,
+					yPadding:50,
+					caretPadding:50
+				},
+				layout:{
+					padding:{left:15,right:15,top:15,bottom:15}
+				},
+				scales: {
+					y: {
+						max: 40,  // Establece el límite máximo en el eje Y
+						beginAtZero: true,  // Asegura que el eje Y comience en cero
+						ticks: {
+							stepSize: 50  // Puedes ajustar el tamaño del paso según tus necesidades
+						}
+					}
+				},
+
+				plugins: {
+					zoom: {
+						pan: {
+							enabled: true,
+							mode: 'xy'
+						},
+						zoom: {
+							wheelEnabled: true,
+							pinchEnabled: true,
+							mode: 'xy'
+						}
+            		}
+        		}
+			}
+		});
+
+var laa = "{{ PREDI_VELVIENTO }}"
+var laa2 = "{{ VELVIENTO_REAL }}"
+
+var VELVIENTO_PREDI = JSON.parse(laa);
+var VELVIENTO = JSON.parse(laa2);
+
+
+		var multipleLineChart = document.getElementById('multipleLineChart3').getContext('2d')
+var myMultipleLineChart = new Chart(multipleLineChart, {
+			type: 'line',
+			data: {
+				labels: fechasArray,
+				datasets: [{
+					label: "VELOCIDAD VIENTO REAL",
+					borderColor: "#1d7af3",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#1d7af3",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: VELVIENTO
+				},{
+					label: "PREDICCIÓN",
+					borderColor: "#59d05d",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#59d05d",
+					pointBorderWidth: 1,
+					pointHoverRadius: 1,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data:VELVIENTO_PREDI
+				} ]
+			},
+			options : {
+				responsive: true, 
+				maintainAspectRatio: true,
+				legend: {
+					position: 'top',
+				},
+				tooltips: {
+					bodySpacing: 0.1,
+					mode:"nearest",
+					intersect: 0,
+					position:"nearest",
+					xPadding:50,
+					yPadding:50,
+					caretPadding:50
+				},
+				layout:{
+					padding:{left:15,right:15,top:15,bottom:15}
+				},
+				scales: {
+					y: {
+						max: 40,  // Establece el límite máximo en el eje Y
+						beginAtZero: true,  // Asegura que el eje Y comience en cero
+						ticks: {
+							stepSize: 50  // Puedes ajustar el tamaño del paso según tus necesidades
+						}
+					}
+				},
+
+				plugins: {
+					zoom: {
+						pan: {
+							enabled: true,
+							mode: 'xy'
+						},
+						zoom: {
+							wheelEnabled: true,
+							pinchEnabled: true,
+							mode: 'xy'
+						}
+            		}
+        		}
+			}
+		});
+
+		var laa = "{{ PREDI_DIRVIENTO }}"
+var laa2 = "{{ DIRVIENTO_REAL }}"
+
+var DIRVIENTO_PREDI = JSON.parse(laa);
+var DIRVIENTO = JSON.parse(laa2);
+
+
+		var multipleLineChart = document.getElementById('multipleLineChart4').getContext('2d')
+var myMultipleLineChart = new Chart(multipleLineChart, {
+			type: 'line',
+			data: {
+				labels: fechasArray,
+				datasets: [{
+					label: "DIRECCION VIENTO REAL",
+					borderColor: "#1d7af3",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#1d7af3",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: DIRVIENTO
+				},{
+					label: "PREDICCIÓN",
+					borderColor: "#59d05d",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#59d05d",
+					pointBorderWidth: 1,
+					pointHoverRadius: 1,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data:DIRVIENTO_PREDI
+				} ]
+			},
+			options : {
+				responsive: true, 
+				maintainAspectRatio: true,
+				legend: {
+					position: 'top',
+				},
+				tooltips: {
+					bodySpacing: 0.1,
+					mode:"nearest",
+					intersect: 0,
+					position:"nearest",
+					xPadding:50,
+					yPadding:50,
+					caretPadding:50
+				},
+				layout:{
+					padding:{left:15,right:15,top:15,bottom:15}
+				},
+				scales: {
+					y: {
+						max: 40,  // Establece el límite máximo en el eje Y
+						beginAtZero: true,  // Asegura que el eje Y comience en cero
+						ticks: {
+							stepSize: 50  // Puedes ajustar el tamaño del paso según tus necesidades
+						}
+					}
+				},
+
+				plugins: {
+					zoom: {
+						pan: {
+							enabled: true,
+							mode: 'xy'
+						},
+						zoom: {
+							wheelEnabled: true,
+							pinchEnabled: true,
+							mode: 'xy'
+						}
+            		}
+        		}
+			}
+		});
+
+
+
+
 var miBoton = document.getElementById("miBoton");
 
 miBoton.addEventListener("mousedown", function() {

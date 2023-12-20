@@ -25,6 +25,7 @@ from datos4.views import ReportePersonalizadoExcel4
 from myapp_w.views import obtener_datos
 from index.views import grafica
 urlpatterns = [
+    
     path('hola/', grafica.as_view(), name='obtener'),
     path('obtener_datos/', obtener_datos, name='obtener_datos'),
     path('login/', login_view, name="login"),
