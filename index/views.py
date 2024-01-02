@@ -48,7 +48,7 @@ class grafica(View):
                 database="u153713658_base_proyecto")
 
             # Consultar los datos
-            query = "SELECT TEMPERATURA, HUMEDAD, VELOCIDAD_VIENTO, DIRECCION_VIENTO, CANTIDAD_LLUVIA, FECHA, HORA FROM SENSORES"
+            query = "SELECT TEMPERATURA, HUMEDAD, VELOCIDAD_VIENTO, DIRECCION_VIENTO, CANTIDAD_LLUVIA, FECHA, HORA FROM SENSORES "
             df = pd.read_sql(query, conn)
             # Cerrar la conexión
             conn.close()
@@ -72,7 +72,7 @@ class grafica(View):
            
 
             # Dividir los datos en entrenamiento y prueba
-            train_size = int(len(df) * 0.65)
+            train_size = int(len(df) * 0.70)
             train, test = df[0:train_size], df[train_size:]
             # Separar características y etiquetas
             X_train, y_train = train.drop('TEMPERATURA', axis=1), train['TEMPERATURA']
@@ -112,8 +112,10 @@ class grafica(View):
             mse = mean_squared_error(y_test, predictions)
 
             #Coeficiente de Determinación 
-            r2 = r2_score(y_test, predictions)
-            
+            r = r2_score(y_test, predictions)
+          
+            # Error Porcentual Absoluto Medio (MAPE)
+            mape = np.mean(np.abs((y_test - predictions) / y_test)) * 100
        
             y_test_list = y_test.tolist()
             y_test_list_enteros = [int(numero) for numero in y_test_list]
@@ -172,6 +174,8 @@ class grafica(View):
             #Coeficiente de Determinación 
             r2 = r2_score(y_test_hume, predictions_hume)
             
+            # Error Porcentual Absoluto Medio (MAPE)
+            mape2 = np.mean(np.abs((y_test_hume - predictions_hume) / y_test_hume)) * 100
        
             y_test_list_hume = y_test_hume.tolist()
             y_test_list_enteros_hume = [int(numero) for numero in y_test_list_hume]
@@ -230,11 +234,14 @@ class grafica(View):
             nueva_fecha_prediccion_VELVIENTO = ultima_fecha_prediccion_VELVIENTO + timedelta(days=1)
           
 
-            # Evaluar el rendimiento del modelo
+             # Evaluar el rendimiento del modelo
             mse3 = mean_squared_error(y_test_VELVIENTO, predictions_VELVIENTO)
 
             #Coeficiente de Determinación 
             r3 = r2_score(y_test_VELVIENTO, predictions_VELVIENTO)
+            
+            # Error Porcentual Absoluto Medio (MAPE)
+            mape3 = np.mean(np.abs((y_test_VELVIENTO - predictions_VELVIENTO) / y_test_VELVIENTO)) * 100
             
        
             y_test_list_VELVIENTO = y_test_VELVIENTO.tolist()
@@ -299,7 +306,10 @@ class grafica(View):
             mse4 = mean_squared_error(y_test_DIRVIENTO, predictions_DIRVIENTO)
 
             #Coeficiente de Determinación 
-            r3 = r2_score(y_test_DIRVIENTO, predictions_DIRVIENTO)
+            r4 = r2_score(y_test_DIRVIENTO, predictions_DIRVIENTO)
+            
+            # Error Porcentual Absoluto Medio (MAPE)
+            mape4 = np.mean(np.abs((y_test_DIRVIENTO - predictions_DIRVIENTO) / y_test_DIRVIENTO)) * 100
             
        
             y_test_list_DIRVIENTO = y_test_DIRVIENTO.tolist()
@@ -328,21 +338,30 @@ class grafica(View):
                 'fechas':fechas_json,
                 'PREDICCION': round(ultimo_valor_prediccion, 2),
                 'ERROR':round(100-mse),
+                'ERROR12':round(r,2),
+                'ERROR13':round(mape,2),
 
                 'HUMEDAD_REAL': y_test_list_hume,
                 'PREDI_HUMEDAD':predictions_list_hume,
                 'PREDICCION_DIA_HUMEDAD': round(int(prediccion_manana_hume), 2),
                 'ERROR2':round(100-mse2),
+                'ERROR22':round(r2,2),
+                'ERROR23':round(mape2,2),
+
 
                 'VELVIENTO_REAL': y_test_list_VELVIENTO,
                 'PREDI_VELVIENTO':predictions_list_VELVIENTO,
                 'PREDICCION_DIA_VELVIENTO': round(int(prediccion_manana_VELVIENTO), 2),
                 'ERROR3':round(100-mse3),
+                'ERROR32':round(r3,2),
+                'ERROR33':round(mape3,2),
 
                 'DIRVIENTO_REAL': y_test_list_DIRVIENTO,
                 'PREDI_DIRVIENTO':predictions_list_DIRVIENTO,
                 'PREDICCION_DIA_DIRVIENTO': round(int(prediccion_manana_DIRVIENTO), 2),
                 'ERROR4':round(100-mse4),
+                'ERROR42':round(r4,2),
+                'ERROR43':round(mape4,2),
 
             }
             
