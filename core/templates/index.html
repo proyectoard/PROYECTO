@@ -112,9 +112,9 @@
 										<h1>{{PREDICCION_DIA_VELVIENTO}} KM/H </h1>
 										<h5 class="op-8">VELOCIDAD DE VIENTO MAÑANA A LAS: {{temp_predi}}</h5>
 										<div class="pull-right">
-										<!--	<h5 class="fw-bold op-8">PORCENTAJE DE RENDIMIENTO: {{ERROR3}}%</h5> -->
-										<!--	<h5 class="fw-bold op-8">COEFICIENTE DE DETERMINACION: {{ERROR32}}</h5>-->
-										<!--	<h5 class="fw-bold op-8">ERROR PORCENTUAL ABSOLUTO MEDIO (MAPE): {{ERROR33}}%</h5>-->
+										<h5 class="fw-bold op-8">PORCENTAJE DE RENDIMIENTO: {{ERROR3}}%</h5> 
+										<h5 class="fw-bold op-8">COEFICIENTE DE DETERMINACION: {{ERROR32}}</h5>
+										<h5 class="fw-bold op-8">ERROR PORCENTUAL ABSOLUTO MEDIO (MAPE): {{ERROR33}}%</h5>
 										</div>
 									</div>
 								</div>
@@ -174,9 +174,9 @@
 										<h1>{{PREDICCION_DIA_DIRVIENTO}}°</h1>
 										<h5 class="op-8">DIRECCION DEL VIENTO PARA MAÑANA A LAS: {{temp_predi}}</h5>
 										<div class="pull-right">
-										<!--	<h5 class="fw-bold op-8">PORCENTAJE DE RENDIMIENTO: {{ERROR4}}%</h5>-->
-										<!--	<h5 class="fw-bold op-8">COEFICIENTE DE DETERMINACION: {{ERROR42}}</h5>-->
-										<!--	<h5 class="fw-bold op-8">ERROR PORCENTUAL ABSOLUTO MEDIO (MAPE): {{ERROR43}}%</h5>-->
+											<h5 class="fw-bold op-8">PORCENTAJE DE RENDIMIENTO: {{ERROR4}}%</h5>
+											<h5 class="fw-bold op-8">COEFICIENTE DE DETERMINACION: {{ERROR42}}</h5>
+											<h5 class="fw-bold op-8">ERROR PORCENTUAL ABSOLUTO MEDIO (MAPE): {{ERROR43}}%</h5>
 										</div>
 									</div>
 								</div>
@@ -186,7 +186,26 @@
 					</div>
 				</div>
 			</div>
-			
+			<div class="card">
+				<div class="card-body">
+					
+						
+						<!-- Campo de fecha de inicio -->
+						<div class="form-group">
+							<label for="id_fecha_inicio">Fecha de inicio:</label>
+							<input type="date" name="fecha_inicio" id="id_fecha_inicio" class="form-control" required>
+						</div>
+					
+						<!-- Campo de fecha de fin -->
+						<div class="form-group">
+							<label for="id_fecha_fin">Fecha de fin:</label>
+							<input type="date" name="fecha_fin" id="id_fecha_fin" class="form-control" required>
+						</div>
+					
+						<button type="submit" id="send" class="btn btn-primary">Filtrar</button>
+					
+				</div>
+			</div>
 
 			<div class="col-md-12">
 			
@@ -402,6 +421,14 @@
                 guardarEstado('Estado3');
 				location.reload();
             });
+
+			 // Manejar clic en botón Estado 3
+			 $("#send").click(function() {
+                guardarEstado(document.getElementById('id_fecha_inicio').value+","+document.getElementById('id_fecha_fin').value);
+				location.reload();
+            });
+
+
 			function guardarEstado(estado) {
 
 				var datos = {
@@ -421,6 +448,26 @@
                     }
                 });
             }
+
+
+			function guardarEstado2(estado2) {
+
+				var datos2 = {
+					'estado2': estado2,	
+				};
+				// Enviar una solicitud al servidor para guardar el estado
+				$.ajax({
+					url: `/hola/?estado2=${estado2}`,
+					type: 'GET',
+					dataType: 'json',  // Espera una respuesta JSON
+					success: function(data) {
+						console.log(data);
+					},
+					error: function(error) {
+						console.error(error);
+					}
+				});
+				}
         });
 
 
@@ -429,17 +476,25 @@ var laa = "{{ y_test_json }}"
 var laa2 = "{{ fechas }}"
 var laa3 = "{{ predictions_json}}"
 var Temperatura = JSON.parse(laa);
+
+
 var predic_temp = JSON.parse(laa3);
+
+
 var  laa2 = "{{ fechas }}";
 
 var fechasJSON = laa2.replace(/&quot;/g, '"');
+
 var fechasArray;
+
+
 try {
     fechasArray = JSON.parse(fechasJSON);
 } catch (error) {
     alert("Error al analizar las fechas:", error);
     // Manejar el error según sea necesario
 }
+
 
 var multipleLineChart = document.getElementById('multipleLineChart').getContext('2d')
 var myMultipleLineChart = new Chart(multipleLineChart, {
@@ -451,13 +506,13 @@ var myMultipleLineChart = new Chart(multipleLineChart, {
 					borderColor: "#1d7af3",
 					pointBorderColor: "#FFF",
 					pointBackgroundColor: "#1d7af3",
-					pointBorderWidth: 2,
-					pointHoverRadius: 4,
-					pointHoverBorderWidth: 1,
-					pointRadius: 4,
+					pointBorderWidth: 1,
+					pointHoverRadius: 2,
+					pointHoverBorderWidth: 0.5,
+					pointRadius: 0.5,
 					backgroundColor: 'transparent',
 					fill: true,
-					borderWidth: 2,
+					borderWidth: 1,
 					data: Temperatura
 				},{
 					label: "PREDICCIÓN",
@@ -535,13 +590,13 @@ var myMultipleLineChart = new Chart(multipleLineChart, {
 					borderColor: "#1d7af3",
 					pointBorderColor: "#FFF",
 					pointBackgroundColor: "#1d7af3",
-					pointBorderWidth: 2,
-					pointHoverRadius: 4,
-					pointHoverBorderWidth: 1,
-					pointRadius: 4,
+					pointBorderWidth: 1,
+					pointHoverRadius: 2,
+					pointHoverBorderWidth: 0.5,
+					pointRadius: 0.5,
 					backgroundColor: 'transparent',
 					fill: true,
-					borderWidth: 2,
+					borderWidth: 1,
 					data: HUMEDAD
 				},{
 					label: "PREDICCIÓN",
@@ -619,13 +674,13 @@ var myMultipleLineChart = new Chart(multipleLineChart, {
 					borderColor: "#1d7af3",
 					pointBorderColor: "#FFF",
 					pointBackgroundColor: "#1d7af3",
-					pointBorderWidth: 2,
-					pointHoverRadius: 4,
-					pointHoverBorderWidth: 1,
-					pointRadius: 4,
+					pointBorderWidth: 1,
+					pointHoverRadius: 2,
+					pointHoverBorderWidth: 0.5,
+					pointRadius: 0.5,
 					backgroundColor: 'transparent',
 					fill: true,
-					borderWidth: 2,
+					borderWidth: 1,
 					data: VELVIENTO
 				},{
 					label: "PREDICCIÓN",
@@ -703,13 +758,13 @@ var myMultipleLineChart = new Chart(multipleLineChart, {
 					borderColor: "#1d7af3",
 					pointBorderColor: "#FFF",
 					pointBackgroundColor: "#1d7af3",
-					pointBorderWidth: 2,
-					pointHoverRadius: 4,
-					pointHoverBorderWidth: 1,
-					pointRadius: 4,
+					pointBorderWidth: 1,
+					pointHoverRadius: 2,
+					pointHoverBorderWidth: 0.5,
+					pointRadius: 0.5,
 					backgroundColor: 'transparent',
 					fill: true,
-					borderWidth: 2,
+					borderWidth: 1,
 					data: DIRVIENTO
 				},{
 					label: "PREDICCIÓN",

@@ -28,7 +28,7 @@ class grafica(View):
         
         
         if request.method == "GET":
-
+           
             estado = request.GET.get('estado', '')
 
             # Aquí puedes hacer lo que necesites con el parámetro 'estado'
@@ -37,9 +37,12 @@ class grafica(View):
             # Puedes devolver una respuesta JSON si es necesario
             response_data = {'mensaje': 'Datos recibidos correctamente'}
            
-            if estado:
+            if estado == "Estado1" or estado == "Estado2" or estado == "Estado3":
+
                 guardar_en_archivo(estado, 'estado.txt')
-           
+            else:
+                guardar_en_archivo2(estado, 'estado3.txt')
+
               
 
             conn = mysql.connector.connect(   host="srv1138.hstgr.io",
@@ -47,8 +50,19 @@ class grafica(View):
                 password="?4K92JUGsHd",
                 database="u153713658_base_proyecto")
 
+            contenido2 = leer_archivo2('estado3.txt')
+
+            if contenido2 == "," or not contenido2:
             # Consultar los datos
-            query = "SELECT TEMPERATURA, HUMEDAD, VELOCIDAD_VIENTO, DIRECCION_VIENTO, CANTIDAD_LLUVIA, FECHA, HORA FROM SENSORES "
+                query = "SELECT TEMPERATURA, HUMEDAD, VELOCIDAD_VIENTO, DIRECCION_VIENTO, CANTIDAD_LLUVIA, FECHA, HORA FROM SENSORES; "
+            else:
+                fechas_lista = contenido2.split(',')
+                fecha_inicio = fechas_lista[0] if fechas_lista else None
+                print(fecha_inicio)
+                fecha_fin = fechas_lista[-1] if fechas_lista else None
+                print(fecha_fin)
+                query = "SELECT TEMPERATURA, HUMEDAD, VELOCIDAD_VIENTO, DIRECCION_VIENTO, CANTIDAD_LLUVIA, FECHA, HORA FROM SENSORES WHERE FECHA >= '"+fecha_inicio+"' AND FECHA <= '"+fecha_fin+"'; "
+            
             df = pd.read_sql(query, conn)
             # Cerrar la conexión
             conn.close()
@@ -352,16 +366,16 @@ class grafica(View):
                 'VELVIENTO_REAL': y_test_list_VELVIENTO,
                 'PREDI_VELVIENTO':predictions_list_VELVIENTO,
                 'PREDICCION_DIA_VELVIENTO': round(int(prediccion_manana_VELVIENTO), 2),
-                'ERROR3':round(100-mse3),
-                'ERROR32':round(r3,2),
-                'ERROR33':round(mape3,2),
+                'ERROR3':round(max(0, 100 - mse3)) if mse3 != float('inf') else 0,
+                'ERROR32':max(0, round(r3, 2)) if r3 != float('inf') else 0,
+                'ERROR33':max(0, round(mape3, 2)) if mape3 != float('inf') else 0,
 
                 'DIRVIENTO_REAL': y_test_list_DIRVIENTO,
                 'PREDI_DIRVIENTO':predictions_list_DIRVIENTO,
                 'PREDICCION_DIA_DIRVIENTO': round(int(prediccion_manana_DIRVIENTO), 2),
-                'ERROR4':round(100-mse4),
-                'ERROR42':round(r4,2),
-                'ERROR43':round(mape4,2),
+                'ERROR4':round(max(0, 100 - mse4)) if mse4 != float('inf') else 0,
+                'ERROR42':max(0, round(r4, 2))if r3 != float('inf') else 0,
+                'ERROR43':max(0, round(mape4, 2)) if mape4 != float('inf') else 0,
 
             }
             
@@ -383,9 +397,38 @@ def guardar_en_archivo(estado, nombre_archivo):
             with open(archivo_path, "w") as archivo:
                 archivo.write(estado)
 
+
+def guardar_en_archivo2(estado2, nombre_archivo):
+    # Ruta completa al archivo de texto
+    archivo_path = os.path.join('archivos_estados3', nombre_archivo)
+
+    # Verificar si el estado no está vacío antes de guardarlo
+    if estado2:
+        # Verificar si el archivo existe, y si no, crearlo
+        if not os.path.exists(archivo_path):
+            os.makedirs(os.path.dirname(archivo_path), exist_ok=True)
+            with open(archivo_path, "w") as archivo:
+                archivo.write(estado2)
+        else:
+            # Guardar el estado en el archivo (se sobrescribe el contenido existente)
+            with open(archivo_path, "w") as archivo:
+                archivo.write(estado2)
+
 def leer_archivo(nombre_archivo):
     # Ruta completa al archivo de texto
     archivo_path = os.path.join('archivos_estados', nombre_archivo)
+
+    # Leer el contenido del archivo
+    contenido = ""
+    if os.path.exists(archivo_path):
+        with open(archivo_path, "r") as archivo:
+            contenido = archivo.read()
+
+    return contenido
+
+def leer_archivo2(nombre_archivo):
+    # Ruta completa al archivo de texto
+    archivo_path = os.path.join('archivos_estados3', nombre_archivo)
 
     # Leer el contenido del archivo
     contenido = ""
