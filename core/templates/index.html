@@ -7,6 +7,7 @@
 
 {% block content %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" />
+
 <div class="content ">
 	<div class="panel-header ">
 		<div class="page-inner py-5">
@@ -15,19 +16,20 @@
 					<h2 class="text-black pb-2 fw-bold">Dashboard</h2>
 					<h5 class="text-black op-7 mb-2">ESTACIÓN METEOROLÓGICA ARDUINO</h5>
 				</div>
-				
+
 			</div>
 		</div>
 	</div>
-	
-	
+
+
+
 	<div class="page-inner mt--5">
 		<div class="card full-height">
 			<div class="card-body">
 				<button id="estado1" class="btn btn-primary">MODELO 1 LINEAL </button>
 				<button id="estado2" class="btn btn-primary">MODELO 2 SVR </button>
 				<button id="estado3" class="btn btn-primary">MODELO 3 RAMDOM</button>
-				 NOMBRE DE MODELO SELECCIONADO:  {{MODELO_NOMBRE}} 
+				NOMBRE DE MODELO SELECCIONADO: {{MODELO_NOMBRE}}
 			</div>
 		</div>
 
@@ -36,23 +38,27 @@
 			<div class="col-md-6">
 				<div class="card full-height">
 					<div class="card-body">
-						<div class="card-title">TEMPERATURA</div>
-						<div class="card-category">Dashboard en tiempo real</div>
-						<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
-							
-							<div class="form-group">
+						<div class="d-flex flex-wrap align-items-center pb-2 pt-4">
+							<div style="width: 50%; text-align: center;">
 								<div id="gauge"></div>
+								<div class="card-title">TEMPERATURA</div>
+								<div class="card-category">Dashboard en tiempo real</div>
 							</div>
-							<div class="col-md-6">
-								<div class="card card-primary">
-									<div class="card-body skew-shadow">
-										<h1>{{PREDICCION}} °C </h1>
-										<h5 class="op-8">TEMPERATURA PARA MAÑANA A LAS: {{temp_predi}}</h5>
-										<div class="pull-right">
-											<h5 class="fw-bold op-8">PORCENTAJE DE RENDIMIENTO: {{ERROR}}%</h5>
-											<h5 class="fw-bold op-8">COEFICIENTE DE DETERMINACION: {{ERROR12}}</h5>
-											<h5 class="fw-bold op-8">ERROR PORCENTUAL ABSOLUTO MEDIO (MAPE): {{ERROR13}}%</h5>
-										</div>
+							<div style="width: 50%; text-align: center;">
+								<img src="/static/assets/img/temp2.png" alt="..." class="avatar-img rounded-circle"
+									style="display: block; width: 50%; margin-top: 10px; margin-left: auto; margin-right: auto;">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="card card-primary">
+								<div class="card-body skew-shadow">
+									<h1>{{PREDICCION}} °C </h1>
+									<h5 class="op-8">TEMPERATURA PARA MAÑANA A LAS: {{temp_predi}}</h5>
+									<div class="pull-right">
+										<h5 class="fw-bold op-8">PORCENTAJE DE RENDIMIENTO: {{ERROR}}%</h5>
+										<h5 class="fw-bold op-8">COEFICIENTE DE DETERMINACION: {{ERROR12}}</h5>
+										<h5 class="fw-bold op-8">ERROR PORCENTUAL ABSOLUTO MEDIO (MAPE): {{ERROR13}}%
+										</h5>
 									</div>
 								</div>
 							</div>
@@ -60,447 +66,648 @@
 					</div>
 				</div>
 			</div>
-	
+
 			<div class="col-md-6">
 				<div class="card full-height">
 					<div class="card-body">
-						<div class="card-title">HUMEDAD</div>
-						<div class="card-category">Dashboard en tiempo real</div>
-						<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
-							
-							<div class="form-group">
+						<div class="d-flex flex-wrap align-items-center pb-2 pt-4">
+							<div style="width: 50%; text-align: center;">
 								<div id="gauge2"></div>
+								<div class="card-title">HUMEDAD</div>
+								<div class="card-category">Dashboard en tiempo real</div>
 							</div>
-							
-							<div class="col-md-6">
-								<div class="card card-primary">
-									<div class="card-body skew-shadow">
-										<h1>{{PREDICCION_DIA_HUMEDAD}} % </h1>
-										<h5 class="op-8">HUMEDAD PARA MAÑANA A LAS: {{temp_predi}}</h5>
-										<div class="pull-right">
-											<h3 class="fw-bold op-8">PORCENTAJE DE RENDIMIENTO: {{ERROR2}}%</h5>
+							<div style="width: 50%; text-align: center;">
+								<img src="/static/assets/img/temp.png" alt="Humedad" class="avatar-img rounded-circle"
+									style="display: block; width: 50%; margin-top: 10px; margin-left: auto; margin-right: auto;">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="card card-primary">
+								<div class="card-body skew-shadow">
+									<h1>{{PREDICCION_DIA_HUMEDAD}} % </h1>
+									<h5 class="op-8">HUMEDAD PARA MAÑANA A LAS: {{temp_predi}}</h5>
+									<div class="pull-right">
+										<h3 class="fw-bold op-8">PORCENTAJE DE RENDIMIENTO: {{ERROR2}}%</h5>
 											<h5 class="fw-bold op-8">COEFICIENTE DE DETERMINACION: {{ERROR22}}</h5>
-											<h5 class="fw-bold op-8">ERROR PORCENTUAL ABSOLUTO MEDIO (MAPE): {{ERROR23}}%</h5>
-										</div>
+											<h5 class="fw-bold op-8">ERROR PORCENTUAL ABSOLUTO MEDIO (MAPE):
+												{{ERROR23}}%</h5>
 									</div>
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>
 			</div>
-
 		</div>
-	
+
+
 		<div class="row mt--2">
 
 			<div class="col-md-6">
 				<div class="card full-height">
 					<div class="card-body">
-						<div class="card-title">VELOCIDAD DEL VIENTO</div>
-						<div class="card-category">Dashboard en tiempo real</div>
-						<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
-							
-							<div class="form-group">
+						<div class="d-flex flex-wrap align-items-center pb-2 pt-4">
+							<div style="width: 50%; text-align: center;">
 								<div id="gauge3"></div>
+								<div class="card-title">VELOCIDAD DEL VIENTO</div>
+								<div class="card-category">Dashboard en tiempo real</div>
 							</div>
-							
-							<div class="col-md-6">
-								<div class="card card-primary">
-									<div class="card-body skew-shadow">
-										<h1>{{PREDICCION_DIA_VELVIENTO}} KM/H </h1>
-										<h5 class="op-8">VELOCIDAD DE VIENTO MAÑANA A LAS: {{temp_predi}}</h5>
-										<div class="pull-right">
-										<h5 class="fw-bold op-8">PORCENTAJE DE RENDIMIENTO: {{ERROR3}}%</h5> 
+							<div style="width: 50%; text-align: center;">
+								<img src="/static/assets/img/vel.png" alt="Velocidad del Viento"
+									class="avatar-img rounded-circle"
+									style="display: block; width: 50%; margin-top: 10px; margin-left: auto; margin-right: auto;">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="card card-primary">
+								<div class="card-body skew-shadow">
+									<h1>{{PREDICCION_DIA_VELVIENTO}} KM/H </h1>
+									<h5 class="op-8">VELOCIDAD DE VIENTO MAÑANA A LAS: {{temp_predi}}</h5>
+									<div class="pull-right">
+										<h5 class="fw-bold op-8">PORCENTAJE DE RENDIMIENTO: {{ERROR3}}%</h5>
 										<h5 class="fw-bold op-8">COEFICIENTE DE DETERMINACION: {{ERROR32}}</h5>
-										<h5 class="fw-bold op-8">ERROR PORCENTUAL ABSOLUTO MEDIO (MAPE): {{ERROR33}}%</h5>
-										</div>
+										<h5 class="fw-bold op-8">ERROR PORCENTUAL ABSOLUTO MEDIO (MAPE): {{ERROR33}}%
+										</h5>
 									</div>
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>
 			</div>
-			
 			<div class="col-md-6">
 				<div class="card full-height">
 					<div class="card-body">
-						<div class="card-title">CANTIDAD DE LLUVIA</div>
-						<div class="card-category">Dashboard en tiempo real</div>
-						<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
-							
-							<div class="form-group">
+						<div class="d-flex flex-wrap align-items-center pb-2 pt-4">
+							<div style="width: 50%; text-align: center;">
 								<div id="gauge4"></div>
+								<div class="card-title">CANTIDAD DE LLUVIA</div>
+								<div class="card-category">Dashboard en tiempo real</div>
 							</div>
-							
-							<div class="col-md-6">
-								<div class="card card-primary">
-									<div class="card-body skew-shadow">
-										<h2>SENSOR DE CANTIDAD DE LLUVIA </h2>
-										
-											
-										</div>
-										<button  class="btn btn-info" id="miBoton" onmousedown="enviarNumero(1)" onmouseup="enviarNumero(22)">REINICIAR CONTADOR DE LLUVIA</button>
-									</div>
+							<div style="width: 50%; text-align: center;">
+								<!-- Puedes cambiar la ruta y el alt según tus necesidades -->
+								<img src="/static/assets/img/cant.png" alt="Cantidad de Lluvia"
+									style="display: block; width: 50%; margin-top: 10px; margin-left: auto; margin-right: auto;">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="card card-primary">
+								<div class="card-body skew-shadow">
+									<h2>SENSOR DE CANTIDAD DE LLUVIA </h2>
+									<button class="btn btn-info" id="miBoton" onmousedown="enviarNumero(1)"
+										onmouseup="enviarNumero(22)">REINICIAR CONTADOR DE LLUVIA</button>
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>
 			</div>
-			
+		</div>
 
 
 
-	
-			<div class="col-md-6">
-				<div class="card full-height">
-					<div class="card-body">
-						<div class="card-title">DIRECCION DEL VIENTO</div>
-						<div class="card-category">Dashboard en tiempo real</div>
-						<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
-							
-							<div class="form-group">
-								<div id="g1"></div>
-							</div>
-							
-							<div class="col-md-6">
-								<div class="card card-primary">
-									<div class="card-body skew-shadow">
-										<h1>{{PREDICCION_DIA_DIRVIENTO}}°</h1>
-										<h5 class="op-8">DIRECCION DEL VIENTO PARA MAÑANA A LAS: {{temp_predi}}</h5>
-										<div class="pull-right">
-											<h5 class="fw-bold op-8">PORCENTAJE DE RENDIMIENTO: {{ERROR4}}%</h5>
-											<h5 class="fw-bold op-8">COEFICIENTE DE DETERMINACION: {{ERROR42}}</h5>
-											<h5 class="fw-bold op-8">ERROR PORCENTUAL ABSOLUTO MEDIO (MAPE): {{ERROR43}}%</h5>
-										</div>
-									</div>
-								</div>
-							</div>
 
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="card">
+		<div class="col-md-6">
+
+			<div class="card full-height">
 				<div class="card-body">
-					
-						
-						<!-- Campo de fecha de inicio -->
-						<div class="form-group">
-							<label for="id_fecha_inicio">Fecha de inicio:</label>
-							<input type="date" name="fecha_inicio" id="id_fecha_inicio" class="form-control" required>
+					<div class="d-flex flex-wrap align-items-center pb-2 pt-4">
+						<div style="width: 50%; text-align: center;">
+							<div id="g1"></div>
+							<div class="card-title">DIRECCION DEL VIENTO</div>
+							<div class="card-category">Dashboard en tiempo real</div>
 						</div>
-					
-						<!-- Campo de fecha de fin -->
-						<div class="form-group">
-							<label for="id_fecha_fin">Fecha de fin:</label>
-							<input type="date" name="fecha_fin" id="id_fecha_fin" class="form-control" required>
+						<div style="width: 50%; text-align: center;">
+							<img src="/static/assets/img/dir.png" alt="Dirección del Viento"
+								style="display: block; width: 50%; margin-top: 10px; margin-left: auto; margin-right: auto;">
 						</div>
-					
-						<button type="submit" id="send" class="btn btn-primary">Filtrar</button>
-					
-				</div>
-			</div>
-
-			<div class="col-md-12">
-			
-					<div class="card">
-						
-						<div class="card-body">
-							<div class="chart-container">
-								<canvas id="multipleLineChart"></canvas>
+					</div>
+					<div class="col-md-6">
+						<div class="card card-primary">
+							<div class="card-body skew-shadow">
+								<h1>{{PREDICCION_DIA_DIRVIENTO}}°</h1>
+								<h5 class="op-8">DIRECCION DEL VIENTO PARA MAÑANA A LAS: {{temp_predi}}</h5>
+								<div class="pull-right">
+									<h5 class="fw-bold op-8">PORCENTAJE DE RENDIMIENTO: {{ERROR4}}%</h5>
+									<h5 class="fw-bold op-8">COEFICIENTE DE DETERMINACION: {{ERROR42}}</h5>
+									<h5 class="fw-bold op-8">ERROR PORCENTUAL ABSOLUTO MEDIO (MAPE): {{ERROR43}}%</h5>
+								</div>
 							</div>
 						</div>
 					</div>
-				
-			</div>
-
-			<div class="col-md-12">
-			
-				<div class="card">
-					
-					<div class="card-body">
-						<div class="chart-container">
-							<canvas id="multipleLineChart2"></canvas>
-						</div>
-					</div>
 				</div>
-			
 			</div>
-
-
-			<div class="col-md-12">
-			
-				<div class="card">
-					
-					<div class="card-body">
-						<div class="chart-container">
-							<canvas id="multipleLineChart3"></canvas>
-						</div>
-					</div>
-				</div>
-			
-			</div>
-
-			
-			<div class="col-md-12">
-			
-				<div class="card">
-					
-					<div class="card-body">
-						<div class="chart-container">
-							<canvas id="multipleLineChart4"></canvas>
-						</div>
-					</div>
-				</div>
-			
-			</div>
-
 
 		</div>
-	
+		<div class="card">
+			<div class="card-body">
+
+
+				<div id="slider-range"></div>
+
+				<p>Valor seleccionado: <span id="rangeValue"></span></p>
+
+
+				<button id="btnUsarRango">Usar Rango</button>
+				<!-- Campo de fecha de inicio -->
+				<div class="form-group">
+					<label for="id_fecha_inicio">Fecha de inicio:</label>
+					<input type="date" name="fecha_inicio" id="id_fecha_inicio" class="form-control" required>
+				</div>
+
+				<!-- Campo de fecha de fin -->
+				<div class="form-group">
+					<label for="id_fecha_fin">Fecha de fin:</label>
+					<input type="date" name="fecha_fin" id="id_fecha_fin" class="form-control" required>
+				</div>
+
+				<button type="submit" id="send" class="btn btn-primary">Filtrar</button>
+
+			</div>
+		</div>
+		<div class="row">
+			<!-- Primera mitad del contenedor -->
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-body">
+						<div class="card-title">TEMPERATURA REAL</div>
+						<div class="chart-container">
+							<canvas id="multipleLineChart"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-body">
+						<div class="card-title">PREDICCIONES DE TEMPERATURA</div>
+						<div class="chart-container">
+							<canvas id="multipleLineChart5"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-10">
+			<div class="card full-height">
+				<div class="card-body">
+
+					<div class="table-responsive">
+						<table id="add-row5" class="display table table-striped table-hover">
+
+							<thead>
+								<tr>
+									<th>Temperatura</th>
+									<th>Prediccion</th>
+
+								</tr>
+							</thead>
+
+							<tfoot>
+								<tr>
+									<th>Temperatura</th>
+									<th>Prediccion</th>
+
+								</tr>
+							</tfoot>
+
+							<tbody>
+								{% for dato in predictions_sorted %}
+								<tr>
+									<td>{{dato.0}}</td>
+									<td>{{dato.1}}</td>
+
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col-md-12">
+
+			<div class="card">
+
+				<div class="card-body">
+					<div class="card-title">GRAFICAS DE HUMEDAD</div>
+					<div class="chart-container">
+						<canvas id="multipleLineChart2"></canvas>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+		<div class="col-md-12">
+
+			<div class="card">
+
+				<div class="card-body">
+					<div class="card-title">GRAFICAS DE VELOCIDAD DE VIENTO</div>
+					<div class="chart-container">
+						<canvas id="multipleLineChart3"></canvas>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+		<div class="col-md-12">
+
+			<div class="card">
+
+				<div class="card-body">
+					<div class="card-title">GRAFICAS DE DIRECCION DEL VIENTO</div>
+					<div class="chart-container">
+						<canvas id="multipleLineChart4"></canvas>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+
+
 	</div>
-			<style>
-				.container {
-					margin: 0 auto;
-					text-align: center;
+
+</div>
+
+
+<style>
+	input[type="range"] {
+		width: 100%;
+	}
+
+
+
+
+	#add-row5_filter {
+		text-align: left;
+	}
+
+	.container {
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	.gauge_container {
+		text-align: left;
+		height: 4px;
+		display: inline-block;
+		border: 1px solid #ccc;
+		margin: 40px 5px 0 5px;
+	}
+
+	.gauge {
+		width: 400px;
+		height: 300px;
+		display: inline-block;
+		-webkit-transform: translate3d(0, 0, 0);
+	}
+
+	.controls {
+		text-align: left;
+	}
+
+	li {
+		padding: 10px 0 0 0;
+	}
+
+	li.refresh {
+		border-top: 1px solid #eee;
+		border-bottom: 1px solid #eee;
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
+
+	label {
+		font-family: Arial;
+		display: inline-block;
+		width: 5px;
+		margin: 0 0 5px 0;
+		text-align: right;
+		padding: 5px;
+		color: #919191;
+	}
+
+	input {
+		font-weight: bold;
+		font-size: 13px;
+		padding: 10px;
+		border: 1px solid #ccc;
+		margin: 5px;
+	}
+
+	input[disabled=disabled] {
+		font-weight: normal;
+		font-size: 11px;
+		padding: 0 0 0 10px;
+		margin: 0px;
+		color: #777777;
+		border-color: transparent;
+		background: #fff;
+	}
+
+	a:link.button,
+	a:active.button,
+	a:visited.button,
+	a:hover.button {
+		margin: 0px 5px 0 2px;
+		padding: 7px 13px;
+	}
+
+	.container {
+		width: 450px;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	.gauge {
+		width: 300px;
+		height: 300px;
+	}
+
+	a:link.button,
+	a:active.button,
+	a:visited.button,
+	a:hover.button {
+		margin: 30px 5px 0 2px;
+		padding: 7px 13px;
+	}
+
+	/* Ajustes de estilo para las celdas de la tabla */
+	#add-row5 {
+		font-size: 14px;
+		/* Tamaño de fuente */
+	}
+
+	#add-row5 th,
+	#add-row5 td {
+		padding: 8px;
+		/* Relleno interno */
+	}
+</style>
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+
+<!-- Atlantis DEMO methods, don't include it in your project! -->
+<script src="/static/assets/js/setting-demo2.js"></script>
+<script src="/static/assets/js/raphael.min.js"></script>
+
+<script src="/static/assets/js/justgage.js"></script>
+
+<script src="/static/assets/js/setting-demo.js"></script>
+<script src="/static/assets/js/demo.js"></script>
+
+<script src="/static/assets/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery -->
+
+<!-- jQuery UI -->
+<script src="/static/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/static/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/static/assets/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/static/assets/js/demo.js"></script>
+<!-- FLOT CHARTS -->
+<script src="/static/assets/plugins/flot/jquery.flot.js"></script>
+<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+<script src="/static/assets/plugins/flot-old/jquery.flot.resize.min.js"></script>
+<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+<script src="/static/assets/plugins/flot-old/jquery.flot.pie.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+
+
+
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
+
+
+
+<script src="/static/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link rel="stylesheet" href="nouislider.min.css">
+<!-- DataTables CSS y JS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+
+
+
+
+	$(document).ready(function () {
+		$('#add-row5').DataTable({
+			"searching": true,
+			"pageLength": 15,
+			"order": [1, "desc"],
+
+			"initComplete": function (settings, json) {
+				// Mueve el cuadro de búsqueda al centro
+				$("#add-row5_filter").css({ "width": "50%", "margin": "0 auto" });
+			}
+		});
+	});
+
+
+	$(document).ready(function () {
+		// Manejar clic en botón Estado 1
+		$("#estado1").click(function () {
+
+			guardarEstado('Estado1');
+			location.reload();
+		});
+
+		// Manejar clic en botón Estado 2
+		$("#estado2").click(function () {
+			guardarEstado('Estado2');
+			location.reload();
+		});
+
+		// Manejar clic en botón Estado 3
+		$("#estado3").click(function () {
+			guardarEstado('Estado3');
+			location.reload();
+		});
+
+		// Manejar clic en botón Estado 3
+		$("#send").click(function () {
+			guardarEstado(document.getElementById('id_fecha_inicio').value + "," + document.getElementById('id_fecha_fin').value);
+			location.reload();
+		});
+	});
+
+		function guardarEstado(estado) {
+
+			var datos = {
+				'estado': estado,
+
+			};
+			// Enviar una solicitud al servidor para guardar el estado
+			$.ajax({
+				url: `/hola/?estado=${estado}`,
+				type: 'GET',
+				dataType: 'json',  // Espera una respuesta JSON
+				success: function (data) {
+					console.log(data);
+				},
+				error: function (error) {
+					console.error(error);
 				}
-		
-				.gauge_container {
-					text-align: left;
-					height: 4px;
-					display: inline-block;
-					border: 1px solid #ccc;
-					margin: 40px 5px 0 5px;
+			});
+		}
+
+
+		function guardarEstado2(estado2) {
+
+			var datos2 = {
+				'estado2': estado2,
+			};
+			// Enviar una solicitud al servidor para guardar el estado
+			$.ajax({
+				url: `/hola/?estado2=${estado2}`,
+				type: 'GET',
+				dataType: 'json',  // Espera una respuesta JSON
+				success: function (data) {
+					console.log(data);
+				},
+				error: function (error) {
+					console.error(error);
 				}
-		
-				.gauge {
-					width: 400px;
-					height: 300px;
-					display: inline-block;
-					-webkit-transform: translate3d(0, 0, 0);
-				}
-		
-				.controls {
-					text-align: left;
-				}
-		
-				li {
-					padding: 10px 0 0 0;
-				}
-		
-				li.refresh {
-					border-top: 1px solid #eee;
-					border-bottom: 1px solid #eee;
-					padding-top: 15px;
-					padding-bottom: 15px;
-				}
-		
-				label {
-					font-family: Arial;
-					display: inline-block;
-					width: 5px;
-					margin: 0 0 5px 0;
-					text-align: right;
-					padding: 5px;
-					color: #919191;
-				}
-		
-				input {
-					font-weight: bold;
-					font-size: 13px;
-					padding: 10px;
-					border: 1px solid #ccc;
-					margin: 5px;
-				}
-		
-				input[disabled=disabled] {
-					font-weight: normal;
-					font-size: 11px;
-					padding: 0 0 0 10px;
-					margin: 0px;
-					color: #777777;
-					border-color: transparent;
-					background: #fff;
-				}
-		
-				a:link.button,
-				a:active.button,
-				a:visited.button,
-				a:hover.button {
-					margin: 0px 5px 0 2px;
-					padding: 7px 13px;
-				}
-		
-				.container {
-					width: 450px;
-					margin: 0 auto;
-					text-align: center;
-				}
-		
-				.gauge {
-					width: 300px;
-					height: 300px;
-				}
-		
-				a:link.button,
-				a:active.button,
-				a:visited.button,
-				a:hover.button {
-					margin: 30px 5px 0 2px;
-					padding: 7px 13px;
-				}
-			</style>
+			});
+		}
+	
 
 
 
 
 
-
-		
-
-			{% endblock content %}
-
-			<!-- Specific Page JS goes HERE  -->
-			{% block javascripts %}
-
-			<!-- Atlantis DEMO methods, don't include it in your project! -->
-			<script src="/static/assets/js/raphael.min.js"></script>
-
-			<script src="/static/assets/js/justgage.js"></script>
-
-			<script src="/static/assets/js/setting-demo.js"></script>
-			<script src="/static/assets/js/demo.js"></script>
-			<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
-			<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
-			<script src="/static/assets/plugins/jquery/jquery.min.js"></script>
-			<!-- jQuery -->
-			<script src="/static/assets/plugins/jquery/jquery.min.js"></script>
-			<!-- jQuery UI -->
-			<script src="/static/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
-			<!-- Bootstrap 4 -->
-			<script src="/static/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-			<!-- AdminLTE App -->
-			<script src="/static/assets/js/adminlte.min.js"></script>
-			<!-- AdminLTE for demo purposes -->
-			<script src="/static/assets/js/demo.js"></script>
-			<!-- FLOT CHARTS -->
-			<script src="/static/assets/plugins/flot/jquery.flot.js"></script>
-			<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
-			<script src="/static/assets/plugins/flot-old/jquery.flot.resize.min.js"></script>
-			<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
-			<script src="/static/assets/plugins/flot-old/jquery.flot.pie.min.js"></script>
-			<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
-
-			<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
-
-			<script>
-
-			$(document).ready(function() {
-            // Manejar clic en botón Estado 1
-            $("#estado1").click(function() {
-				
-                guardarEstado('Estado1');
-				location.reload();
-            });
-
-            // Manejar clic en botón Estado 2
-            $("#estado2").click(function() {
-                guardarEstado('Estado2');
-				location.reload();
-            });
-
-            // Manejar clic en botón Estado 3
-            $("#estado3").click(function() {
-                guardarEstado('Estado3');
-				location.reload();
-            });
-
-			 // Manejar clic en botón Estado 3
-			 $("#send").click(function() {
-                guardarEstado(document.getElementById('id_fecha_inicio').value+","+document.getElementById('id_fecha_fin').value);
-				location.reload();
-            });
+	
+	$("#btnUsarRango").on("click", usarRango);
 
 
-			function guardarEstado(estado) {
-
-				var datos = {
-                    'estado': estado,
-                    
-                };
-                // Enviar una solicitud al servidor para guardar el estado
-                $.ajax({
-                    url: `/hola/?estado=${estado}`,
-                    type: 'GET',
-                    dataType: 'json',  // Espera una respuesta JSON
-                    success: function(data) {
-                        console.log(data);
-                    },
-                    error: function(error) {
-                        console.error(error);
-                    }
-                });
-            }
-
-
-			function guardarEstado2(estado2) {
-
-				var datos2 = {
-					'estado2': estado2,	
-				};
-				// Enviar una solicitud al servidor para guardar el estado
-				$.ajax({
-					url: `/hola/?estado2=${estado2}`,
-					type: 'GET',
-					dataType: 'json',  // Espera una respuesta JSON
-					success: function(data) {
-						console.log(data);
-					},
-					error: function(error) {
-						console.error(error);
-					}
-				});
-				}
-        });
-
-
-
-var laa = "{{ y_test_json }}"
-var laa2 = "{{ fechas }}"
-var laa3 = "{{ predictions_json}}"
-var Temperatura = JSON.parse(laa);
-
-
-var predic_temp = JSON.parse(laa3);
-
-
-var  laa2 = "{{ fechas }}";
-
-var fechasJSON = laa2.replace(/&quot;/g, '"');
-
-var fechasArray;
-
-
-try {
-    fechasArray = JSON.parse(fechasJSON);
-} catch (error) {
-    alert("Error al analizar las fechas:", error);
-    // Manejar el error según sea necesario
-}
-
-
-var multipleLineChart = document.getElementById('multipleLineChart').getContext('2d')
-var myMultipleLineChart = new Chart(multipleLineChart, {
+	
+	var multipleLineChart = document.getElementById('multipleLineChart').getContext('2d')
+		 myMultipleLineChart = new Chart(multipleLineChart, {
 			type: 'line',
 			data: {
-				labels: fechasArray,
+				labels: [1,2],
+				datasets: [{
+					label: "TEMPERATURA REAL",
+					borderColor: "#1d7af3",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#1d7af3",
+					pointBorderWidth: 1,
+					pointHoverRadius: 2,
+					pointHoverBorderWidth: 0.5,
+					pointRadius: 0.5,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 1,
+					data: [1,2],
+				}]
+			},
+			
+		});
+	
+
+
+	
+	function usarRango() {
+	var laa = "{{ y_test_json }}"
+	var laa2 = "{{ fechas }}"
+	var laa3 = "{{ predictions_json}}"
+	var Temperatura = JSON.parse(laa);
+	var predic_temp = JSON.parse(laa3);
+
+	var laa4 = "{{ PREDI_HUMEDAD }}"
+	var laa5 = "{{ HUMEDAD_REAL }}"
+
+	var HUMEDAD_PREDI = JSON.parse(laa4);
+	var HUMEDAD = JSON.parse(laa5);
+
+
+	var laa2 = "{{ fechas }}";
+
+	var fecha_real = "{{ fechas_REAL }}";
+
+	var fechasJSON = laa2.replace(/&#x27;/g, '"');
+	var fechasArray;
+
+	try {
+		fechasArray = JSON.parse(fechasJSON);
+	} catch (error) {
+		alert("Error al analizar las fechas:", error);
+
+	}
+
+	var fechasJSON_real = fecha_real.replace(/&quot;/g, '"');
+	var fechasArray_real;
+
+	try {
+		fechasArray_real = JSON.parse(fechasJSON_real);
+	} catch (error) {
+		alert("Error al analizar las fechas:", error);
+
+	}
+
+	var tamanoArray = fechasArray_real.length;
+
+
+	$(function () {
+		var sliderRange = $("#slider-range");
+		var rangeValue = $("#rangeValue");
+
+		sliderRange.slider({
+			range: true,
+			min: 0,
+			max: tamanoArray,
+			values: [0, 500],
+			slide: function (event, ui) {
+				minRangeValue = ui.values[0];
+				maxRangeValue = ui.values[1];
+				rangeValue.text(ui.values[0] + " - " + ui.values[1]);
+			}
+		});
+		minRangeValue = sliderRange.slider("values", 0);
+		maxRangeValue = sliderRange.slider("values", 1);
+		rangeValue.text(sliderRange.slider("values", 0) + " - " + sliderRange.slider("values", 1));
+	});
+
+		alert("Rango seleccionado: " + minRangeValue + " - " + maxRangeValue);
+		
+		fechasArray_real = fechasArray_real.slice(minRangeValue, maxRangeValue);
+		Temperatura = Temperatura.slice(minRangeValue, maxRangeValue);
+		predic_temp = predic_temp.slice(minRangeValue, maxRangeValue);
+		HUMEDAD = HUMEDAD.slice(minRangeValue, maxRangeValue);
+		HUMEDAD_PREDI = HUMEDAD_PREDI.slice(minRangeValue, maxRangeValue);
+
+		// CHART 1
+		myMultipleLineChart.data= {
+				labels: fechasArray_real,
 				datasets: [{
 					label: "TEMPERATURA REAL",
 					borderColor: "#1d7af3",
@@ -514,7 +721,16 @@ var myMultipleLineChart = new Chart(multipleLineChart, {
 					fill: true,
 					borderWidth: 1,
 					data: Temperatura
-				},{
+				}]
+			}
+			myMultipleLineChart.update();
+		
+
+			//CHART 2 TEMP
+
+			myMultipleLineChart2.data= {
+				labels: fechasArray_real,
+				datasets: [{
 					label: "PREDICCIÓN",
 					borderColor: "#59d05d",
 					pointBorderColor: "#FFF",
@@ -526,65 +742,15 @@ var myMultipleLineChart = new Chart(multipleLineChart, {
 					backgroundColor: 'transparent',
 					fill: true,
 					borderWidth: 2,
-					data:predic_temp
-				} ]
-			},
-			options : {
-				responsive: true, 
-				maintainAspectRatio: true,
-				legend: {
-					position: 'top',
-				},
-				tooltips: {
-					bodySpacing: 0.1,
-					mode:"nearest",
-					intersect: 0,
-					position:"nearest",
-					xPadding:50,
-					yPadding:50,
-					caretPadding:50
-				},
-				layout:{
-					padding:{left:15,right:15,top:15,bottom:15}
-				},
-				scales: {
-					y: {
-						max: 40,  // Establece el límite máximo en el eje Y
-						beginAtZero: true,  // Asegura que el eje Y comience en cero
-						ticks: {
-							stepSize: 50  // Puedes ajustar el tamaño del paso según tus necesidades
-						}
-					}
-				},
-
-				plugins: {
-					zoom: {
-						pan: {
-							enabled: true,
-							mode: 'xy'
-						},
-						zoom: {
-							wheelEnabled: true,
-							pinchEnabled: true,
-							mode: 'xy'
-						}
-            		}
-        		}
+					data: predic_temp
+				}]
 			}
-		});
+			myMultipleLineChart2.update();
 
-var laa = "{{ PREDI_HUMEDAD }}"
-var laa2 = "{{ HUMEDAD_REAL }}"
+			// CHART 3 HUM 
 
-var HUMEDAD_PREDI = JSON.parse(laa);
-var HUMEDAD = JSON.parse(laa2);
-
-
-		var multipleLineChart = document.getElementById('multipleLineChart2').getContext('2d')
-var myMultipleLineChart = new Chart(multipleLineChart, {
-			type: 'line',
-			data: {
-				labels: fechasArray,
+			myMultipleLineChart3.data= {
+				labels: fechasArray_real,
 				datasets: [{
 					label: "HUMEDAD REAL",
 					borderColor: "#1d7af3",
@@ -598,611 +764,564 @@ var myMultipleLineChart = new Chart(multipleLineChart, {
 					fill: true,
 					borderWidth: 1,
 					data: HUMEDAD
-				},{
-					label: "PREDICCIÓN",
-					borderColor: "#59d05d",
-					pointBorderColor: "#FFF",
-					pointBackgroundColor: "#59d05d",
-					pointBorderWidth: 1,
-					pointHoverRadius: 1,
-					pointHoverBorderWidth: 1,
-					pointRadius: 4,
-					backgroundColor: 'transparent',
-					fill: true,
-					borderWidth: 2,
-					data:HUMEDAD_PREDI
-				} ]
-			},
-			options : {
-				responsive: true, 
-				maintainAspectRatio: true,
-				legend: {
-					position: 'top',
-				},
-				tooltips: {
-					bodySpacing: 0.1,
-					mode:"nearest",
-					intersect: 0,
-					position:"nearest",
-					xPadding:50,
-					yPadding:50,
-					caretPadding:50
-				},
-				layout:{
-					padding:{left:15,right:15,top:15,bottom:15}
-				},
-				scales: {
-					y: {
-						max: 40,  // Establece el límite máximo en el eje Y
-						beginAtZero: true,  // Asegura que el eje Y comience en cero
-						ticks: {
-							stepSize: 50  // Puedes ajustar el tamaño del paso según tus necesidades
-						}
-					}
-				},
-
-				plugins: {
-					zoom: {
-						pan: {
-							enabled: true,
-							mode: 'xy'
-						},
-						zoom: {
-							wheelEnabled: true,
-							pinchEnabled: true,
-							mode: 'xy'
-						}
-            		}
-        		}
+				}, {
+				label: "PREDICCIÓN",
+				borderColor: "#59d05d",
+				pointBorderColor: "#FFF",
+				pointBackgroundColor: "#59d05d",
+				pointBorderWidth: 1,
+				pointHoverRadius: 1,
+				pointHoverBorderWidth: 1,
+				pointRadius: 4,
+				backgroundColor: 'transparent',
+				fill: true,
+				borderWidth: 2,
+				data: HUMEDAD_PREDI
+			}]
 			}
+			myMultipleLineChart3.update();
+	}
+
+///////////////////////////////////////////
+
+
+
+
+	var multipleLineChart2 = document.getElementById('multipleLineChart5').getContext('2d')
+	var myMultipleLineChart2 = new Chart(multipleLineChart2, {
+		type: 'line',
+		data: {
+			labels: [1,2],
+			datasets: [{
+				label: "PREDICCIÓN",
+				borderColor: "#59d05d",
+				pointBorderColor: "#FFF",
+				pointBackgroundColor: "#59d05d",
+				pointBorderWidth: 1,
+				pointHoverRadius: 1,
+				pointHoverBorderWidth: 1,
+				pointRadius: 4,
+				backgroundColor: 'transparent',
+				fill: true,
+				borderWidth: 2,
+				data: [1,2]
+			}]
+		},
+		
+	});
+	
+
+
+	
+
+
+	var multipleLineChart3 = document.getElementById('multipleLineChart2').getContext('2d')
+	var myMultipleLineChart3 = new Chart(multipleLineChart3, {
+		type: 'line',
+		data: {
+			labels: [1,2],
+			datasets: [{
+				label: "HUMEDAD REAL",
+				borderColor: "#1d7af3",
+				pointBorderColor: "#FFF",
+				pointBackgroundColor: "#1d7af3",
+				pointBorderWidth: 1,
+				pointHoverRadius: 2,
+				pointHoverBorderWidth: 0.5,
+				pointRadius: 0.5,
+				backgroundColor: 'transparent',
+				fill: true,
+				borderWidth: 1,
+				data: [1,2]
+			}, {
+				label: "PREDICCIÓN",
+				borderColor: "#59d05d",
+				pointBorderColor: "#FFF",
+				pointBackgroundColor: "#59d05d",
+				pointBorderWidth: 1,
+				pointHoverRadius: 1,
+				pointHoverBorderWidth: 1,
+				pointRadius: 4,
+				backgroundColor: 'transparent',
+				fill: true,
+				borderWidth: 2,
+				data: [1,2]
+			}]
+		},
+	});
+
+	var laa = "{{ PREDI_VELVIENTO }}"
+	var laa2 = "{{ VELVIENTO_REAL }}"
+
+	var VELVIENTO_PREDI = JSON.parse(laa);
+	var VELVIENTO = JSON.parse(laa2);
+
+
+	var multipleLineChart = document.getElementById('multipleLineChart3').getContext('2d')
+	var myMultipleLineChart = new Chart(multipleLineChart, {
+		type: 'line',
+		data: {
+			labels: fechasArray_real,
+			datasets: [{
+				label: "VELOCIDAD VIENTO REAL",
+				borderColor: "#1d7af3",
+				pointBorderColor: "#FFF",
+				pointBackgroundColor: "#1d7af3",
+				pointBorderWidth: 1,
+				pointHoverRadius: 2,
+				pointHoverBorderWidth: 0.5,
+				pointRadius: 0.5,
+				backgroundColor: 'transparent',
+				fill: true,
+				borderWidth: 1,
+				data: VELVIENTO
+			}, {
+				label: "PREDICCIÓN",
+				borderColor: "#59d05d",
+				pointBorderColor: "#FFF",
+				pointBackgroundColor: "#59d05d",
+				pointBorderWidth: 1,
+				pointHoverRadius: 1,
+				pointHoverBorderWidth: 1,
+				pointRadius: 4,
+				backgroundColor: 'transparent',
+				fill: true,
+				borderWidth: 2,
+				data: VELVIENTO_PREDI
+			}]
+		},
+		
+	});
+
+	var laa = "{{ PREDI_DIRVIENTO }}"
+	var laa2 = "{{ DIRVIENTO_REAL }}"
+
+	var DIRVIENTO_PREDI = JSON.parse(laa);
+	var DIRVIENTO = JSON.parse(laa2);
+
+
+	var multipleLineChart = document.getElementById('multipleLineChart4').getContext('2d')
+	var myMultipleLineChart = new Chart(multipleLineChart, {
+		type: 'line',
+		data: {
+			labels: fechasArray_real,
+			datasets: [{
+				label: "DIRECCION VIENTO REAL",
+				borderColor: "#1d7af3",
+				pointBorderColor: "#FFF",
+				pointBackgroundColor: "#1d7af3",
+				pointBorderWidth: 1,
+				pointHoverRadius: 2,
+				pointHoverBorderWidth: 0.5,
+				pointRadius: 0.5,
+				backgroundColor: 'transparent',
+				fill: true,
+				borderWidth: 1,
+				data: DIRVIENTO
+			}, {
+				label: "PREDICCIÓN",
+				borderColor: "#59d05d",
+				pointBorderColor: "#FFF",
+				pointBackgroundColor: "#59d05d",
+				pointBorderWidth: 1,
+				pointHoverRadius: 1,
+				pointHoverBorderWidth: 1,
+				pointRadius: 4,
+				backgroundColor: 'transparent',
+				fill: true,
+				borderWidth: 2,
+				data: DIRVIENTO_PREDI
+			}]
+		},
+		
+	});
+
+
+
+	var miBoton = document.getElementById("miBoton");
+
+	miBoton.addEventListener("mousedown", function () {
+		enviarNumero(1);
+	});
+
+	miBoton.addEventListener("mouseup", function () {
+		enviarNumero(22);
+	});
+	function enviarNumero(numero) {
+		// Configurar la URL del servidor
+		var url = "http://137.184.132.178:1880/api2/";
+
+		// Configurar los datos a enviar
+		var data = "numero=" + numero;
+
+		// Realizar la solicitud POST usando Fetch
+		fetch(url, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			body: data
+		})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error('Network response was not ok');
+				}
+				return response.text();
+			})
+			.then(data => {
+				// Puedes realizar acciones adicionales con la respuesta del servidor si es necesario
+				console.log('Respuesta del servidor:', data);
+			})
+			.catch(error => {
+				console.error('Hubo un problema con la solicitud fetch:', error);
+			});
+	}
+
+	document.addEventListener('DOMContentLoaded', function () {
+		// Obtén los datos de la vista Django
+		fetch('/hola/')
+			.then(response => response.json())
+			.then(data => {
+				var ctx = document.getElementById('myChart').getContext('2d');
+				var myChart = new Chart(ctx, {
+					type: 'bar',
+					data: {
+						labels: data.labels,
+						datasets: [{
+							label: 'Datos de ejemplo',
+							data: data.data,
+							backgroundColor: 'rgba(75, 192, 192, 0.2)',
+							borderColor: 'rgba(75, 192, 192, 1)',
+							borderWidth: 1
+						}]
+					},
+				});
+			});
+	});
+
+	var gauge;
+	let valor_v0, valor_v1, valor_v2, valor_v3, valor_v4;
+	function actualizarInterfazUsuario() {
+		// Realizar una solicitud AJAX
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', '/obtener_datos/', true);
+
+		xhr.onload = function () {
+			if (xhr.status === 200) {
+				// Actualizar la interfaz de usuario con los datos recibidos
+				var data = JSON.parse(xhr.responseText);
+
+				valor_v0 = data.v0;
+				valor_v1 = data.v1;
+				valor_v2 = data.v2;
+				valor_v3 = data.v3;
+				valor_v4 = data.v4;
+				gauge.refresh(valor_v3);
+				gauge2.refresh(valor_v4);
+				gauge3.refresh(valor_v0);
+				gauge4.refresh(valor_v2);
+				g1.refresh(valor_v1);
+				document.getElementById('v0').innerText = 'v0: ' + data.v0;
+				document.getElementById('v1').innerText = 'v1: ' + data.v1;
+				document.getElementById('v2').innerText = 'v2: ' + data.v2;
+				document.getElementById('v3').innerText = 'v3: ' + data.v3;
+				document.getElementById('v4').innerText = 'v4: ' + data.v4;
+			}
+		};
+
+		xhr.send();
+	}
+
+	// Actualizar la interfaz de usuario cada 5 segundos (puedes ajustar este intervalo)
+	setInterval(actualizarInterfazUsuario, 1000);
+
+
+
+
+	/** TEMPERATURA  */
+	gauge = new JustGage({
+
+		id: "gauge",// required
+
+		value: 20,
+		min: 0,
+		max: 40,
+		symbol: '°C',
+		pointer: true,
+		gaugeWidthScale: 0.6,
+		counter: true,
+		decimals: 2,
+
+		customSectors: [{
+			color: '#ff0000',
+			lo: 26,
+			hi: 40
+		}, {
+			color: '#00ff00',
+			lo: 0,
+			hi: 25
+		}],
+
+		// more options here
+
+	});
+
+
+
+	var gauge2
+	/** HUMEDAD */
+	gauge2 = new JustGage({
+
+		id: "gauge2",// required
+
+		value: 21,
+		min: 0,
+		max: 100,
+		symbol: '%',
+		pointer: true,
+		gaugeWidthScale: 0.6,
+		decimals: 2,
+		customSectors: [{
+			color: '#ff0000',
+			lo: 50,
+			hi: 100
+		}, {
+			color: '#00ff00',
+			lo: 0,
+			hi: 50
+		}],
+		counter: true
+
+
+	});
+
+	var gauge3 = new JustGage({
+
+		id: "gauge3",// required
+
+		value: 21,
+		min: 0,
+		max: 40,
+		symbol: 'km/h',
+		pointer: true,
+		gaugeWidthScale: 0.6,
+		decimals: 2,
+		customSectors: [{
+			color: '#ff0000',
+			lo: 50,
+			hi: 100
+		}, {
+			color: '#00ff00',
+			lo: 0,
+			hi: 50
+		}],
+		counter: true
+		// more options here
+
+	});
+
+	var gauge4 = new JustGage({
+
+		id: "gauge4",// required
+
+		value: 21,
+		min: 0,
+		max: 300,
+		symbol: 'ml/m3',
+		pointer: true,
+		gaugeWidthScale: 0.6,
+		decimals: 2,
+		customSectors: [{
+			color: '#ff0000',
+			lo: 50,
+			hi: 100
+		}, {
+			color: '#00ff00',
+			lo: 0,
+			hi: 50
+		}],
+		counter: true
+		// more options here
+
+	});
+
+	var g1;
+	/** DIRECCION DEL VIENTO  */
+	function getRandomInt(min, max) {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+	document.addEventListener("DOMContentLoaded", function (event) {
+		g1 = new JustGage({
+			id: "g1",
+			value: 72,
+			min: 0,
+			max: 360,
+			donut: true,
+			gaugeWidthScale: 0.6,
+			counter: true,
+			hideInnerShadow: true,
+			pointer: true,
+
+			textRenderer: function (val) {
+				if (val == 0) {
+					return 'NORTE';
+				} else if (val == 180) {
+					return 'SUR';
+				} else if (val == 315) {
+					return 'NO';
+				} else if (val == 270) {
+					return 'OESTE';
+				} else if (val == 225) {
+					return 'SO';
+				} else if (val == 180) {
+					return 'SUR';
+				} else if (val == 135) {
+					return 'SE';
+				} else if (val == 90) {
+					return 'ESTE';
+				} else if (val == 45) {
+					return 'NE';
+				}
+			},
 		});
 
-var laa = "{{ PREDI_VELVIENTO }}"
-var laa2 = "{{ VELVIENTO_REAL }}"
 
-var VELVIENTO_PREDI = JSON.parse(laa);
-var VELVIENTO = JSON.parse(laa2);
+	});
+
+	var updateInterval = 1000 //Fetch data ever x milliseconds
+	var realtime = 'on' //If == to on then fetch data every x seconds. else stop fetching
+	function update() {
+
+		interactive_plot.setData([getTempData()])
+
+		interactive_plot.draw()
+		setTimeout(update, updateInterval)
+
+	}
+	update()
 
 
-		var multipleLineChart = document.getElementById('multipleLineChart3').getContext('2d')
-var myMultipleLineChart = new Chart(multipleLineChart, {
-			type: 'line',
-			data: {
-				labels: fechasArray,
-				datasets: [{
-					label: "VELOCIDAD VIENTO REAL",
-					borderColor: "#1d7af3",
-					pointBorderColor: "#FFF",
-					pointBackgroundColor: "#1d7af3",
-					pointBorderWidth: 1,
-					pointHoverRadius: 2,
-					pointHoverBorderWidth: 0.5,
-					pointRadius: 0.5,
-					backgroundColor: 'transparent',
-					fill: true,
-					borderWidth: 1,
-					data: VELVIENTO
-				},{
-					label: "PREDICCIÓN",
-					borderColor: "#59d05d",
-					pointBorderColor: "#FFF",
-					pointBackgroundColor: "#59d05d",
-					pointBorderWidth: 1,
-					pointHoverRadius: 1,
-					pointHoverBorderWidth: 1,
-					pointRadius: 4,
-					backgroundColor: 'transparent',
-					fill: true,
-					borderWidth: 2,
-					data:VELVIENTO_PREDI
-				} ]
-			},
-			options : {
-				responsive: true, 
-				maintainAspectRatio: true,
-				legend: {
-					position: 'top',
-				},
-				tooltips: {
-					bodySpacing: 0.1,
-					mode:"nearest",
-					intersect: 0,
-					position:"nearest",
-					xPadding:50,
-					yPadding:50,
-					caretPadding:50
-				},
-				layout:{
-					padding:{left:15,right:15,top:15,bottom:15}
-				},
-				scales: {
-					y: {
-						max: 40,  // Establece el límite máximo en el eje Y
-						beginAtZero: true,  // Asegura que el eje Y comience en cero
-						ticks: {
-							stepSize: 50  // Puedes ajustar el tamaño del paso según tus necesidades
-						}
-					}
-				},
 
-				plugins: {
-					zoom: {
-						pan: {
-							enabled: true,
-							mode: 'xy'
-						},
-						zoom: {
-							wheelEnabled: true,
-							pinchEnabled: true,
-							mode: 'xy'
-						}
-            		}
-        		}
-			}
+
+
+
+
+
+
+
+
+
+
+
+	function update() {
+
+		var data1 = document.getElementById("select1").value;
+		firebase.database().ref(data1).once('value').then(
+
+			function (snapshot) {
+				globalThis.Humedad = snapshot.val().Humedad;
+				globalThis.Temperatura = snapshot.val().Temperatura;
+				globalThis.LDR = snapshot.val().LDR;
+				globalThis.suelo = snapshot.val().suelo;
+				globalThis.Motor = snapshot.val().Motor;
+				console.table(Motor);
+				if (Motor == 1) {
+					document.getElementById("demo").innerHTML = "ENCENDIDO";
+				} else {
+					document.getElementById("demo").innerHTML = "APAGADO";
+				}
+
+				Circles.create({
+					id: 'circles-1',
+					radius: 60,
+					value: Humedad,
+					maxValue: 100,
+					width: 5,
+					text: Humedad + '%',
+					colors: ['#f1f1f1', '#2BB930'],
+					duration: 0,
+					wrpClass: 'circles-wrp',
+					textClass: 'circles-text',
+					styleWrapper: true,
+					styleText: true
+				})
+
+
+				Circles.create({
+					id: 'circles-2',
+					radius: 60,
+					value: Temperatura,
+					maxValue: 100,
+					width: 5,
+					text: Temperatura + 'C°',
+					colors: ['#f1f1f1', '#2BB930'],
+					duration: 0,
+					wrpClass: 'circles-wrp',
+					textClass: 'circles-text',
+					styleWrapper: true,
+					styleText: true
+				})
+
+				Circles.create({
+					id: 'circles-3',
+					radius: 60,
+					value: LDR,
+					maxValue: 100,
+					width: 7,
+					text: LDR + ' %',
+					colors: ['#f1f1f1', '#F25961'],
+					duration: 0,
+					wrpClass: 'circles-wrp',
+					textClass: 'circles-text',
+					styleWrapper: true,
+					styleText: true
+				})
+
+				Circles.create({
+					id: 'circles-13',
+					radius: 60,
+					value: suelo,
+					maxValue: 100,
+					width: 7,
+					text: suelo + ' %',
+					colors: ['#f1f1f1', '#F25961'],
+					duration: 0,
+					wrpClass: 'circles-wrp',
+					textClass: 'circles-text',
+					styleWrapper: true,
+					styleText: true
+				})
+
+
+				//console.log(title);
+			})
+
+		setTimeout(update, 1000)
+	}
+
+
+
+	$(document).ready(function () {
+		$('#add-row5').DataTable({
+			"pageLength": 15,
 		});
+		$('#basic-datatables').DataTable({
 
-		var laa = "{{ PREDI_DIRVIENTO }}"
-var laa2 = "{{ DIRVIENTO_REAL }}"
-
-var DIRVIENTO_PREDI = JSON.parse(laa);
-var DIRVIENTO = JSON.parse(laa2);
-
-
-		var multipleLineChart = document.getElementById('multipleLineChart4').getContext('2d')
-var myMultipleLineChart = new Chart(multipleLineChart, {
-			type: 'line',
-			data: {
-				labels: fechasArray,
-				datasets: [{
-					label: "DIRECCION VIENTO REAL",
-					borderColor: "#1d7af3",
-					pointBorderColor: "#FFF",
-					pointBackgroundColor: "#1d7af3",
-					pointBorderWidth: 1,
-					pointHoverRadius: 2,
-					pointHoverBorderWidth: 0.5,
-					pointRadius: 0.5,
-					backgroundColor: 'transparent',
-					fill: true,
-					borderWidth: 1,
-					data: DIRVIENTO
-				},{
-					label: "PREDICCIÓN",
-					borderColor: "#59d05d",
-					pointBorderColor: "#FFF",
-					pointBackgroundColor: "#59d05d",
-					pointBorderWidth: 1,
-					pointHoverRadius: 1,
-					pointHoverBorderWidth: 1,
-					pointRadius: 4,
-					backgroundColor: 'transparent',
-					fill: true,
-					borderWidth: 2,
-					data:DIRVIENTO_PREDI
-				} ]
-			},
-			options : {
-				responsive: true, 
-				maintainAspectRatio: true,
-				legend: {
-					position: 'top',
-				},
-				tooltips: {
-					bodySpacing: 0.1,
-					mode:"nearest",
-					intersect: 0,
-					position:"nearest",
-					xPadding:50,
-					yPadding:50,
-					caretPadding:50
-				},
-				layout:{
-					padding:{left:15,right:15,top:15,bottom:15}
-				},
-				scales: {
-					y: {
-						max: 40,  // Establece el límite máximo en el eje Y
-						beginAtZero: true,  // Asegura que el eje Y comience en cero
-						ticks: {
-							stepSize: 50  // Puedes ajustar el tamaño del paso según tus necesidades
-						}
-					}
-				},
-
-				plugins: {
-					zoom: {
-						pan: {
-							enabled: true,
-							mode: 'xy'
-						},
-						zoom: {
-							wheelEnabled: true,
-							pinchEnabled: true,
-							mode: 'xy'
-						}
-            		}
-        		}
-			}
 		});
+	});
 
 
 
 
-var miBoton = document.getElementById("miBoton");
 
-miBoton.addEventListener("mousedown", function() {
-    enviarNumero(1);
-});
 
-miBoton.addEventListener("mouseup", function() {
-    enviarNumero(22);
-});
-function enviarNumero(numero) {
-    // Configurar la URL del servidor
-    var url = "http://137.184.132.178:1880/api2/";
 
-    // Configurar los datos a enviar
-    var data = "numero=" + numero;
+	update()
 
-    // Realizar la solicitud POST usando Fetch
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: data
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.text();
-    })
-    .then(data => {
-        // Puedes realizar acciones adicionales con la respuesta del servidor si es necesario
-        console.log('Respuesta del servidor:', data);
-    })
-    .catch(error => {
-        console.error('Hubo un problema con la solicitud fetch:', error);
-    });
-}
-				
-document.addEventListener('DOMContentLoaded', function () {
-            // Obtén los datos de la vista Django
-            fetch('/hola/')
-                .then(response => response.json())
-                .then(data => {
-                    var ctx = document.getElementById('myChart').getContext('2d');
-                    var myChart = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: data.labels,
-                            datasets: [{
-                                label: 'Datos de ejemplo',
-                                data: data.data,
-                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                borderColor: 'rgba(75, 192, 192, 1)',
-                                borderWidth: 1
-                            }]
-                        },
-                    });
-                });
-        });
 
-				var gauge;
-				let valor_v0, valor_v1, valor_v2, valor_v3, valor_v4;
-				function actualizarInterfazUsuario() {
-					// Realizar una solicitud AJAX
-					var xhr = new XMLHttpRequest();
-					xhr.open('GET', '/obtener_datos/', true);
 
-					xhr.onload = function () {
-						if (xhr.status === 200) {
-							// Actualizar la interfaz de usuario con los datos recibidos
-							var data = JSON.parse(xhr.responseText);
 
-							valor_v0 = data.v0;
-							valor_v1 = data.v1;
-							valor_v2 = data.v2;
-							valor_v3 = data.v3;
-							valor_v4 = data.v4;
-							gauge.refresh(valor_v3);
-							gauge2.refresh(valor_v4);
-							gauge3.refresh(valor_v0);
-							gauge4.refresh(valor_v2);
-							g1.refresh(valor_v1);
-							document.getElementById('v0').innerText = 'v0: ' + data.v0;
-							document.getElementById('v1').innerText = 'v1: ' + data.v1;
-							document.getElementById('v2').innerText = 'v2: ' + data.v2;
-							document.getElementById('v3').innerText = 'v3: ' + data.v3;
-							document.getElementById('v4').innerText = 'v4: ' + data.v4;
-						}
-					};
 
-					xhr.send();
-				}
+</script>
 
-				// Actualizar la interfaz de usuario cada 5 segundos (puedes ajustar este intervalo)
-				setInterval(actualizarInterfazUsuario, 1000);
-
-
-
-
-				/** TEMPERATURA  */
-				gauge = new JustGage({
-
-					id: "gauge",// required
-
-					value: 20,
-					min: 0,
-					max: 40,
-					symbol: '°C',
-					pointer: true,
-					gaugeWidthScale: 0.6,
-					counter: true,
-					decimals: 2,
-
-					customSectors: [{
-						color: '#ff0000',
-						lo: 26,
-						hi: 40
-					}, {
-						color: '#00ff00',
-						lo: 0,
-						hi: 25
-					}],
-
-					// more options here
-
-				});
-
-
-
-				var gauge2
-				/** HUMEDAD */
-				gauge2 = new JustGage({
-
-					id: "gauge2",// required
-
-					value: 21,
-					min: 0,
-					max: 100,
-					symbol: '%',
-					pointer: true,
-					gaugeWidthScale: 0.6,
-					decimals: 2,
-					customSectors: [{
-						color: '#ff0000',
-						lo: 50,
-						hi: 100
-					}, {
-						color: '#00ff00',
-						lo: 0,
-						hi: 50
-					}],
-					counter: true
-					
-
-				});
-
-				var gauge3 = new JustGage({
-
-					id: "gauge3",// required
-
-					value: 21,
-					min: 0,
-					max: 40,
-					symbol: 'km/h',
-					pointer: true,
-					gaugeWidthScale: 0.6,
-					decimals: 2,
-					customSectors: [{
-						color: '#ff0000',
-						lo: 50,
-						hi: 100
-					}, {
-						color: '#00ff00',
-						lo: 0,
-						hi: 50
-					}],
-					counter: true
-					// more options here
-
-				});
-
-				var gauge4 = new JustGage({
-
-					id: "gauge4",// required
-
-					value: 21,
-					min: 0,
-					max: 300,
-					symbol: 'ml/m3',
-					pointer: true,
-					gaugeWidthScale: 0.6,
-					decimals: 2,
-					customSectors: [{
-						color: '#ff0000',
-						lo: 50,
-						hi: 100
-					}, {
-						color: '#00ff00',
-						lo: 0,
-						hi: 50
-					}],
-					counter: true
-					// more options here
-
-				});
-
-				var g1;
-				/** DIRECCION DEL VIENTO  */
-				function getRandomInt(min, max) {
-					return Math.floor(Math.random() * (max - min + 1)) + min;
-				}
-				document.addEventListener("DOMContentLoaded", function (event) {
-					g1 = new JustGage({
-						id: "g1",
-						value: 72,
-						min: 0,
-						max: 360,
-						donut: true,
-						gaugeWidthScale: 0.6,
-						counter: true,
-						hideInnerShadow: true,
-						pointer: true,
-
-						textRenderer: function (val) {
-							if (val == 0) {
-								return 'NORTE';
-							} else if (val == 180) {
-								return 'SUR';
-							} else if (val == 315 ) {
-								return 'NO';
-							}else if (val == 270 ) {
-								return 'OESTE';
-							}else if (val == 225 ) {
-								return 'SO';
-							}else if (val == 180 ) {
-								return 'SUR';
-							}else if (val == 135 ) {
-								return 'SE';
-							}else if (val == 90 ) {
-								return 'ESTE';
-							}else if (val == 45 ) {
-								return 'NE';
-							}
-						},
-					});
-
-					
-				});
-
-				var updateInterval = 1000 //Fetch data ever x milliseconds
-				var realtime = 'on' //If == to on then fetch data every x seconds. else stop fetching
-				function update() {
-
-					interactive_plot.setData([getTempData()])
-
-					interactive_plot.draw()
-					setTimeout(update, updateInterval)
-
-				}
-				update()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				function update() {
-
-					var data1 = document.getElementById("select1").value;
-					firebase.database().ref(data1).once('value').then(
-
-						function (snapshot) {
-							globalThis.Humedad = snapshot.val().Humedad;
-							globalThis.Temperatura = snapshot.val().Temperatura;
-							globalThis.LDR = snapshot.val().LDR;
-							globalThis.suelo = snapshot.val().suelo;
-							globalThis.Motor = snapshot.val().Motor;
-							console.table(Motor);
-							if (Motor == 1) {
-								document.getElementById("demo").innerHTML = "ENCENDIDO";
-							} else {
-								document.getElementById("demo").innerHTML = "APAGADO";
-							}
-
-							Circles.create({
-								id: 'circles-1',
-								radius: 60,
-								value: Humedad,
-								maxValue: 100,
-								width: 5,
-								text: Humedad + '%',
-								colors: ['#f1f1f1', '#2BB930'],
-								duration: 0,
-								wrpClass: 'circles-wrp',
-								textClass: 'circles-text',
-								styleWrapper: true,
-								styleText: true
-							})
-
-
-							Circles.create({
-								id: 'circles-2',
-								radius: 60,
-								value: Temperatura,
-								maxValue: 100,
-								width: 5,
-								text: Temperatura + 'C°',
-								colors: ['#f1f1f1', '#2BB930'],
-								duration: 0,
-								wrpClass: 'circles-wrp',
-								textClass: 'circles-text',
-								styleWrapper: true,
-								styleText: true
-							})
-
-							Circles.create({
-								id: 'circles-3',
-								radius: 60,
-								value: LDR,
-								maxValue: 100,
-								width: 7,
-								text: LDR + ' %',
-								colors: ['#f1f1f1', '#F25961'],
-								duration: 0,
-								wrpClass: 'circles-wrp',
-								textClass: 'circles-text',
-								styleWrapper: true,
-								styleText: true
-							})
-
-							Circles.create({
-								id: 'circles-13',
-								radius: 60,
-								value: suelo,
-								maxValue: 100,
-								width: 7,
-								text: suelo + ' %',
-								colors: ['#f1f1f1', '#F25961'],
-								duration: 0,
-								wrpClass: 'circles-wrp',
-								textClass: 'circles-text',
-								styleWrapper: true,
-								styleText: true
-							})
-
-
-							//console.log(title);
-						})
-
-					setTimeout(update, 1000)
-				}
-
-
-
-
-
-
-
-
-
-				update()
-
-
-
-
-
-			</script>
-
-			{% endblock javascripts %}
+{% endblock javascripts %}

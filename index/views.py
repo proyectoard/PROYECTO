@@ -146,7 +146,7 @@ class grafica(View):
            #####################################################################################################
             #PREDICCION DE HUMEDAD
 
-            train_size_humedad = int(len(df) * 0.65)
+            train_size_humedad = int(len(df) * 0.70)
             train_humedad, test_humedad = df[0:train_size_humedad], df[train_size_humedad:]
             # Separar características y etiquetas
             X_train_hume, y_train_hume = train_humedad.drop('HUMEDAD', axis=1), train_humedad['HUMEDAD']
@@ -212,7 +212,7 @@ class grafica(View):
             #####################################################################################################
             #PREDICCION DE VELOCIDAD DEL VIENTO
 
-            train_size_VELVIENTO = int(len(df) * 0.65)
+            train_size_VELVIENTO = int(len(df) *  0.70)
             train_VELVIENTO, test_VELVIENTO = df[0:train_size_VELVIENTO], df[train_size_VELVIENTO:]
             # Separar características y etiquetas
             X_train_VELVIENTO, y_train_VELVIENTO= train_VELVIENTO.drop('VELOCIDAD_VIENTO', axis=1), train_VELVIENTO['VELOCIDAD_VIENTO']
@@ -280,7 +280,7 @@ class grafica(View):
               #####################################################################################################
             #PREDICCION DE DIRECCION DEL VIENTO
 
-            train_size_DIRVIENTO = int(len(df) * 0.65)
+            train_size_DIRVIENTO = int(len(df) *  0.70)
             train_DIRVIENTO, test_DIRVIENTO = df[0:train_size_DIRVIENTO], df[train_size_DIRVIENTO:]
             # Separar características y etiquetas
             X_train_DIRVIENTO, y_train_DIRVIENTO= train_DIRVIENTO.drop('DIRECCION_VIENTO', axis=1), train_DIRVIENTO['DIRECCION_VIENTO']
@@ -330,7 +330,7 @@ class grafica(View):
             y_test_list_enteros_DIRVIENTO = [int(numero) for numero in y_test_list_DIRVIENTO]
            
             predictions_list_DIRVIENTO = predictions_DIRVIENTO.tolist()
-
+            
             print(predictions_list_DIRVIENTO)
 
 
@@ -342,18 +342,35 @@ class grafica(View):
             prediccion_manana_DIRVIENTO = model_DIRVIENTO.predict([ultima_fila_test_DIRVIENTO])
   
             print("Predicción para el día siguiente:", prediccion_manana_DIRVIENTO)
+            
+           
+           # Convierte la cadena JSON a una lista de fechas
+            fechas_list = json.loads(fechas_json)
 
+            # Suma un día a cada fecha
+            fechas_con_un_dia_mas = [(datetime.strptime(fecha, "%Y-%m-%d %H:%M:%S") + timedelta(days=1)).strftime("%Y-%m-%d %H:%M:%S") for fecha in fechas_list]
+
+            # Imprime las fechas con un día más
+            print(fechas_con_un_dia_mas)
+            
+           
+            combined_list = list(zip(predictions_list, fechas_con_un_dia_mas))
+
+            print(combined_list)
             context = {
                 'MODELO_NOMBRE':MODELO_NOMBRE,
 
                 'y_test_json': json.dumps(y_test_list_enteros,default=int),
                 'predictions_json': json.dumps(predictions_list),
                 'temp_predi':nueva_fecha_prediccion,
-                'fechas':fechas_json,
+                'fechas': fechas_con_un_dia_mas,
+                'fechas_REAL': fechas_json,
+                'predictions_sorted': combined_list,
                 'PREDICCION': round(ultimo_valor_prediccion, 2),
                 'ERROR':round(100-mse),
                 'ERROR12':round(r,2),
                 'ERROR13':round(mape,2),
+               
 
                 'HUMEDAD_REAL': y_test_list_hume,
                 'PREDI_HUMEDAD':predictions_list_hume,
