@@ -21,8 +21,6 @@
 		</div>
 	</div>
 
-
-
 	<div class="page-inner mt--5">
 		<div class="card full-height">
 			<div class="card-body">
@@ -46,7 +44,7 @@
 							</div>
 							<div style="width: 50%; text-align: center;">
 								<img src="/static/assets/img/temp2.png" alt="..." class="avatar-img rounded-circle"
-									style="display: block; width: 50%; margin-top: 10px; margin-left: auto; margin-right: auto;">
+									style="display: block; width: 40%; margin-top: 10px; margin-left: auto; margin-right: auto;">
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -78,7 +76,7 @@
 							</div>
 							<div style="width: 50%; text-align: center;">
 								<img src="/static/assets/img/temp.png" alt="Humedad" class="avatar-img rounded-circle"
-									style="display: block; width: 50%; margin-top: 10px; margin-left: auto; margin-right: auto;">
+									style="display: block; width: 40%; margin-top: 10px; margin-left: auto; margin-right: auto;">
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -115,7 +113,7 @@
 							<div style="width: 50%; text-align: center;">
 								<img src="/static/assets/img/vel.png" alt="Velocidad del Viento"
 									class="avatar-img rounded-circle"
-									style="display: block; width: 50%; margin-top: 10px; margin-left: auto; margin-right: auto;">
+									style="display: block; width: 40%; margin-top: 10px; margin-left: auto; margin-right: auto;">
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -147,7 +145,7 @@
 							<div style="width: 50%; text-align: center;">
 								<!-- Puedes cambiar la ruta y el alt según tus necesidades -->
 								<img src="/static/assets/img/cant.png" alt="Cantidad de Lluvia"
-									style="display: block; width: 50%; margin-top: 10px; margin-left: auto; margin-right: auto;">
+									style="display: block; width: 40%; margin-top: 10px; margin-left: auto; margin-right: auto;">
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -179,7 +177,7 @@
 						</div>
 						<div style="width: 50%; text-align: center;">
 							<img src="/static/assets/img/dir.png" alt="Dirección del Viento"
-								style="display: block; width: 50%; margin-top: 10px; margin-left: auto; margin-right: auto;">
+								style="display: block; width: 40%; margin-top: 10px; margin-left: auto; margin-right: auto;">
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -202,21 +200,29 @@
 		<div class="card">
 			<div class="card-body">
 
-
-				<div id="slider-range"></div>
-
-				<p>Valor seleccionado: <span id="rangeValue"></span></p>
-
-
-				<button id="btnUsarRango">Usar Rango</button>
-				<!-- Campo de fecha de inicio -->
 				<div class="form-group">
+					<div class="card-title">ELEGIR RANGO A MOSTRAR EN GRAFICA:</div>
+				</div>
+
+				<div class="form-group">
+					<div id="slider-range"></div>
+				</div>
+				<div class="form-group">
+					<h4 class="op-1" id="rangeValue"></h4>
+
+				</div>
+				<div class="form-group">
+					<button id="btnUsarRango" class="btn btn-primary">Usar Rango</button>
+				</div>
+				<!-- Campo de fecha de inicio -->
+
+				<div class="form-group" id="hola1">
 					<label for="id_fecha_inicio">Fecha de inicio:</label>
 					<input type="date" name="fecha_inicio" id="id_fecha_inicio" class="form-control" required>
 				</div>
 
 				<!-- Campo de fecha de fin -->
-				<div class="form-group">
+				<div class="form-group" id="hola2">
 					<label for="id_fecha_fin">Fecha de fin:</label>
 					<input type="date" name="fecha_fin" id="id_fecha_fin" class="form-control" required>
 				</div>
@@ -259,16 +265,16 @@
 
 							<thead>
 								<tr>
-									<th>Temperatura</th>
-									<th>Prediccion</th>
+									<th>Predicción de Temperatura</th>
+									<th>Fecha y Hora</th>
 
 								</tr>
 							</thead>
 
 							<tfoot>
 								<tr>
-									<th>Temperatura</th>
-									<th>Prediccion</th>
+									<th>Predicción de Temperatura</th>
+									<th>Fecha y Hora</th>
 
 								</tr>
 							</tfoot>
@@ -291,49 +297,205 @@
 		</div>
 
 
-		<div class="col-md-12">
-
-			<div class="card">
-
-				<div class="card-body">
-					<div class="card-title">GRAFICAS DE HUMEDAD</div>
-					<div class="chart-container">
-						<canvas id="multipleLineChart2"></canvas>
+		<div class="row">
+			<!-- Primera mitad del contenedor -->
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-body">
+						<div class="card-title">GRAFICAS DE HUMEDAD</div>
+						<div class="chart-container">
+							<canvas id="multipleLineChart2"></canvas>
+						</div>
 					</div>
 				</div>
 			</div>
 
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-body">
+						<div class="card-title">PREDICCIONES DE HUMEDAD</div>
+						<div class="chart-container">
+							<canvas id="multipleLineChart10"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-10">
+			<div class="card full-height">
+				<div class="card-body">
+
+					<div class="table-responsive">
+						<table id="add-row6" class="display table table-striped table-hover">
+
+							<thead>
+								<tr>
+									<th>Predicción de Humedad</th>
+									<th>Fecha y Hora</th>
+
+								</tr>
+							</thead>
+
+							<tfoot>
+								<tr>
+									<th>Predicción de Humedad</th>
+									<th>Fecha y Hora</th>
+
+								</tr>
+							</tfoot>
+
+							<tbody>
+								{% for dato in predictions_sorted_hume %}
+								<tr>
+									<td>{{dato.0}}</td>
+									<td>{{dato.1}}</td>
+
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+
+
+				</div>
+			</div>
 		</div>
 
 
-		<div class="col-md-12">
-
-			<div class="card">
-
-				<div class="card-body">
-					<div class="card-title">GRAFICAS DE VELOCIDAD DE VIENTO</div>
-					<div class="chart-container">
-						<canvas id="multipleLineChart3"></canvas>
+		<div class="row">
+			<!-- Primera mitad del contenedor -->
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-body">
+						<div class="card-title">GRAFICAS DE VELOCIDAD DE VIENTO</div>
+						<div class="chart-container">
+							<canvas id="multipleLineChart3"></canvas>
+						</div>
 					</div>
 				</div>
 			</div>
 
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-body">
+						<div class="card-title">GRAFICAS DE VELOCIDAD DE VIENTO PREDICCION</div>
+						<div class="chart-container">
+							<canvas id="multipleLineChart11"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 
 
-		<div class="col-md-12">
-
-			<div class="card">
-
+		<div class="col-md-10">
+			<div class="card full-height">
 				<div class="card-body">
-					<div class="card-title">GRAFICAS DE DIRECCION DEL VIENTO</div>
-					<div class="chart-container">
-						<canvas id="multipleLineChart4"></canvas>
+
+					<div class="table-responsive">
+						<table id="add-row7" class="display table table-striped table-hover">
+
+							<thead>
+								<tr>
+									<th>Predicción de Velocidad de viento</th>
+									<th>Fecha y Hora</th>
+
+								</tr>
+							</thead>
+
+							<tfoot>
+								<tr>
+									<th>Predicción de Velocidad de viento</th>
+									<th>Fecha y Hora</th>
+
+								</tr>
+							</tfoot>
+
+							<tbody>
+								{% for dato in predictions_sorted_velviento %}
+								<tr>
+									<td>{{dato.0}}</td>
+									<td>{{dato.1}}</td>
+
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<!-- Primera mitad del contenedor -->
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-body">
+						<div class="card-title">GRAFICAS DE DIRECCION DEL VIENTO</div>
+						<div class="chart-container">
+							<canvas id="multipleLineChart4"></canvas>
+						</div>
 					</div>
 				</div>
 			</div>
 
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-body">
+						<div class="card-title">GRAFICAS DE DIRECCION DEL VIENTO PREDICCION</div>
+						<div class="chart-container">
+							<canvas id="multipleLineChart12"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
+
+
+
+		<div class="col-md-10">
+			<div class="card full-height">
+				<div class="card-body">
+
+					<div class="table-responsive">
+						<table id="add-row8" class="display table table-striped table-hover">
+
+							<thead>
+								<tr>
+									<th>Predicción de Dirección de viento</th>
+									<th>Fecha y Hora</th>
+
+								</tr>
+							</thead>
+
+							<tfoot>
+								<tr>
+									<th>Predicción de Dirección de viento</th>
+									<th>Fecha y Hora</th>
+
+								</tr>
+							</tfoot>
+
+							<tbody>
+								{% for dato in predictions_sorted_dirviento %}
+								<tr>
+									<td>{{dato.0}}</td>
+									<td>{{dato.1}}</td>
+
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
 
 
 
@@ -344,14 +506,35 @@
 
 
 <style>
+	#send {
+		display: none;
+	}
+
+	#hola1 {
+		display: none;
+	}
+
+	#hola2 {
+		display: none;
+	}
+
 	input[type="range"] {
 		width: 100%;
 	}
 
-
-
-
 	#add-row5_filter {
+		text-align: left;
+	}
+
+	#add-row6_filter {
+		text-align: left;
+	}
+
+	#add-row7_filter {
+		text-align: left;
+	}
+
+	#add-row8_filter {
 		text-align: left;
 	}
 
@@ -468,15 +651,11 @@
 <!-- Atlantis DEMO methods, don't include it in your project! -->
 <script src="/static/assets/js/setting-demo2.js"></script>
 <script src="/static/assets/js/raphael.min.js"></script>
-
 <script src="/static/assets/js/justgage.js"></script>
-
 <script src="/static/assets/js/setting-demo.js"></script>
 <script src="/static/assets/js/demo.js"></script>
-
 <script src="/static/assets/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery -->
-
 <!-- jQuery UI -->
 <script src="/static/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -493,16 +672,8 @@
 <script src="/static/assets/plugins/flot-old/jquery.flot.pie.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
-
-
-
-
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
-
-
-
 <script src="/static/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -511,23 +682,57 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script>
-
-
-
-
 	$(document).ready(function () {
 		$('#add-row5').DataTable({
 			"searching": true,
-			"pageLength": 15,
+			"pageLength": 10,
 			"order": [1, "desc"],
 
 			"initComplete": function (settings, json) {
 				// Mueve el cuadro de búsqueda al centro
 				$("#add-row5_filter").css({ "width": "50%", "margin": "0 auto" });
+			}
+		});
+	});
+
+	$(document).ready(function () {
+		$('#add-row6').DataTable({
+			"searching": true,
+			"pageLength": 10,
+			"order": [1, "desc"],
+
+			"initComplete": function (settings, json) {
+				// Mueve el cuadro de búsqueda al centro
+				$("#add-row6_filter").css({ "width": "50%", "margin": "0 auto" });
+			}
+		});
+	});
+
+	$(document).ready(function () {
+		$('#add-row7').DataTable({
+			"searching": true,
+			"pageLength": 10,
+			"order": [1, "desc"],
+
+			"initComplete": function (settings, json) {
+				// Mueve el cuadro de búsqueda al centro
+				$("#add-row7_filter").css({ "width": "50%", "margin": "0 auto" });
+			}
+		});
+	});
+
+	$(document).ready(function () {
+		$('#add-row8').DataTable({
+			"searching": true,
+			"pageLength": 10,
+			"order": [1, "desc"],
+
+			"initComplete": function (settings, json) {
+				// Mueve el cuadro de búsqueda al centro
+				$("#add-row8_filter").css({ "width": "50%", "margin": "0 auto" });
 			}
 		});
 	});
@@ -560,240 +765,168 @@
 		});
 	});
 
-		function guardarEstado(estado) {
+	function guardarEstado(estado) {
 
-			var datos = {
-				'estado': estado,
+		var datos = {
+			'estado': estado,
 
-			};
-			// Enviar una solicitud al servidor para guardar el estado
-			$.ajax({
-				url: `/hola/?estado=${estado}`,
-				type: 'GET',
-				dataType: 'json',  // Espera una respuesta JSON
-				success: function (data) {
-					console.log(data);
-				},
-				error: function (error) {
-					console.error(error);
-				}
-			});
-		}
-
-
-		function guardarEstado2(estado2) {
-
-			var datos2 = {
-				'estado2': estado2,
-			};
-			// Enviar una solicitud al servidor para guardar el estado
-			$.ajax({
-				url: `/hola/?estado2=${estado2}`,
-				type: 'GET',
-				dataType: 'json',  // Espera una respuesta JSON
-				success: function (data) {
-					console.log(data);
-				},
-				error: function (error) {
-					console.error(error);
-				}
-			});
-		}
-	
-
-
-
-
-
-	
-	$("#btnUsarRango").on("click", usarRango);
-
-
-	
-	var multipleLineChart = document.getElementById('multipleLineChart').getContext('2d')
-		 myMultipleLineChart = new Chart(multipleLineChart, {
-			type: 'line',
-			data: {
-				labels: [1,2],
-				datasets: [{
-					label: "TEMPERATURA REAL",
-					borderColor: "#1d7af3",
-					pointBorderColor: "#FFF",
-					pointBackgroundColor: "#1d7af3",
-					pointBorderWidth: 1,
-					pointHoverRadius: 2,
-					pointHoverBorderWidth: 0.5,
-					pointRadius: 0.5,
-					backgroundColor: 'transparent',
-					fill: true,
-					borderWidth: 1,
-					data: [1,2],
-				}]
+		};
+		// Enviar una solicitud al servidor para guardar el estado
+		$.ajax({
+			url: `/hola/?estado=${estado}`,
+			type: 'GET',
+			dataType: 'json',  // Espera una respuesta JSON
+			success: function (data) {
+				console.log(data);
 			},
-			
-		});
-	
-
-
-	
-	function usarRango() {
-	var laa = "{{ y_test_json }}"
-	var laa2 = "{{ fechas }}"
-	var laa3 = "{{ predictions_json}}"
-	var Temperatura = JSON.parse(laa);
-	var predic_temp = JSON.parse(laa3);
-
-	var laa4 = "{{ PREDI_HUMEDAD }}"
-	var laa5 = "{{ HUMEDAD_REAL }}"
-
-	var HUMEDAD_PREDI = JSON.parse(laa4);
-	var HUMEDAD = JSON.parse(laa5);
-
-
-	var laa2 = "{{ fechas }}";
-
-	var fecha_real = "{{ fechas_REAL }}";
-
-	var fechasJSON = laa2.replace(/&#x27;/g, '"');
-	var fechasArray;
-
-	try {
-		fechasArray = JSON.parse(fechasJSON);
-	} catch (error) {
-		alert("Error al analizar las fechas:", error);
-
-	}
-
-	var fechasJSON_real = fecha_real.replace(/&quot;/g, '"');
-	var fechasArray_real;
-
-	try {
-		fechasArray_real = JSON.parse(fechasJSON_real);
-	} catch (error) {
-		alert("Error al analizar las fechas:", error);
-
-	}
-
-	var tamanoArray = fechasArray_real.length;
-
-
-	$(function () {
-		var sliderRange = $("#slider-range");
-		var rangeValue = $("#rangeValue");
-
-		sliderRange.slider({
-			range: true,
-			min: 0,
-			max: tamanoArray,
-			values: [0, 500],
-			slide: function (event, ui) {
-				minRangeValue = ui.values[0];
-				maxRangeValue = ui.values[1];
-				rangeValue.text(ui.values[0] + " - " + ui.values[1]);
+			error: function (error) {
+				console.error(error);
 			}
 		});
-		minRangeValue = sliderRange.slider("values", 0);
-		maxRangeValue = sliderRange.slider("values", 1);
-		rangeValue.text(sliderRange.slider("values", 0) + " - " + sliderRange.slider("values", 1));
-	});
+	}
 
-		alert("Rango seleccionado: " + minRangeValue + " - " + maxRangeValue);
-		
+
+	function guardarEstado2(estado2) {
+
+		var datos2 = {
+			'estado2': estado2,
+		};
+		// Enviar una solicitud al servidor para guardar el estado
+		$.ajax({
+			url: `/hola/?estado2=${estado2}`,
+			type: 'GET',
+			dataType: 'json',  // Espera una respuesta JSON
+			success: function (data) {
+				console.log(data);
+			},
+			error: function (error) {
+				console.error(error);
+			}
+		});
+	}
+
+	$("#btnUsarRango").on("click", usarRango);
+
+	function usarRango() {
+		var laa = "{{ y_test_json }}"
+		var laa2 = "{{ fechas }}"
+		var laa3 = "{{ predictions_json}}"
+		var Temperatura = JSON.parse(laa);
+		var predic_temp = JSON.parse(laa3);
+
+		var laa4 = "{{ PREDI_HUMEDAD }}"
+		var laa5 = "{{ HUMEDAD_REAL }}"
+
+		var HUMEDAD_PREDI = JSON.parse(laa4);
+		var HUMEDAD = JSON.parse(laa5);
+
+		var laa6 = "{{ PREDI_VELVIENTO }}"
+		var laa7 = "{{ VELVIENTO_REAL }}"
+
+		var VELVIENTO_PREDI = JSON.parse(laa6);
+		var VELVIENTO = JSON.parse(laa7);
+
+
+		var laa2 = "{{ fechas }}";
+
+		var fecha_real = "{{ fechas_REAL }}";
+
+		var fechasJSON = laa2.replace(/&#x27;/g, '"');
+		var fechasArray;
+
+		var laa = "{{ PREDI_DIRVIENTO }}"
+		var laa2 = "{{ DIRVIENTO_REAL }}"
+
+		var DIRVIENTO_PREDI = JSON.parse(laa);
+		var DIRVIENTO = JSON.parse(laa2);
+
+		try {
+			fechasArray = JSON.parse(fechasJSON);
+		} catch (error) {
+			alert("Error al analizar las fechas:", error);
+
+		}
+
+		var fechasJSON_real = fecha_real.replace(/&quot;/g, '"');
+		var fechasArray_real;
+
+		try {
+			fechasArray_real = JSON.parse(fechasJSON_real);
+		} catch (error) {
+			alert("Error al analizar las fechas:", error);
+
+		}
+
+		var tamanoArray = fechasArray_real.length;
+
+
+		$(function () {
+
+			var sliderRange = $("#slider-range");
+			var rangeValue = $("#rangeValue");
+
+			sliderRange.slider({
+				range: true,
+				min: 0,
+				max: tamanoArray,
+
+				values: [0, 500],
+				slide: function (event, ui) {
+					minRangeValue = ui.values[0];
+					maxRangeValue = ui.values[1];
+					rangeValue.text(ui.values[0] + " - " + ui.values[1]);
+				}
+			});
+
+			minRangeValue = sliderRange.slider("values", 0);
+			maxRangeValue = sliderRange.slider("values", 1);
+			rangeValue.text(sliderRange.slider("values", 0) + " - " + sliderRange.slider("values", 1));
+			sliderRange.slider.values("values", [minRangeValue, maxRangeValue]);
+			sliderRange.update();
+		});
+
+		//alert("Rango seleccionado: " + minRangeValue + " - " + maxRangeValue);
+
 		fechasArray_real = fechasArray_real.slice(minRangeValue, maxRangeValue);
+		fechasArray = fechasArray.slice(minRangeValue, maxRangeValue);
+
 		Temperatura = Temperatura.slice(minRangeValue, maxRangeValue);
 		predic_temp = predic_temp.slice(minRangeValue, maxRangeValue);
 		HUMEDAD = HUMEDAD.slice(minRangeValue, maxRangeValue);
 		HUMEDAD_PREDI = HUMEDAD_PREDI.slice(minRangeValue, maxRangeValue);
 
+		VELVIENTO = VELVIENTO.slice(minRangeValue, maxRangeValue);
+		VELVIENTO_PREDI = VELVIENTO_PREDI.slice(minRangeValue, maxRangeValue);
+
+		DIRVIENTO = DIRVIENTO.slice(minRangeValue, maxRangeValue);
+		DIRVIENTO_PREDI = VELVIENTO_PREDI.slice(minRangeValue, maxRangeValue);
 		// CHART 1
-		myMultipleLineChart.data= {
-				labels: fechasArray_real,
-				datasets: [{
-					label: "TEMPERATURA REAL",
-					borderColor: "#1d7af3",
-					pointBorderColor: "#FFF",
-					pointBackgroundColor: "#1d7af3",
-					pointBorderWidth: 1,
-					pointHoverRadius: 2,
-					pointHoverBorderWidth: 0.5,
-					pointRadius: 0.5,
-					backgroundColor: 'transparent',
-					fill: true,
-					borderWidth: 1,
-					data: Temperatura
-				}]
-			}
-			myMultipleLineChart.update();
-		
-
-			//CHART 2 TEMP
-
-			myMultipleLineChart2.data= {
-				labels: fechasArray_real,
-				datasets: [{
-					label: "PREDICCIÓN",
-					borderColor: "#59d05d",
-					pointBorderColor: "#FFF",
-					pointBackgroundColor: "#59d05d",
-					pointBorderWidth: 1,
-					pointHoverRadius: 1,
-					pointHoverBorderWidth: 1,
-					pointRadius: 4,
-					backgroundColor: 'transparent',
-					fill: true,
-					borderWidth: 2,
-					data: predic_temp
-				}]
-			}
-			myMultipleLineChart2.update();
-
-			// CHART 3 HUM 
-
-			myMultipleLineChart3.data= {
-				labels: fechasArray_real,
-				datasets: [{
-					label: "HUMEDAD REAL",
-					borderColor: "#1d7af3",
-					pointBorderColor: "#FFF",
-					pointBackgroundColor: "#1d7af3",
-					pointBorderWidth: 1,
-					pointHoverRadius: 2,
-					pointHoverBorderWidth: 0.5,
-					pointRadius: 0.5,
-					backgroundColor: 'transparent',
-					fill: true,
-					borderWidth: 1,
-					data: HUMEDAD
-				}, {
-				label: "PREDICCIÓN",
-				borderColor: "#59d05d",
-				pointBorderColor: "#FFF",
-				pointBackgroundColor: "#59d05d",
-				pointBorderWidth: 1,
-				pointHoverRadius: 1,
-				pointHoverBorderWidth: 1,
-				pointRadius: 4,
-				backgroundColor: 'transparent',
-				fill: true,
-				borderWidth: 2,
-				data: HUMEDAD_PREDI
-			}]
-			}
-			myMultipleLineChart3.update();
-	}
-
-///////////////////////////////////////////
-
-
-
-
-	var multipleLineChart2 = document.getElementById('multipleLineChart5').getContext('2d')
-	var myMultipleLineChart2 = new Chart(multipleLineChart2, {
-		type: 'line',
-		data: {
-			labels: [1,2],
+		myMultipleLineChart.data = {
+			labels: fechasArray_real,
 			datasets: [{
-				label: "PREDICCIÓN",
+				label: "TEMPERATURA REAL",
+				borderColor: "#1d7af3",
+				pointBorderColor: "#FFF",
+				pointBackgroundColor: "#1d7af3",
+				pointBorderWidth: 1,
+				pointHoverRadius: 2,
+				pointHoverBorderWidth: 0.5,
+				pointRadius: 0.5,
+				backgroundColor: 'transparent',
+				fill: true,
+				borderWidth: 1,
+				data: Temperatura
+			}]
+		}
+		myMultipleLineChart.update();
+
+
+		//CHART 2 TEMP
+
+		myMultipleLineChart2.data = {
+			labels: fechasArray,
+			datasets: [{
+				label: "TEMPERATURA PREDICCIÓN",
 				borderColor: "#59d05d",
 				pointBorderColor: "#FFF",
 				pointBackgroundColor: "#59d05d",
@@ -804,22 +937,15 @@
 				backgroundColor: 'transparent',
 				fill: true,
 				borderWidth: 2,
-				data: [1,2]
+				data: predic_temp
 			}]
-		},
-		
-	});
-	
+		}
+		myMultipleLineChart2.update();
 
+		// CHART 3 HUM 
 
-	
-
-
-	var multipleLineChart3 = document.getElementById('multipleLineChart2').getContext('2d')
-	var myMultipleLineChart3 = new Chart(multipleLineChart3, {
-		type: 'line',
-		data: {
-			labels: [1,2],
+		myMultipleLineChart3.data = {
+			labels: fechasArray_real,
 			datasets: [{
 				label: "HUMEDAD REAL",
 				borderColor: "#1d7af3",
@@ -832,9 +958,18 @@
 				backgroundColor: 'transparent',
 				fill: true,
 				borderWidth: 1,
-				data: [1,2]
-			}, {
-				label: "PREDICCIÓN",
+				data: HUMEDAD
+			}]
+		}
+		myMultipleLineChart3.update();
+
+
+		// CHART 4 HUM PREDI
+
+		myMultipleLineChart4.data = {
+			labels: fechasArray,
+			datasets: [{
+				label: "HUMEDAD PREDICCIÓN",
 				borderColor: "#59d05d",
 				pointBorderColor: "#FFF",
 				pointBackgroundColor: "#59d05d",
@@ -845,25 +980,18 @@
 				backgroundColor: 'transparent',
 				fill: true,
 				borderWidth: 2,
-				data: [1,2]
+				data: HUMEDAD_PREDI
 			}]
-		},
-	});
-
-	var laa = "{{ PREDI_VELVIENTO }}"
-	var laa2 = "{{ VELVIENTO_REAL }}"
-
-	var VELVIENTO_PREDI = JSON.parse(laa);
-	var VELVIENTO = JSON.parse(laa2);
+		}
+		myMultipleLineChart4.update();
 
 
-	var multipleLineChart = document.getElementById('multipleLineChart3').getContext('2d')
-	var myMultipleLineChart = new Chart(multipleLineChart, {
-		type: 'line',
-		data: {
+		//CHART 5 VELVIENTO
+
+		myMultipleLineChart5.data = {
 			labels: fechasArray_real,
 			datasets: [{
-				label: "VELOCIDAD VIENTO REAL",
+				label: "VELOCIDAD DEL VIENTO REAL",
 				borderColor: "#1d7af3",
 				pointBorderColor: "#FFF",
 				pointBackgroundColor: "#1d7af3",
@@ -875,8 +1003,16 @@
 				fill: true,
 				borderWidth: 1,
 				data: VELVIENTO
-			}, {
-				label: "PREDICCIÓN",
+			}]
+		}
+		myMultipleLineChart5.update();
+
+		// CHART 6 VELVIENTO PREDI
+
+		myMultipleLineChart6.data = {
+			labels: fechasArray,
+			datasets: [{
+				label: "VELOCIDAD DEL VIENTO PREDICCIÓN",
 				borderColor: "#59d05d",
 				pointBorderColor: "#FFF",
 				pointBackgroundColor: "#59d05d",
@@ -889,24 +1025,14 @@
 				borderWidth: 2,
 				data: VELVIENTO_PREDI
 			}]
-		},
-		
-	});
+		}
+		myMultipleLineChart6.update();
 
-	var laa = "{{ PREDI_DIRVIENTO }}"
-	var laa2 = "{{ DIRVIENTO_REAL }}"
-
-	var DIRVIENTO_PREDI = JSON.parse(laa);
-	var DIRVIENTO = JSON.parse(laa2);
-
-
-	var multipleLineChart = document.getElementById('multipleLineChart4').getContext('2d')
-	var myMultipleLineChart = new Chart(multipleLineChart, {
-		type: 'line',
-		data: {
+		// CHART 7 DIR VIENTO PREDI
+		myMultipleLineChart7.data = {
 			labels: fechasArray_real,
 			datasets: [{
-				label: "DIRECCION VIENTO REAL",
+				label: "DIRECCION DEL VIENTO REAL",
 				borderColor: "#1d7af3",
 				pointBorderColor: "#FFF",
 				pointBackgroundColor: "#1d7af3",
@@ -918,8 +1044,17 @@
 				fill: true,
 				borderWidth: 1,
 				data: DIRVIENTO
-			}, {
-				label: "PREDICCIÓN",
+			}]
+		}
+
+		myMultipleLineChart7.update();
+
+		// CHART 8 DIR VIENTO PREDI
+
+		myMultipleLineChart8.data = {
+			labels: fechasArray,
+			datasets: [{
+				label: "DIRECCION DEL VIENTO PREDICCIÓN",
 				borderColor: "#59d05d",
 				pointBorderColor: "#FFF",
 				pointBackgroundColor: "#59d05d",
@@ -932,11 +1067,202 @@
 				borderWidth: 2,
 				data: DIRVIENTO_PREDI
 			}]
+		}
+		myMultipleLineChart8.update();
+	}
+
+	///////////////////////////////////////////
+
+	var multipleLineChart = document.getElementById('multipleLineChart').getContext('2d')
+	myMultipleLineChart = new Chart(multipleLineChart, {
+		type: 'line',
+		data: {
+			labels: [1, 2],
+			datasets: [{
+				label: "TEMPERATURA REAL",
+				borderColor: "#1d7af3",
+				pointBorderColor: "#FFF",
+				pointBackgroundColor: "#1d7af3",
+				pointBorderWidth: 1,
+				pointHoverRadius: 2,
+				pointHoverBorderWidth: 0.5,
+				pointRadius: 0.5,
+				backgroundColor: 'transparent',
+				fill: true,
+				borderWidth: 1,
+				data: [1, 2],
+			}]
 		},
-		
+
 	});
 
 
+	var multipleLineChart2 = document.getElementById('multipleLineChart5').getContext('2d')
+	var myMultipleLineChart2 = new Chart(multipleLineChart2, {
+		type: 'line',
+		data: {
+			labels: [1, 2],
+			datasets: [{
+				label: "PREDICCIÓN",
+				borderColor: "#59d05d",
+				pointBorderColor: "#FFF",
+				pointBackgroundColor: "#59d05d",
+				pointBorderWidth: 1,
+				pointHoverRadius: 1,
+				pointHoverBorderWidth: 1,
+				pointRadius: 4,
+				backgroundColor: 'transparent',
+				fill: true,
+				borderWidth: 2,
+				data: [1, 2]
+			}]
+		},
+
+	});
+
+	var multipleLineChart3 = document.getElementById('multipleLineChart2').getContext('2d')
+	var myMultipleLineChart3 = new Chart(multipleLineChart3, {
+		type: 'line',
+		data: {
+			labels: [1, 2],
+			datasets: [{
+				label: "HUMEDAD REAL",
+				borderColor: "#1d7af3",
+				pointBorderColor: "#FFF",
+				pointBackgroundColor: "#1d7af3",
+				pointBorderWidth: 1,
+				pointHoverRadius: 2,
+				pointHoverBorderWidth: 0.5,
+				pointRadius: 0.5,
+				backgroundColor: 'transparent',
+				fill: true,
+				borderWidth: 1,
+				data: [1, 2]
+			}]
+		},
+	});
+
+
+
+	var multipleLineChart4 = document.getElementById('multipleLineChart10').getContext('2d')
+	var myMultipleLineChart4 = new Chart(multipleLineChart4, {
+		type: 'line',
+		data: {
+			labels: [1, 2],
+			datasets: [{
+				label: "PREDICCIÓN",
+				borderColor: "#59d05d",
+				pointBorderColor: "#FFF",
+				pointBackgroundColor: "#59d05d",
+				pointBorderWidth: 1,
+				pointHoverRadius: 1,
+				pointHoverBorderWidth: 1,
+				pointRadius: 4,
+				backgroundColor: 'transparent',
+				fill: true,
+				borderWidth: 2,
+				data: [1, 2]
+			}]
+		},
+
+	});
+
+
+	var multipleLineChart5 = document.getElementById('multipleLineChart3').getContext('2d')
+	var myMultipleLineChart5 = new Chart(multipleLineChart5, {
+		type: 'line',
+		data: {
+			labels: [1, 2],
+			datasets: [{
+				label: "VELOCIDAD VIENTO REAL",
+				borderColor: "#1d7af3",
+				pointBorderColor: "#FFF",
+				pointBackgroundColor: "#1d7af3",
+				pointBorderWidth: 1,
+				pointHoverRadius: 2,
+				pointHoverBorderWidth: 0.5,
+				pointRadius: 0.5,
+				backgroundColor: 'transparent',
+				fill: true,
+				borderWidth: 1,
+				data: [1, 2]
+			}]
+		},
+
+	});
+
+	var multipleLineChart6 = document.getElementById('multipleLineChart11').getContext('2d')
+	var myMultipleLineChart6 = new Chart(multipleLineChart6, {
+		type: 'line',
+		data: {
+			labels: [1, 2],
+			datasets: [{
+				label: "PREDICCIÓN",
+				borderColor: "#59d05d",
+				pointBorderColor: "#FFF",
+				pointBackgroundColor: "#59d05d",
+				pointBorderWidth: 1,
+				pointHoverRadius: 1,
+				pointHoverBorderWidth: 1,
+				pointRadius: 4,
+				backgroundColor: 'transparent',
+				fill: true,
+				borderWidth: 2,
+				data: [1, 2]
+			}]
+		},
+
+	});
+
+
+
+
+	var multipleLineChart7 = document.getElementById('multipleLineChart4').getContext('2d')
+	var myMultipleLineChart7 = new Chart(multipleLineChart7, {
+		type: 'line',
+		data: {
+			labels: [1, 2],
+			datasets: [{
+				label: "DIRECCION VIENTO REAL",
+				borderColor: "#1d7af3",
+				pointBorderColor: "#FFF",
+				pointBackgroundColor: "#1d7af3",
+				pointBorderWidth: 1,
+				pointHoverRadius: 2,
+				pointHoverBorderWidth: 0.5,
+				pointRadius: 0.5,
+				backgroundColor: 'transparent',
+				fill: true,
+				borderWidth: 1,
+				data: [1, 2]
+			}]
+		},
+
+	});
+
+	var multipleLineChart8 = document.getElementById('multipleLineChart12').getContext('2d')
+	var myMultipleLineChart8 = new Chart(multipleLineChart8, {
+		type: 'line',
+		data: {
+			labels: [1, 2],
+			datasets: [{
+
+				label: "PREDICCIÓN",
+				borderColor: "#59d05d",
+				pointBorderColor: "#FFF",
+				pointBackgroundColor: "#59d05d",
+				pointBorderWidth: 1,
+				pointHoverRadius: 1,
+				pointHoverBorderWidth: 1,
+				pointRadius: 4,
+				backgroundColor: 'transparent',
+				fill: true,
+				borderWidth: 2,
+				data: [1, 2]
+			}]
+		},
+
+	});
 
 	var miBoton = document.getElementById("miBoton");
 
@@ -1200,19 +1526,6 @@
 	}
 	update()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 	function update() {
 
 		var data1 = document.getElementById("select1").value;
@@ -1310,18 +1623,7 @@
 		});
 	});
 
-
-
-
-
-
-
 	update()
-
-
-
-
-
 </script>
 
 {% endblock javascripts %}

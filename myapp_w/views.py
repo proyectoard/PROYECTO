@@ -7,7 +7,7 @@ import requests
 limite_inferior = 30
 limite_superior = 40
 
-limite_inferiorHUM = 75
+limite_inferiorHUM = 79
 limite_superiorHUM = 100
 
 cont = 0

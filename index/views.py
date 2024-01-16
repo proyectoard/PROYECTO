@@ -356,6 +356,12 @@ class grafica(View):
            
             combined_list = list(zip(predictions_list, fechas_con_un_dia_mas))
 
+            combined_list2 = list(zip(predictions_list_hume, fechas_con_un_dia_mas))
+            
+            combined_list3 = list(zip(predictions_list_VELVIENTO, fechas_con_un_dia_mas))
+            
+            combined_list4 = list(zip(predictions_list_DIRVIENTO, fechas_con_un_dia_mas))
+
             print(combined_list)
             context = {
                 'MODELO_NOMBRE':MODELO_NOMBRE,
@@ -378,6 +384,7 @@ class grafica(View):
                 'ERROR2':round(100-mse2),
                 'ERROR22':round(r2,2),
                 'ERROR23':round(mape2,2),
+                'predictions_sorted_hume': combined_list2,
 
 
                 'VELVIENTO_REAL': y_test_list_VELVIENTO,
@@ -386,6 +393,7 @@ class grafica(View):
                 'ERROR3':round(max(0, 100 - mse3)) if mse3 != float('inf') else 0,
                 'ERROR32':max(0, round(r3, 2)) if r3 != float('inf') else 0,
                 'ERROR33':max(0, round(mape3, 2)) if mape3 != float('inf') else 0,
+                'predictions_sorted_velviento': combined_list3,
 
                 'DIRVIENTO_REAL': y_test_list_DIRVIENTO,
                 'PREDI_DIRVIENTO':predictions_list_DIRVIENTO,
@@ -393,6 +401,7 @@ class grafica(View):
                 'ERROR4':round(max(0, 100 - mse4)) if mse4 != float('inf') else 0,
                 'ERROR42':max(0, round(r4, 2))if r3 != float('inf') else 0,
                 'ERROR43':max(0, round(mape4, 2)) if mape4 != float('inf') else 0,
+                'predictions_sorted_dirviento': combined_list4,
 
             }
             
