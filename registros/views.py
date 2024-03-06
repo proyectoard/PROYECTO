@@ -25,6 +25,8 @@ import json
 from sklearn.metrics import r2_score
 import os
 
+
+
 class Reg(View):
 	template_name = "tables-simple.html"
 
@@ -32,13 +34,13 @@ class Reg(View):
 		
 		if request.method == "GET":
 			 
-			conn = mysql.connector.connect(   host="srv1138.hstgr.io",
-				user="u153713658_sensores",
-				password="?4K92JUGsHd",
-				database="u153713658_base_proyecto")
+			conn = mysql.connector.connect(    host="srv1138.hstgr.io",
+            user="u153713658_esp",
+            password="1234.Proyecto",
+            database="u153713658_sensores")
 
 			# Consultar los datos
-			query = "SELECT ID, TEMPERATURA, HUMEDAD, VELOCIDAD_VIENTO, DIRECCION_VIENTO, CANTIDAD_LLUVIA, FECHA, HORA FROM SENSORES ORDER BY ID DESC"
+			query = "SELECT * FROM esp ORDER by id DESC"
 			
 			cur = conn.cursor()
 			cur.execute(query)           

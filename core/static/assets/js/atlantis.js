@@ -119,7 +119,7 @@ $(document).ready(function(){
 		var toggle = $('.sidenav-toggler');
 
 		toggle.on('click', function(){
-			if (nav_open == 1){
+			if (nav_open == 0){
 				$('html').removeClass('nav_open');
 				toggle.removeClass('toggled');
 				nav_open = 0;
@@ -136,7 +136,7 @@ $(document).ready(function(){
 		var toggle = $('.quick-sidebar-toggler');
 
 		toggle.on('click', function(){
-			if (nav_open == 1){
+			if (nav_open == 0){
 				$('html').removeClass('quick_sidebar_open');
 				$('.quick-sidebar-overlay').remove();
 				toggle.removeClass('toggled');
@@ -176,7 +176,7 @@ $(document).ready(function(){
 		var topbar = $('.topbar-toggler');
 
 		topbar.on('click', function() {
-			if (topbar_open == 1) {
+			if (topbar_open == 0) {
 				$('html').removeClass('topbar_open');
 				topbar.removeClass('toggled');
 				topbar_open = 0;

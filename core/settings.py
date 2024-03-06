@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'datos2',
     'datos3',
     'datos4',
-    'myapp_w',
+    'api',
     'alertas',
     'index',   
 ]

@@ -8,13 +8,13 @@
 {% block content %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" />
 
-<div class="content ">
-	<div class="panel-header ">
+<div class="content " data-background-color="dark" style="background-color: #616161;">
+	<div class="panel-header "data-background-color="dark">
 		<div class="page-inner py-5">
 			<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 				<div>
-					<h2 class="text-black pb-2 fw-bold">Dashboard</h2>
-					<h5 class="text-black op-7 mb-2">ESTACIÓN METEOROLÓGICA ARDUINO</h5>
+					<h2 class="text-black pb-2 fw-bold" style="color: #fcf9f9;" >Dashboard</h2>
+					<h5 class="text-black op-7 mb-2" style="color: #fcf9f9;">REPOTENCIACIÓN DE UN MÓDULO INTERACTIVO A TRAVÉS DE ARDUINO CON COMUNICACIÓN DE RADIOENLACE A IOT Y NODE RED PARA INTEGRACIÓN A DJANGO EN LA VISUALIZACIÓN Y ALMACENAMIENTO DE DATOS SQL.</h5>
 				</div>
 
 			</div>
@@ -22,77 +22,44 @@
 	</div>
 
 	<div class="page-inner mt--5">
-		<div class="card full-height">
-			<div class="card-body">
-				<button id="estado1" class="btn btn-primary">MODELO 1 LINEAL </button>
-				<button id="estado2" class="btn btn-primary">MODELO 2 SVR </button>
-				<button id="estado3" class="btn btn-primary">MODELO 3 RAMDOM</button>
-				NOMBRE DE MODELO SELECCIONADO: {{MODELO_NOMBRE}}
-			</div>
-		</div>
+
 
 		<div class="row mt--2">
 
-			<div class="col-md-6">
+			<div class="col-md-6" >
 				<div class="card full-height">
-					<div class="card-body">
-						<div class="d-flex flex-wrap align-items-center pb-2 pt-4">
+					<div class="card-body" style="background-color: #b9b8b8;" >
+						<div class="d-flex flex-wrap align-items-center pb-2 pt-4" >
 							<div style="width: 50%; text-align: center;">
 								<div id="gauge"></div>
 								<div class="card-title">TEMPERATURA</div>
-								<div class="card-category">Dashboard en tiempo real</div>
+								<div class="card-category"></div>
 							</div>
 							<div style="width: 50%; text-align: center;">
-								<img src="/static/assets/img/temp2.png" alt="..." class="avatar-img rounded-circle"
-									style="display: block; width: 20%; margin-top: 10px; margin-left: auto; margin-right: auto;">
+								<img src="/static/assets/img/DHT.jpg" alt="..." 
+									style="display: block; width: 40%; margin-top: 10px; margin-left: auto; margin-right: auto;">
 							</div>
 						</div>
-						<div class="col-md-6">
-							<div class="card card-primary">
-								<div class="card-body skew-shadow">
-									<h1>{{PREDICCION}} °C </h1>
-									<h5 class="op-8">TEMPERATURA PARA MAÑANA A LAS: {{temp_predi}}</h5>
-									<div class="pull-right">
-										<h5 class="fw-bold op-8">PORCENTAJE DE RENDIMIENTO: {{ERROR}}%</h5>
-										<h5 class="fw-bold op-8">COEFICIENTE DE DETERMINACION: {{ERROR12}}</h5>
-										<h5 class="fw-bold op-8">ERROR PORCENTUAL ABSOLUTO MEDIO (MAPE): {{ERROR13}}%
-										</h5>
-									</div>
-								</div>
-							</div>
-						</div>
+
 					</div>
 				</div>
 			</div>
 
 			<div class="col-md-6">
 				<div class="card full-height">
-					<div class="card-body">
+					<div class="card-body" style="background-color: #b9b8b8;">
 						<div class="d-flex flex-wrap align-items-center pb-2 pt-4">
 							<div style="width: 50%; text-align: center;">
 								<div id="gauge2"></div>
 								<div class="card-title">HUMEDAD</div>
-								<div class="card-category">Dashboard en tiempo real</div>
+
 							</div>
 							<div style="width: 50%; text-align: center;">
-								<img src="/static/assets/img/temp.png" alt="Humedad" class="avatar-img rounded-circle"
-									style="display: block; width: 20%; margin-top: 10px; margin-left: auto; margin-right: auto;">
+								<img src="/static/assets/img/DHT.jpg" alt="Humedad"
+									style="display: block; width: 40%; margin-top: 10px; margin-left: auto; margin-right: auto;">
 							</div>
 						</div>
-						<div class="col-md-6">
-							<div class="card card-primary">
-								<div class="card-body skew-shadow">
-									<h1>{{PREDICCION_DIA_HUMEDAD}} % </h1>
-									<h5 class="op-8">HUMEDAD PARA MAÑANA A LAS: {{temp_predi}}</h5>
-									<div class="pull-right">
-										<h3 class="fw-bold op-8">PORCENTAJE DE RENDIMIENTO: {{ERROR2}}%</h5>
-											<h5 class="fw-bold op-8">COEFICIENTE DE DETERMINACION: {{ERROR22}}</h5>
-											<h5 class="fw-bold op-8">ERROR PORCENTUAL ABSOLUTO MEDIO (MAPE):
-												{{ERROR23}}%</h5>
-									</div>
-								</div>
-							</div>
-						</div>
+
 					</div>
 				</div>
 			</div>
@@ -103,60 +70,39 @@
 
 			<div class="col-md-6">
 				<div class="card full-height">
-					<div class="card-body">
+					<div class="card-body" style="background-color: #b9b8b8;">
 						<div class="d-flex flex-wrap align-items-center pb-2 pt-4">
 							<div style="width: 50%; text-align: center;">
 								<div id="gauge3"></div>
-								<div class="card-title">VELOCIDAD DEL VIENTO</div>
-								<div class="card-category">Dashboard en tiempo real</div>
+								<div class="card-title">CALIDAD DEL AIRE</div>
+
 							</div>
 							<div style="width: 50%; text-align: center;">
-								<img src="/static/assets/img/vel.png" alt="Velocidad del Viento"
-									class="avatar-img rounded-circle"
-									style="display: block; width: 20%; margin-top: 10px; margin-left: auto; margin-right: auto;">
+								<img src="/static/assets/img/Mq-135.jpg" alt="Velocidad del Viento"
+									
+									style="display: block; width: 40%; margin-top: 10px; margin-left: auto; margin-right: auto;">
 							</div>
 						</div>
-						<div class="col-md-6">
-							<div class="card card-primary">
-								<div class="card-body skew-shadow">
-									<h1>{{PREDICCION_DIA_VELVIENTO}} KM/H </h1>
-									<h5 class="op-8">VELOCIDAD DE VIENTO MAÑANA A LAS: {{temp_predi}}</h5>
-									<div class="pull-right">
-										<h5 class="fw-bold op-8">PORCENTAJE DE RENDIMIENTO: {{ERROR3}}%</h5>
-										<h5 class="fw-bold op-8">COEFICIENTE DE DETERMINACION: {{ERROR32}}</h5>
-										<h5 class="fw-bold op-8">ERROR PORCENTUAL ABSOLUTO MEDIO (MAPE): {{ERROR33}}%
-										</h5>
-									</div>
-								</div>
-							</div>
-						</div>
+
 					</div>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="card full-height">
-					<div class="card-body">
+					<div class="card-body" style="background-color: #b9b8b8;">
 						<div class="d-flex flex-wrap align-items-center pb-2 pt-4">
 							<div style="width: 50%; text-align: center;">
 								<div id="gauge4"></div>
-								<div class="card-title">CANTIDAD DE LLUVIA</div>
-								<div class="card-category">Dashboard en tiempo real</div>
+								<div class="card-title">DISTANCIA</div>
+
 							</div>
 							<div style="width: 50%; text-align: center;">
 								<!-- Puedes cambiar la ruta y el alt según tus necesidades -->
-								<img src="/static/assets/img/cant.png" alt="Cantidad de Lluvia"
-									style="display: block; width: 20%; margin-top: 10px; margin-left: auto; margin-right: auto;">
+								<img src="/static/assets/img/ard-hcsr04.jpg" alt="Cantidad de Lluvia"
+									style="display: block; width: 40%; margin-top: 10px; margin-left: auto; margin-right: auto;">
 							</div>
 						</div>
-						<div class="col-md-6">
-							<div class="card card-primary">
-								<div class="card-body skew-shadow">
-									<h2>SENSOR DE CANTIDAD DE LLUVIA </h2>
-									<button class="btn btn-info" id="miBoton" onmousedown="enviarNumero(1)"
-										onmouseup="enviarNumero(22)">REINICIAR CONTADOR DE LLUVIA</button>
-								</div>
-							</div>
-						</div>
+
 					</div>
 				</div>
 			</div>
@@ -168,273 +114,60 @@
 		<div class="col-md-6">
 
 			<div class="card full-height">
-				<div class="card-body">
+				<div class="card-body" style="background-color: #b9b8b8;">
 					<div class="d-flex flex-wrap align-items-center pb-2 pt-4">
 						<div style="width: 50%; text-align: center;">
 							<div id="g1"></div>
-							<div class="card-title">DIRECCION DEL VIENTO</div>
-							<div class="card-category">Dashboard en tiempo real</div>
+							<div class="card-title">CANTIDAD DE LUZ</div>
+							
 						</div>
 						<div style="width: 50%; text-align: center;">
-							<img src="/static/assets/img/dir.png" alt="Dirección del Viento"
-								style="display: block; width: 20%; margin-top: 10px; margin-left: auto; margin-right: auto;">
+							<img src="/static/assets/img/LDR.jpg" alt="Dirección del Viento"
+								style="display: block; width: 40%; margin-top: 10px; margin-left: auto; margin-right: auto;">
 						</div>
 					</div>
-					<div class="col-md-6">
-						<div class="card card-primary">
-							<div class="card-body skew-shadow">
-								<h1>{{PREDICCION_DIA_DIRVIENTO}}°</h1>
-								<h5 class="op-8">DIRECCION DEL VIENTO PARA MAÑANA A LAS: {{temp_predi}}</h5>
-								<div class="pull-right">
-									<h5 class="fw-bold op-8">PORCENTAJE DE RENDIMIENTO: {{ERROR4}}%</h5>
-									<h5 class="fw-bold op-8">COEFICIENTE DE DETERMINACION: {{ERROR42}}</h5>
-									<h5 class="fw-bold op-8">ERROR PORCENTUAL ABSOLUTO MEDIO (MAPE): {{ERROR43}}%</h5>
-								</div>
-							</div>
-						</div>
-					</div>
+
 				</div>
 			</div>
 
 		</div>
-		<div class="card">
-			<div class="card-body">
-
-				<div class="form-group">
-					<div class="card-title">ELEGIR RANGO A MOSTRAR EN GRAFICA:</div>
-				</div>
-
-				<div class="form-group">
-					<div id="slider-range"></div>
-				</div>
-				<div class="form-group">
-					<h4 class="op-1" id="rangeValue"></h4>
-
-				</div>
-				<div class="form-group">
-					<button id="btnUsarRango" class="btn btn-primary">Usar Rango</button>
-				</div>
-				<!-- Campo de fecha de inicio -->
-
-				<div class="form-group" id="hola1">
-					<label for="id_fecha_inicio">Fecha de inicio:</label>
-					<input type="date" name="fecha_inicio" id="id_fecha_inicio" class="form-control" required>
-				</div>
-
-				<!-- Campo de fecha de fin -->
-				<div class="form-group" id="hola2">
-					<label for="id_fecha_fin">Fecha de fin:</label>
-					<input type="date" name="fecha_fin" id="id_fecha_fin" class="form-control" required>
-				</div>
-
-				<button type="submit" id="send" class="btn btn-primary">Filtrar</button>
-
-			</div>
-		</div>
-		<div class="row">
-			<!-- Primera mitad del contenedor -->
-			<div class="col-md-6">
-				<div class="card">
-					<div class="card-body">
-						<div class="card-title">TEMPERATURA REAL</div>
-						<div class="chart-container">
-							<canvas id="multipleLineChart"></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-6">
-				<div class="card">
-					<div class="card-body">
-						<div class="card-title">PREDICCIONES DE TEMPERATURA</div>
-						<div class="chart-container">
-							<canvas id="multipleLineChart5"></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-md-10">
-			<div class="card full-height">
+		
+		<div class="col-md-12">
+			<div class="card">
 				<div class="card-body">
-
-					<div class="table-responsive">
-						<table id="add-row5" class="display table table-striped table-hover">
-
-							<thead>
-								<tr>
-									<th>Predicción de Temperatura</th>
-									<th>Fecha y Hora</th>
-
-								</tr>
-							</thead>
-
-							<tfoot>
-								<tr>
-									<th>Predicción de Temperatura</th>
-									<th>Fecha y Hora</th>
-
-								</tr>
-							</tfoot>
-
-							<tbody>
-								{% for dato in predictions_sorted %}
-								<tr>
-									<td>{{dato.0}}</td>
-									<td>{{dato.1}}</td>
-
-								</tr>
-								{% endfor %}
-							</tbody>
-						</table>
-					</div>
-
-
-				</div>
-			</div>
-		</div>
-
-
-		<div class="row">
-			<!-- Primera mitad del contenedor -->
-			<div class="col-md-6">
-				<div class="card">
-					<div class="card-body">
-						<div class="card-title">GRAFICAS DE HUMEDAD</div>
-						<div class="chart-container">
-							<canvas id="multipleLineChart2"></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-6">
-				<div class="card">
-					<div class="card-body">
-						<div class="card-title">PREDICCIONES DE HUMEDAD</div>
-						<div class="chart-container">
-							<canvas id="multipleLineChart10"></canvas>
-						</div>
+					<div class="card-title"> GRAFICA TEMPERATURA</div>
+					<div class="chart-container">
+						<canvas id="multipleLineChart"></canvas>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="col-md-10">
-			<div class="card full-height">
+		<div class="col-md-12">
+			<div class="card">
 				<div class="card-body">
-
-					<div class="table-responsive">
-						<table id="add-row6" class="display table table-striped table-hover">
-
-							<thead>
-								<tr>
-									<th>Predicción de Humedad</th>
-									<th>Fecha y Hora</th>
-
-								</tr>
-							</thead>
-
-							<tfoot>
-								<tr>
-									<th>Predicción de Humedad</th>
-									<th>Fecha y Hora</th>
-
-								</tr>
-							</tfoot>
-
-							<tbody>
-								{% for dato in predictions_sorted_hume %}
-								<tr>
-									<td>{{dato.0}}</td>
-									<td>{{dato.1}}</td>
-
-								</tr>
-								{% endfor %}
-							</tbody>
-						</table>
-					</div>
-
-
-				</div>
-			</div>
-		</div>
-
-
-		<div class="row">
-			<!-- Primera mitad del contenedor -->
-			<div class="col-md-6">
-				<div class="card">
-					<div class="card-body">
-						<div class="card-title">GRAFICAS DE VELOCIDAD DE VIENTO</div>
-						<div class="chart-container">
-							<canvas id="multipleLineChart3"></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-6">
-				<div class="card">
-					<div class="card-body">
-						<div class="card-title">GRAFICAS DE VELOCIDAD DE VIENTO PREDICCION</div>
-						<div class="chart-container">
-							<canvas id="multipleLineChart11"></canvas>
-						</div>
+					<div class="card-title">GRAFICAS DE HUMEDAD</div>
+					<div class="chart-container">
+						<canvas id="multipleLineChart2"></canvas>
 					</div>
 				</div>
 			</div>
 		</div>
-
-
-		<div class="col-md-10">
-			<div class="card full-height">
+		<div class="col-md-12">
+			<div class="card">
 				<div class="card-body">
-
-					<div class="table-responsive">
-						<table id="add-row7" class="display table table-striped table-hover">
-
-							<thead>
-								<tr>
-									<th>Predicción de Velocidad de viento</th>
-									<th>Fecha y Hora</th>
-
-								</tr>
-							</thead>
-
-							<tfoot>
-								<tr>
-									<th>Predicción de Velocidad de viento</th>
-									<th>Fecha y Hora</th>
-
-								</tr>
-							</tfoot>
-
-							<tbody>
-								{% for dato in predictions_sorted_velviento %}
-								<tr>
-									<td>{{dato.0}}</td>
-									<td>{{dato.1}}</td>
-
-								</tr>
-								{% endfor %}
-							</tbody>
-						</table>
+					<div class="card-title">GRAFICA CALIDAD DEL AIRE</div>
+					<div class="chart-container">
+						<canvas id="multipleLineChart3"></canvas>
 					</div>
-
-
 				</div>
 			</div>
 		</div>
 
-		<div class="row">
-			<!-- Primera mitad del contenedor -->
-			<div class="col-md-6">
+		<div class="col-md-12">
 				<div class="card">
 					<div class="card-body">
-						<div class="card-title">GRAFICAS DE DIRECCION DEL VIENTO</div>
+						<div class="card-title">GRAFICAS DE DIRECCION DISTANCIA</div>
 						<div class="chart-container">
 							<canvas id="multipleLineChart4"></canvas>
 						</div>
@@ -442,60 +175,22 @@
 				</div>
 			</div>
 
-			<div class="col-md-6">
+			<div class="col-md-12">
 				<div class="card">
 					<div class="card-body">
-						<div class="card-title">GRAFICAS DE DIRECCION DEL VIENTO PREDICCION</div>
+						<div class="card-title">PREDICCIONES DE CANTIDAD DE LUZ</div>
 						<div class="chart-container">
-							<canvas id="multipleLineChart12"></canvas>
+							<canvas id="multipleLineChart5"></canvas>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+
+		
 
 
 
-		<div class="col-md-10">
-			<div class="card full-height">
-				<div class="card-body">
-
-					<div class="table-responsive">
-						<table id="add-row8" class="display table table-striped table-hover">
-
-							<thead>
-								<tr>
-									<th>Predicción de Dirección de viento</th>
-									<th>Fecha y Hora</th>
-
-								</tr>
-							</thead>
-
-							<tfoot>
-								<tr>
-									<th>Predicción de Dirección de viento</th>
-									<th>Fecha y Hora</th>
-
-								</tr>
-							</tfoot>
-
-							<tbody>
-								{% for dato in predictions_sorted_dirviento %}
-								<tr>
-									<td>{{dato.0}}</td>
-									<td>{{dato.1}}</td>
-
-								</tr>
-								{% endfor %}
-							</tbody>
-						</table>
-					</div>
-
-
-				</div>
-			</div>
-		</div>
-
+		
 
 
 
@@ -506,6 +201,7 @@
 
 
 <style>
+	
 	#send {
 		display: none;
 	}
@@ -683,162 +379,29 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+<script src="dist/gauge.js"></script>
 <script>
-	$(document).ready(function () {
-		$('#add-row5').DataTable({
-			"searching": true,
-			"pageLength": 10,
-			"order": [1, "desc"],
-
-			"initComplete": function (settings, json) {
-				// Mueve el cuadro de búsqueda al centro
-				$("#add-row5_filter").css({ "width": "50%", "margin": "0 auto" });
-			}
-		});
-	});
-
-	$(document).ready(function () {
-		$('#add-row6').DataTable({
-			"searching": true,
-			"pageLength": 10,
-			"order": [1, "desc"],
-
-			"initComplete": function (settings, json) {
-				// Mueve el cuadro de búsqueda al centro
-				$("#add-row6_filter").css({ "width": "50%", "margin": "0 auto" });
-			}
-		});
-	});
-
-	$(document).ready(function () {
-		$('#add-row7').DataTable({
-			"searching": true,
-			"pageLength": 10,
-			"order": [1, "desc"],
-
-			"initComplete": function (settings, json) {
-				// Mueve el cuadro de búsqueda al centro
-				$("#add-row7_filter").css({ "width": "50%", "margin": "0 auto" });
-			}
-		});
-	});
-
-	$(document).ready(function () {
-		$('#add-row8').DataTable({
-			"searching": true,
-			"pageLength": 10,
-			"order": [1, "desc"],
-
-			"initComplete": function (settings, json) {
-				// Mueve el cuadro de búsqueda al centro
-				$("#add-row8_filter").css({ "width": "50%", "margin": "0 auto" });
-			}
-		});
-	});
+	
 
 
-	$(document).ready(function () {
-		// Manejar clic en botón Estado 1
-		$("#estado1").click(function () {
-
-			guardarEstado('Estado1');
-			location.reload();
-		});
-
-		// Manejar clic en botón Estado 2
-		$("#estado2").click(function () {
-			guardarEstado('Estado2');
-			location.reload();
-		});
-
-		// Manejar clic en botón Estado 3
-		$("#estado3").click(function () {
-			guardarEstado('Estado3');
-			location.reload();
-		});
-
-		// Manejar clic en botón Estado 3
-		$("#send").click(function () {
-			guardarEstado(document.getElementById('id_fecha_inicio').value + "," + document.getElementById('id_fecha_fin').value);
-			location.reload();
-		});
-	});
-
-	function guardarEstado(estado) {
-
-		var datos = {
-			'estado': estado,
-
-		};
-		// Enviar una solicitud al servidor para guardar el estado
-		$.ajax({
-			url: `/hola/?estado=${estado}`,
-			type: 'GET',
-			dataType: 'json',  // Espera una respuesta JSON
-			success: function (data) {
-				console.log(data);
-			},
-			error: function (error) {
-				console.error(error);
-			}
-		});
-	}
-
-
-	function guardarEstado2(estado2) {
-
-		var datos2 = {
-			'estado2': estado2,
-		};
-		// Enviar una solicitud al servidor para guardar el estado
-		$.ajax({
-			url: `/hola/?estado2=${estado2}`,
-			type: 'GET',
-			dataType: 'json',  // Espera una respuesta JSON
-			success: function (data) {
-				console.log(data);
-			},
-			error: function (error) {
-				console.error(error);
-			}
-		});
-	}
-
-	$("#btnUsarRango").on("click", usarRango);
-
-	function usarRango() {
+	
 		var laa = "{{ y_test_json }}"
-		var laa2 = "{{ fechas }}"
-		var laa3 = "{{ predictions_json}}"
 		var Temperatura = JSON.parse(laa);
-		var predic_temp = JSON.parse(laa3);
-
-		var laa4 = "{{ PREDI_HUMEDAD }}"
+	
 		var laa5 = "{{ HUMEDAD_REAL }}"
-
-		var HUMEDAD_PREDI = JSON.parse(laa4);
 		var HUMEDAD = JSON.parse(laa5);
-
-		var laa6 = "{{ PREDI_VELVIENTO }}"
+		
 		var laa7 = "{{ VELVIENTO_REAL }}"
-
-		var VELVIENTO_PREDI = JSON.parse(laa6);
 		var VELVIENTO = JSON.parse(laa7);
 
+		var laa4 = "{{ DIRVIENTO_REAL }}"
+		var DIRVIENTO = JSON.parse(laa4);
 
-		var laa2 = "{{ fechas }}";
-
-		var fecha_real = "{{ fechas_REAL }}";
-
-		var fechasJSON = laa2.replace(/&#x27;/g, '"');
+		var laa2 = "{{ fechas_REAL }}"
+		var fechasJSON = laa2.replace(/&quot;/g, '"');
+		alert(fechasJSON);
 		var fechasArray;
 
-		var laa = "{{ PREDI_DIRVIENTO }}"
-		var laa2 = "{{ DIRVIENTO_REAL }}"
-
-		var DIRVIENTO_PREDI = JSON.parse(laa);
-		var DIRVIENTO = JSON.parse(laa2);
 
 		try {
 			fechasArray = JSON.parse(fechasJSON);
@@ -847,229 +410,10 @@
 
 		}
 
-		var fechasJSON_real = fecha_real.replace(/&quot;/g, '"');
-		var fechasArray_real;
+	
 
-		try {
-			fechasArray_real = JSON.parse(fechasJSON_real);
-		} catch (error) {
-			alert("Error al analizar las fechas:", error);
+		
 
-		}
-
-		var tamanoArray = fechasArray_real.length;
-
-
-		$(function () {
-
-			var sliderRange = $("#slider-range");
-			var rangeValue = $("#rangeValue");
-
-			sliderRange.slider({
-				range: true,
-				min: 0,
-				max: tamanoArray,
-
-				values: [0, 500],
-				slide: function (event, ui) {
-					minRangeValue = ui.values[0];
-					maxRangeValue = ui.values[1];
-					rangeValue.text(ui.values[0] + " - " + ui.values[1]);
-				}
-			});
-
-			minRangeValue = sliderRange.slider("values", 0);
-			maxRangeValue = sliderRange.slider("values", 1);
-			rangeValue.text(sliderRange.slider("values", 0) + " - " + sliderRange.slider("values", 1));
-			sliderRange.slider.values("values", [minRangeValue, maxRangeValue]);
-			sliderRange.update();
-		});
-
-		//alert("Rango seleccionado: " + minRangeValue + " - " + maxRangeValue);
-
-		fechasArray_real = fechasArray_real.slice(minRangeValue, maxRangeValue);
-		fechasArray = fechasArray.slice(minRangeValue, maxRangeValue);
-
-		Temperatura = Temperatura.slice(minRangeValue, maxRangeValue);
-		predic_temp = predic_temp.slice(minRangeValue, maxRangeValue);
-		HUMEDAD = HUMEDAD.slice(minRangeValue, maxRangeValue);
-		HUMEDAD_PREDI = HUMEDAD_PREDI.slice(minRangeValue, maxRangeValue);
-
-		VELVIENTO = VELVIENTO.slice(minRangeValue, maxRangeValue);
-		VELVIENTO_PREDI = VELVIENTO_PREDI.slice(minRangeValue, maxRangeValue);
-
-		DIRVIENTO = DIRVIENTO.slice(minRangeValue, maxRangeValue);
-		DIRVIENTO_PREDI = VELVIENTO_PREDI.slice(minRangeValue, maxRangeValue);
-		// CHART 1
-		myMultipleLineChart.data = {
-			labels: fechasArray_real,
-			datasets: [{
-				label: "TEMPERATURA REAL",
-				borderColor: "#1d7af3",
-				pointBorderColor: "#FFF",
-				pointBackgroundColor: "#1d7af3",
-				pointBorderWidth: 1,
-				pointHoverRadius: 2,
-				pointHoverBorderWidth: 1,
-				pointRadius: 2,
-				backgroundColor: 'transparent',
-				fill: true,
-				borderWidth: 1.5,
-				data: Temperatura
-			}]
-		}
-		myMultipleLineChart.update();
-
-
-		//CHART 2 TEMP
-
-		myMultipleLineChart2.data = {
-			labels: fechasArray,
-			datasets: [{
-				label: "TEMPERATURA PREDICCIÓN",
-				borderColor: "#59d05d",
-				pointBorderColor: "#FFF",
-				pointBackgroundColor: "#59d05d",
-				pointBorderWidth: 1,
-				pointHoverRadius: 1,
-				pointHoverBorderWidth: 1,
-				pointRadius: 4,
-				backgroundColor: 'transparent',
-				fill: true,
-				borderWidth: 2,
-				data: predic_temp
-			}]
-		}
-		myMultipleLineChart2.update();
-
-		// CHART 3 HUM 
-
-		myMultipleLineChart3.data = {
-			labels: fechasArray_real,
-			datasets: [{
-				label: "HUMEDAD REAL",
-				borderColor: "#1d7af3",
-				pointBorderColor: "#FFF",
-				pointBackgroundColor: "#1d7af3",
-				pointBorderWidth: 1,
-				pointHoverRadius: 2,
-				pointHoverBorderWidth: 1,
-				pointRadius: 2,
-				backgroundColor: 'transparent',
-				fill: true,
-				borderWidth: 1.5,
-				data: HUMEDAD
-			}]
-		}
-		myMultipleLineChart3.update();
-
-
-		// CHART 4 HUM PREDI
-
-		myMultipleLineChart4.data = {
-			labels: fechasArray,
-			datasets: [{
-				label: "HUMEDAD PREDICCIÓN",
-				borderColor: "#59d05d",
-				pointBorderColor: "#FFF",
-				pointBackgroundColor: "#59d05d",
-				pointBorderWidth: 1,
-				pointHoverRadius: 1,
-				pointHoverBorderWidth: 1,
-				pointRadius: 4,
-				backgroundColor: 'transparent',
-				fill: true,
-				borderWidth: 2,
-				data: HUMEDAD_PREDI
-			}]
-		}
-		myMultipleLineChart4.update();
-
-
-		//CHART 5 VELVIENTO
-
-		myMultipleLineChart5.data = {
-			labels: fechasArray_real,
-			datasets: [{
-				label: "VELOCIDAD DEL VIENTO REAL",
-				borderColor: "#1d7af3",
-				pointBorderColor: "#FFF",
-				pointBackgroundColor: "#1d7af3",
-				pointBorderWidth: 1,
-				pointHoverRadius: 2,
-				pointHoverBorderWidth: 1,
-				pointRadius: 2,
-				backgroundColor: 'transparent',
-				fill: true,
-				borderWidth: 1.5,
-				data: VELVIENTO
-			}]
-		}
-		myMultipleLineChart5.update();
-
-		// CHART 6 VELVIENTO PREDI
-
-		myMultipleLineChart6.data = {
-			labels: fechasArray,
-			datasets: [{
-				label: "VELOCIDAD DEL VIENTO PREDICCIÓN",
-				borderColor: "#59d05d",
-				pointBorderColor: "#FFF",
-				pointBackgroundColor: "#59d05d",
-				pointBorderWidth: 1,
-				pointHoverRadius: 1,
-				pointHoverBorderWidth: 1,
-				pointRadius: 4,
-				backgroundColor: 'transparent',
-				fill: true,
-				borderWidth: 2,
-				data: VELVIENTO_PREDI
-			}]
-		}
-		myMultipleLineChart6.update();
-
-		// CHART 7 DIR VIENTO PREDI
-		myMultipleLineChart7.data = {
-			labels: fechasArray_real,
-			datasets: [{
-				label: "DIRECCION DEL VIENTO REAL",
-				borderColor: "#1d7af3",
-				pointBorderColor: "#FFF",
-				pointBackgroundColor: "#1d7af3",
-				pointBorderWidth: 1,
-				pointHoverRadius: 2,
-				pointHoverBorderWidth: 1,
-				pointRadius: 2,
-				backgroundColor: 'transparent',
-				fill: true,
-				borderWidth: 1.5,
-				data: DIRVIENTO
-			}]
-		}
-
-		myMultipleLineChart7.update();
-
-		// CHART 8 DIR VIENTO PREDI
-
-		myMultipleLineChart8.data = {
-			labels: fechasArray,
-			datasets: [{
-				label: "DIRECCION DEL VIENTO PREDICCIÓN",
-				borderColor: "#59d05d",
-				pointBorderColor: "#FFF",
-				pointBackgroundColor: "#59d05d",
-				pointBorderWidth: 1,
-				pointHoverRadius: 1,
-				pointHoverBorderWidth: 1,
-				pointRadius: 4,
-				backgroundColor: 'transparent',
-				fill: true,
-				borderWidth: 2,
-				data: DIRVIENTO_PREDI
-			}]
-		}
-		myMultipleLineChart8.update();
-	}
 
 	///////////////////////////////////////////
 
@@ -1077,33 +421,33 @@
 	myMultipleLineChart = new Chart(multipleLineChart, {
 		type: 'line',
 		data: {
-			labels: [1, 2],
+			labels: fechasArray ,
 			datasets: [{
-				label: "TEMPERATURA REAL",
+				label: "TEMPERATURA (CELCIUS)",
 				borderColor: "#1d7af3",
 				pointBorderColor: "#FFF",
 				pointBackgroundColor: "#1d7af3",
 				pointBorderWidth: 1,
-				pointHoverRadius: 2,
-				pointHoverBorderWidth: 0.5,
-				pointRadius: 1,
+				pointHoverRadius: 1,
+				pointHoverBorderWidth: 1,
+				pointRadius: 4,
 				backgroundColor: 'transparent',
 				fill: true,
 				borderWidth: 1,
-				data: [1, 2],
+				data: Temperatura,
 			}]
 		},
 
 	});
 
 
-	var multipleLineChart2 = document.getElementById('multipleLineChart5').getContext('2d')
+	var multipleLineChart2 = document.getElementById('multipleLineChart2').getContext('2d')
 	var myMultipleLineChart2 = new Chart(multipleLineChart2, {
 		type: 'line',
 		data: {
-			labels: [1, 2],
+			labels: fechasArray,
 			datasets: [{
-				label: "PREDICCIÓN",
+				label: "HUMEDAD (%)",
 				borderColor: "#59d05d",
 				pointBorderColor: "#FFF",
 				pointBackgroundColor: "#59d05d",
@@ -1114,43 +458,43 @@
 				backgroundColor: 'transparent',
 				fill: true,
 				borderWidth: 2,
-				data: [1, 2]
+				data: HUMEDAD
 			}]
 		},
 
 	});
 
-	var multipleLineChart3 = document.getElementById('multipleLineChart2').getContext('2d')
+	var multipleLineChart3 = document.getElementById('multipleLineChart3').getContext('2d')
 	var myMultipleLineChart3 = new Chart(multipleLineChart3, {
 		type: 'line',
 		data: {
-			labels: [1, 2],
+			labels: fechasArray,
 			datasets: [{
-				label: "HUMEDAD REAL",
+				label: "CALIDAD DEL AIRE (PPM)",
 				borderColor: "#1d7af3",
 				pointBorderColor: "#FFF",
 				pointBackgroundColor: "#1d7af3",
 				pointBorderWidth: 1,
-				pointHoverRadius: 2,
-				pointHoverBorderWidth: 0.5,
-				pointRadius: 1,
+				pointHoverRadius: 1,
+				pointHoverBorderWidth: 1,
+				pointRadius: 4,
 				backgroundColor: 'transparent',
 				fill: true,
 				borderWidth: 1,
-				data: [1, 2]
+				data: DIRVIENTO
 			}]
 		},
 	});
 
 
 
-	var multipleLineChart4 = document.getElementById('multipleLineChart10').getContext('2d')
+	var multipleLineChart4 = document.getElementById('multipleLineChart4').getContext('2d')
 	var myMultipleLineChart4 = new Chart(multipleLineChart4, {
 		type: 'line',
 		data: {
-			labels: [1, 2],
+			labels: fechasArray,
 			datasets: [{
-				label: "PREDICCIÓN",
+				label: "DISTANCIA (CM)",
 				borderColor: "#59d05d",
 				pointBorderColor: "#FFF",
 				pointBackgroundColor: "#59d05d",
@@ -1161,147 +505,47 @@
 				backgroundColor: 'transparent',
 				fill: true,
 				borderWidth: 2,
-				data: [1, 2]
+				data: VELVIENTO
 			}]
 		},
 
 	});
 
 
-	var multipleLineChart5 = document.getElementById('multipleLineChart3').getContext('2d')
+	var multipleLineChart5 = document.getElementById('multipleLineChart5').getContext('2d')
 	var myMultipleLineChart5 = new Chart(multipleLineChart5, {
 		type: 'line',
 		data: {
-			labels: [1, 2],
+			labels: fechasArray,
 			datasets: [{
-				label: "VELOCIDAD VIENTO REAL",
+				label: "CANTIDAD DE LUZ (%)",
 				borderColor: "#1d7af3",
 				pointBorderColor: "#FFF",
 				pointBackgroundColor: "#1d7af3",
-				pointBorderWidth: 1,
-				pointHoverRadius: 2,
-				pointHoverBorderWidth: 0.5,
-				pointRadius: 1,
-				backgroundColor: 'transparent',
-				fill: true,
-				borderWidth: 1,
-				data: [1, 2]
-			}]
-		},
-
-	});
-
-	var multipleLineChart6 = document.getElementById('multipleLineChart11').getContext('2d')
-	var myMultipleLineChart6 = new Chart(multipleLineChart6, {
-		type: 'line',
-		data: {
-			labels: [1, 2],
-			datasets: [{
-				label: "PREDICCIÓN",
-				borderColor: "#59d05d",
-				pointBorderColor: "#FFF",
-				pointBackgroundColor: "#59d05d",
 				pointBorderWidth: 1,
 				pointHoverRadius: 1,
 				pointHoverBorderWidth: 1,
 				pointRadius: 4,
 				backgroundColor: 'transparent',
 				fill: true,
-				borderWidth: 2,
-				data: [1, 2]
-			}]
-		},
-
-	});
-
-
-
-
-	var multipleLineChart7 = document.getElementById('multipleLineChart4').getContext('2d')
-	var myMultipleLineChart7 = new Chart(multipleLineChart7, {
-		type: 'line',
-		data: {
-			labels: [1, 2],
-			datasets: [{
-				label: "DIRECCION VIENTO REAL",
-				borderColor: "#1d7af3",
-				pointBorderColor: "#FFF",
-				pointBackgroundColor: "#1d7af3",
-				pointBorderWidth: 1,
-				pointHoverRadius: 2,
-				pointHoverBorderWidth: 0.5,
-				pointRadius: 1,
-				backgroundColor: 'transparent',
-				fill: true,
 				borderWidth: 1,
-				data: [1, 2]
+				data: VELVIENTO
 			}]
 		},
 
 	});
 
-	var multipleLineChart8 = document.getElementById('multipleLineChart12').getContext('2d')
-	var myMultipleLineChart8 = new Chart(multipleLineChart8, {
-		type: 'line',
-		data: {
-			labels: [1, 2],
-			datasets: [{
+	
 
-				label: "PREDICCIÓN",
-				borderColor: "#59d05d",
-				pointBorderColor: "#FFF",
-				pointBackgroundColor: "#59d05d",
-				pointBorderWidth: 1,
-				pointHoverRadius: 1,
-				pointHoverBorderWidth: 1,
-				pointRadius: 4,
-				backgroundColor: 'transparent',
-				fill: true,
-				borderWidth: 2,
-				data: [1, 2]
-			}]
-		},
+	
 
-	});
 
+
+
+	
+
+	
 	var miBoton = document.getElementById("miBoton");
-
-	miBoton.addEventListener("mousedown", function () {
-		enviarNumero(1);
-	});
-
-	miBoton.addEventListener("mouseup", function () {
-		enviarNumero(22);
-	});
-	function enviarNumero(numero) {
-		// Configurar la URL del servidor
-		var url = "http://137.184.132.178:1880/api2/";
-
-		// Configurar los datos a enviar
-		var data = "numero=" + numero;
-
-		// Realizar la solicitud POST usando Fetch
-		fetch(url, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded'
-			},
-			body: data
-		})
-			.then(response => {
-				if (!response.ok) {
-					throw new Error('Network response was not ok');
-				}
-				return response.text();
-			})
-			.then(data => {
-				// Puedes realizar acciones adicionales con la respuesta del servidor si es necesario
-				console.log('Respuesta del servidor:', data);
-			})
-			.catch(error => {
-				console.error('Hubo un problema con la solicitud fetch:', error);
-			});
-	}
 
 	document.addEventListener('DOMContentLoaded', function () {
 		// Obtén los datos de la vista Django
@@ -1342,11 +586,11 @@
 				valor_v2 = data.v2;
 				valor_v3 = data.v3;
 				valor_v4 = data.v4;
-				gauge.refresh(valor_v3);
-				gauge2.refresh(valor_v4);
-				gauge3.refresh(valor_v0);
-				gauge4.refresh(valor_v2);
-				g1.refresh(valor_v1);
+				gauge.refresh(valor_v0);
+				gauge2.refresh(valor_v1);
+				gauge3.refresh(valor_v2);
+				gauge4.refresh(valor_v3);
+				g1.refresh(valor_v4);
 				document.getElementById('v0').innerText = 'v0: ' + data.v0;
 				document.getElementById('v1').innerText = 'v1: ' + data.v1;
 				document.getElementById('v2').innerText = 'v2: ' + data.v2;
@@ -1428,7 +672,7 @@
 		value: 21,
 		min: 0,
 		max: 40,
-		symbol: 'km/h',
+		symbol: 'ppm',
 		pointer: true,
 		gaugeWidthScale: 0.6,
 		decimals: 2,
@@ -1453,7 +697,7 @@
 		value: 21,
 		min: 0,
 		max: 300,
-		symbol: 'ml/m3',
+		symbol: 'cm',
 		pointer: true,
 		gaugeWidthScale: 0.6,
 		decimals: 2,
@@ -1471,48 +715,34 @@
 
 	});
 
-	var g1;
-	/** DIRECCION DEL VIENTO  */
-	function getRandomInt(min, max) {
-		return Math.floor(Math.random() * (max - min + 1)) + min;
-	}
-	document.addEventListener("DOMContentLoaded", function (event) {
-		g1 = new JustGage({
-			id: "g1",
-			value: 72,
-			min: 0,
-			max: 360,
-			donut: true,
-			gaugeWidthScale: 0.6,
-			counter: true,
-			hideInnerShadow: true,
-			pointer: true,
+	var g1 = new JustGage({
 
-			textRenderer: function (val) {
-				if (val == 0) {
-					return 'NORTE';
-				} else if (val == 180) {
-					return 'SUR';
-				} else if (val == 315) {
-					return 'NO';
-				} else if (val == 270) {
-					return 'OESTE';
-				} else if (val == 225) {
-					return 'SO';
-				} else if (val == 180) {
-					return 'SUR';
-				} else if (val == 135) {
-					return 'SE';
-				} else if (val == 90) {
-					return 'ESTE';
-				} else if (val == 45) {
-					return 'NE';
-				}
-			},
-		});
+		id: "g1",// required
 
+		value: 21,
+		min: 0,
+		max: 300,
+		symbol: '%',
+		pointer: true,
+		gaugeWidthScale: 0.6,
+		decimals: 2,
+		customSectors: [{
+			color: '#ff0000',
+			lo: 50,
+			hi: 100
+		}, {
+			color: '#00ff00',
+			lo: 0,
+			hi: 50
+		}],
+		counter: true
+		// more options here
 
 	});
+
+
+
+	
 
 	var updateInterval = 1000 //Fetch data ever x milliseconds
 	var realtime = 'on' //If == to on then fetch data every x seconds. else stop fetching

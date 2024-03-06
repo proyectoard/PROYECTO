@@ -9,11 +9,11 @@
 <div class="content">
 	<div class="panel-header">
 		<div class="page-inner py-5">
-			<h1 class="text-black pb-2 fw-bold">Reportes de Estación Meteorológica</h1>
+			<h1 class="text-black pb-2 fw-bold">Tabla de registros de sensores</h1>
 			<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 				<div>
-					<h2 class="text-black pb-2 fw-bold">Dashboard</h2>
-					<h5 class="text-black op-7 mb-2">Monitor de Sensores</h5>
+					<h2 class="text-black pb-2 fw-bold">Dashboard IoT con integración SQL</h2>
+					
 				</div>
 				<div class="ml-md-auto py-2 py-md-0">
 
@@ -31,11 +31,11 @@
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>Temperatura</th>
-								<th>Humedad</th>
-								<th>Velocidad de viento</th>
-								<th>Dirección de viento</th>
-								<th>Cantidad de lluvia</th>
+								<th>Temperatura (Celcius)</th>
+								<th>Humedad (%)</th>
+								<th>Distancia (cm)</th>
+								<th>Calidad del aire (ppm)</th>
+								<th>Cantidad de Luz(%)</th>
 								<th>Fecha</th>
 								<th>Hora</th>
 							</tr>
@@ -43,11 +43,11 @@
 						<tfoot>
 							<tr>
 								<th>ID</th>
-								<th>Temperatura</th>
-								<th>Humedad</th>
-								<th>Velocidad de viento</th>
-								<th>Dirección de viento</th>
-								<th>Cantidad de lluvia</th>
+								<th>Temperatura (Celcius)</th>
+								<th>Humedad (%)</th>
+								<th>Distancia (cm)</th>
+								<th>Calidad del aire (ppm)</th>
+								<th>Cantidad de Luz(%)</th>
 								<th>Fecha</th>
 								<th>Hora</th>
 							</tr>
@@ -61,8 +61,8 @@
 								<td>{{dato.3}}</td>
 								<td>{{dato.4}}</td>
 								<td>{{dato.5}}</td>
-								<td>{{dato.6}}</td>
 								<td>{{dato.7}}</td>
+								<td>{{dato.6}}</td>
 							</tr>
 							{% endfor %}
 						</tbody>

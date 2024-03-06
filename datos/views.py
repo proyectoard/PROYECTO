@@ -34,13 +34,13 @@ class ReportePersonalizadoExcel(TemplateView):
             # Conectar a la base de datos
         conn = mysql.connector.connect(
             host="srv1138.hstgr.io",
-            user="u153713658_sensores",
-            password="?4K92JUGsHd",
-            database="u153713658_base_proyecto"
+            user="u153713658_esp",
+            password="1234.Proyecto",
+            database="u153713658_sensores"
         )
 
         # Consultar los datos
-        query = "SELECT ID, TEMPERATURA, HUMEDAD, VELOCIDAD_VIENTO, DIRECCION_VIENTO, CANTIDAD_LLUVIA, FECHA, HORA FROM SENSORES ORDER BY ID DESC"
+        query = "SELECT * FROM esp ORDER by id DESC"
         cur = conn.cursor()
         cur.execute(query)
         datos = cur.fetchall()
@@ -49,7 +49,7 @@ class ReportePersonalizadoExcel(TemplateView):
         conn.close()
 
         # Crear un archivo CSV
-        field_names = ['ID', 'TEMPERATURA', 'HUMEDAD', 'VELOCIDAD_VIENTO', 'DIRECCION_VIENTO', 'CANTIDAD_LLUVIA', 'FECHA', 'HORA']
+        field_names = ['TEMPERATURA (CELCIUS)', 'HUMEDAD (%)', 'DISTANCIA (CM)', 'CALIDAD DEL AIRE (ppm)', 'CANTIDAD DE LUZ (%)', 'HORA', 'FECHA']
         with open('Names.csv', 'w', newline='') as csvfile:
             writer = csv.writer(csvfile)
             # Escribir los encabezados
@@ -62,7 +62,7 @@ class ReportePersonalizadoExcel(TemplateView):
 
         # Crear una respuesta HTTP para descargar el archivo Excel
         response = HttpResponse(content_type='application/ms-excel')
-        nombre_archivo = "ReporteEstacionMeteorologica.xlsx"
+        nombre_archivo = "RegistrosSQL.xlsx"
         contenido = f"attachment; filename={nombre_archivo}"
         response["Content-Disposition"] = contenido
 

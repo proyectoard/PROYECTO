@@ -246,7 +246,7 @@ label {
 body {
   min-height: 100vh;
   position: relative;
-  background: #f9fbfd; }
+  background: #0c1a27; }
 
 .no-bd {
   border: 0px !important; }
@@ -367,7 +367,7 @@ body {
   flex: 1;
   max-width: 400px; }
 
-.sidebar .nav > .nav-item.active > a:before, .sidebar[data-background-color="white"] .nav > .nav-item.active > a:before, .sidebar .nav > .nav-item.active:hover > a:before, .sidebar[data-background-color="white"] .nav > .nav-item.active:hover > a:before, .sidebar .nav > .nav-item a[data-toggle=collapse][aria-expanded=true]:before, .sidebar[data-background-color="white"] .nav > .nav-item a[data-toggle=collapse][aria-expanded=true]:before {
+.sidebar .nav > .nav-item.active > a:before, .sidebar[data-background-color="black"] .nav > .nav-item.active > a:before, .sidebar .nav > .nav-item.active:hover > a:before, .sidebar[data-background-color="white"] .nav > .nav-item.active:hover > a:before, .sidebar .nav > .nav-item a[data-toggle=collapse][aria-expanded=true]:before, .sidebar[data-background-color="white"] .nav > .nav-item a[data-toggle=collapse][aria-expanded=true]:before {
   opacity: 1 !important;
   position: absolute;
   z-index: 1;
@@ -377,7 +377,7 @@ body {
   left: 0;
   top: 0; }
 
-.sidebar, .sidebar[data-background-color="white"] {
+.sidebar, .sidebar[data-background-color="black"] {
   position: fixed;
   top: 0;
   bottom: 0;

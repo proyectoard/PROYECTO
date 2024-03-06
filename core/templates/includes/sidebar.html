@@ -1,18 +1,18 @@
 		<!-- Sidebar -->
-		<div class="sidebar sidebar-style-2">			
+		<div class="sidebar sidebar-style-3" style="background-color: #000000; ">			
 			<div class="sidebar-wrapper scrollbar scrollbar-inner">
 				<div class="sidebar-content">
 
 				{% if request.user.is_authenticated %}	
 					<div class="user">
 						<div class="avatar-sm float-left mr-2">
-							<img src="/static/assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+							<img src="/static/assets/img/temp2.png" alt="..." class="avatar-img rounded-circle">
 						</div>
 						<div class="info">
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-								<span>
+								<span style="color: #ffffff;">
 									{{ request.user.username }}
-									<span class="user-level">
+									<span class="user-level" style="color: #ffffff;">
 										{{ request.user.email }}
 									</span>
 									<span class="caret"></span>
@@ -20,34 +20,30 @@
 							</a>
 							<div class="clearfix"></div>
 
-							<div class="collapse in" id="collapseExample">
-								<ul class="nav">
+							<div class="collapse in" id="collapseExample" >
+								<ul class="nav"  >
+									
 									<li>
-										<a href="#profile">
-											<span class="link-collapse">My Profile</span>
-										</a>
-									</li>
-									<li>
-										<a href="{% url 'logout' %}">
-											<span class="link-collapse">Logout</span>
+										<a href="{% url 'logout' %}" >
+											<span class="link-collapse" style="color: #ffffff;">Cerrar sesión</span>
 										</a>
 									</li>
 								</ul>
 							</div>
 						</div>
 					</div>
-					<ul class="nav nav-primary">
+					<ul class="nav nav-collapse" >
 						<li class="nav-item {% if 'index' in segment %} active {% endif %}">
 							<a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
-								<i class="fas fa-home"></i>
-								<p>Dashboard</p>
+								<i class="fas fa-home" ></i>
+								<p style="color: #ffffff;">Dashboard IoT</p>
 								<span class="caret"></span>
 							</a>
 							<div class="collapse" id="dashboard">
 								<ul class="nav nav-collapse">
 									<li>
 										<a href="/hola/">
-											<span class="sub-item">Dashboard</span>
+											<span class="sub-item" style="color: #ffffff;">Dashboard IoT Blynk</span>
 										</a>
 									</li>
 								</ul>
@@ -57,7 +53,7 @@
 							<span class="sidebar-mini-icon">
 								<i class="fa fa-ellipsis-h"></i>
 							</span>
-							<h4 class="text-section">Componentes</h4>
+							<h4 class="text-section" style="color: #ffffff;" >Componentes</h4>
 						</li>
 						
 						
@@ -65,7 +61,7 @@
 						<li class="nav-item {% if 'tables' in segment %} active {% endif %}">
 							<a data-toggle="collapse" href="#tables">
 								<i class="fas fa-table"></i>
-								<p>Tablas de Registros</p>
+								<p style="color: #ffffff;">Tablas SQL</p>
 								<span class="caret"></span>
 							</a>
 							<div class="collapse" id="tables">
@@ -73,7 +69,7 @@
 									
 									<li>
 										<a href="/Registros/">
-											<span class="sub-item">REGISTROS HISTORICOS</span>
+											<span class="sub-item" style="color: #ffffff;">REGISTROS</span>
 										</a>
 									</li>
 
