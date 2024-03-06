@@ -25,7 +25,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 # load production server from .env
-ALLOWED_HOSTS = ['https://hammerhead-app-po75z.ondigitalocean.app/','estacionmeteorologica-tlm.tech','127.0.0.1','159.223.108.138' ,config('SERVER', default='192.168.100.21')]
+ALLOWED_HOSTS = ['hammerhead-app-po75z.ondigitalocean.app','estacionmeteorologica-tlm.tech','127.0.0.1','159.223.108.138' ,config('SERVER', default='192.168.100.21')]
 
 # Application definition
 INSTALLED_APPS = [
@@ -76,7 +76,6 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
