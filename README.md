@@ -44,6 +44,7 @@ $ git clone https://github.com/app-generator/django-dashboard-atlantis.git
 $ cd django-dashboard-atlantis
 $
 $ # Virtualenv modules installation (Unix based systems)
+python3 -m venv env
 $ virtualenv env
 $ source env/bin/activate
 $
