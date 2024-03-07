@@ -18,7 +18,6 @@ CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # SECURITY WARNING: keep the secret key used in production secret!
-
 #SECRET_KEY = config('SECRET_KEY', default='S#perS3crEt_1122')
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -76,6 +75,8 @@ TEMPLATES = [
         },
     },
 ]
+
+
 WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
