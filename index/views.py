@@ -77,7 +77,7 @@ class grafica(View):
                    
                     fechas_list = json.loads(fechas_json)
 
-                    hum = [num_str for num_str in hum]
+                    hum = [float(num_str) for num_str in hum]
                 
 
                     dis = [float(num_str1) for num_str1 in dis]
